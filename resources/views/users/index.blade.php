@@ -105,9 +105,10 @@ Users
                           </td>
                           <td class="td-actions text-right">
                             {{-- @if ($user->id != auth()->id() and Auth::user()->admin) --}}
-                              <form action="{{ route('user.destroy', $user) }}" method="post">
-                                  @csrf
-                                  @method('delete')
+                            @if($user->accomodation != null)<a href="{{route('accomodation',$user)}}" class="btn btn-xs btn-info">Accomodation</a>@endif
+                            <form action="{{ route('user.destroy', $user) }}" method="post">
+                                @csrf
+                                @method('delete')
                                 @if($user->details != null)
                                   <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('registration', $user) }}" data-original-title="" title="">
                                     <i class="material-icons">remove_red_eye</i>

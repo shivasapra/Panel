@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Accomodation;
 use App\Details;
 
 class DetailsController extends Controller
@@ -46,5 +47,23 @@ class DetailsController extends Controller
         $details->approved = 1;
         $details->save();
         return redirect()->back()->with('user',$details->user)->withStatus(__('Approved'));
+    }
+
+    public function accomodation(User $user){
+        return view('registration.accomodation')->with('user',$user);
+    }
+
+    public function accomodationSubmit(Request $request,User $user,Accomodation $model){
+        $model->user_id = $user->id;
+        $model->bank_name = $request->bank_name;
+        $model->amount = $request->amount;
+        $model->transaction_id = $request->transaction_id;
+        $model->payment_date = $request->payment_date;
+        $model->save();
+        return redirect()->back()->with('user',$user)->withStatus(__('Accomodation Added'));
+    }
+
+    public function abstract(User $user){
+        dd($user);
     }
 }

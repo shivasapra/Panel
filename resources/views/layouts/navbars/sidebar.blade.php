@@ -46,6 +46,18 @@
                     <p>{{ __('Registration') }}</p>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'Accomodation' ? ' active' : '' }}">
+                <a class="nav-link" href="{{route('accomodation',Auth::user())}}">
+                    <i class="material-icons">stars</i>
+                    <p>{{ __('Accomodation') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'Abstract' ? ' active' : '' }}">
+                <a class="nav-link" href="{{route('abstract',Auth::user())}}">
+                    <i class="material-icons">airplay</i>
+                    <p>{{ __('Abstract') }}</p>
+                </a>
+              </li>
             @endif
           {{-- </ul>
         </div> --}}
