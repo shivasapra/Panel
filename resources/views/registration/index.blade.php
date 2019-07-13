@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="col-md-3 text-center">
-                @if($user->details->approved)
+                @if($user->details!= null and$user->details->approved)
                     <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
                 @endif
             </div>
@@ -172,15 +172,18 @@
                         </div>
                     </div>
                 </div>
-                @if(!Auth::user()->admin)
-                <div class="card-footer ml-auto mr-auto">
-                    <button type="submit" class="btn btn-info">@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
-                </div>
+                @if($user->details != null and $user->details->approved)
                 @else
-                    @if(!$user->details->approved)
+                    @if(!Auth::user()->admin)
                         <div class="card-footer ml-auto mr-auto">
-                            <a href="{{route('approve.registration',$user->details)}}"  class="btn btn-success">{{ __('Approve') }}</a>
+                            <button type="submit" class="btn btn-info">@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
                         </div>
+                    @else
+                        @if($user->details!= null and !$user->details->approved )
+                            <div class="card-footer ml-auto mr-auto">
+                                <a href="{{route('approve.registration',$user->details)}}"  class="btn btn-success">{{ __('Approve') }}</a>
+                            </div>
+                        @endif
                     @endif
                 @endif
             </div>
