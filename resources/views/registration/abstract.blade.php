@@ -17,8 +17,9 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="ffbfn.hgf" frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="@if($user->abstract != null){{asset($user->abstract->poster)}}"@endif frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
+                        <input type="file" name="poster">
                         <div class="card-footer ml-auto mr-auto">
                            
                         </div>
@@ -31,16 +32,18 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="{{asset('doc.html')}}" frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="@if($user->abstract != null){{asset($user->abstract->talk)}}"@endif frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
-                        <input type="file" name="word">
+                        <input type="file" name="talk">
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-info">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
-          </form>
+            <div class="text-center">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+        </form>
         </div>
       </div>
     </div>

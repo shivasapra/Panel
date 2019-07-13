@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Abtract;
 use App\Accomodation;
 use App\Details;
 use PhpOffice\PhpWord\IOFactory;
@@ -68,10 +69,24 @@ class DetailsController extends Controller
         return view('registration.abstract')->with('user',$user);
     }
 
-    public function abstractSubmit(Request $request,User $user){
-        $file = $request->file('word');
-        $phpWord = \PhpOffice\PhpWord\IOFactory::load($file);
+    public function abstractSubmit(Request $request,User $user,Abtract $model){
+        $model->user->id = $user->id;
+        $talk_file = $request->file('talk');
+        $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-        $objWriter->save('doc.html');
+        $rand_one = strrandom();
+        $objWriter->save('word/'.$rand_one.'html');
+        $model->talk = 'word/'.$rand_one.'html';
+
+        $poster_file = $request->file('poster');
+        $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+        $rand_two = strrandom();
+        $objWriter->save('word/'.$rand_two.'html');
+        $model->poster = 'word/'.$rand_two.'html';
+
+        $model->save();
+
+        return redirect()->back();
     }
 }
