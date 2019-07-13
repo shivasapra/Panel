@@ -19,32 +19,41 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/a', function () {
-    dd();
-})->name('profile.edit');
+Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+Route::put('update/profile', 'ProfileController@update')->name('profile.update');
+Route::put('profile/password', 'ProfileController@password')->name('profile.password');
 
-Route::get('/b', function () {
-    dd();
-})->name('user.index');
+Route::get('/users', 'UserController@index')->name('user.index');
+Route::get('create/user', 'UserController@create')->name('user.create');
+Route::post('store/user', 'UserController@store')->name('user.store');
+Route::get('edit/user', 'UserController@edit')->name('user.edit');
+Route::post('update/user', 'UserController@update')->name('user.update');
+Route::delete('destroy/user', 'UserController@destroy')->name('user.destroy');
 
-Route::get('/c', function () {
-    dd();
+Route::get('/tables', function () {
+    return view('pages.table_list');
 })->name('table');
-Route::get('/d', function () {
-    dd();
+
+Route::get('/typography', function () {
+    return view('pages.typography');
 })->name('typography');
-Route::get('/e', function () {
-    dd();
+
+Route::get('/icons', function () {
+    return view('pages.icons');
 })->name('icons');
-Route::get('/f', function () {
-    dd();
+
+Route::get('/map', function () {
+    return view('pages.map');
 })->name('map');
-Route::get('/g', function () {
-    dd();
+
+Route::get('/notifications', function () {
+    return view('pages.notifications');
 })->name('notifications');
-Route::get('/h', function () {
-    dd();
+
+Route::get('/language', function () {
+    return view('pages.language');
 })->name('language');
-Route::get('/i', function () {
-    dd();
+
+Route::get('/upgrade', function () {
+    return view('pages.upgrade');
 })->name('upgrade');

@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'shivasapra24@gmail.com',
             'password' => Hash::make('password'),
             'admin' => 1,
+            'created_at' =>now(),
         ]);
     }
 }
