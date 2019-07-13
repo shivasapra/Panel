@@ -18,3 +18,33 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/a', function () {
+    dd();
+})->name('profile.edit');
+
+Route::get('/b', function () {
+    dd();
+})->name('user.index');
+
+Route::get('/c', function () {
+    dd();
+})->name('table');
+Route::get('/d', function () {
+    dd();
+})->name('typography');
+Route::get('/e', function () {
+    dd();
+})->name('icons');
+Route::get('/f', function () {
+    dd();
+})->name('map');
+Route::get('/g', function () {
+    dd();
+})->name('notifications');
+Route::get('/h', function () {
+    dd();
+})->name('language');
+Route::get('/i', function () {
+    dd();
+})->name('upgrade');
