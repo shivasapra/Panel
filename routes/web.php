@@ -28,6 +28,10 @@ Route::get('edit/{user}', 'UserController@edit')->name('user.edit');
 Route::put('update/{user}', 'UserController@update')->name('user.update');
 Route::delete('destroy/{user}', 'UserController@destroy')->name('user.destroy');
 
+Route::get('/registration/{user}', 'DetailsController@registration')->name('registration');
+Route::post('/registerr/{user}', 'DetailsController@register')->name('registerr');
+Route::post('/edit/registration/{user}/{details}', 'DetailsController@editRegistration')->name('edit.register');
+
 Route::get('/tables', function () {
     return view('pages.table_list');
 })->name('table');

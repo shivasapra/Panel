@@ -32,12 +32,21 @@
                 <span class="sidebar-normal">{{ __('User profile') }} </span>
               </a>
             </li> --}}
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                  <i class="material-icons">account_circle</i>
-                  <p>{{ __('User Management') }}</p>
-              </a>
-            </li>
+            @if(Auth::user()->admin)
+              <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="material-icons">account_circle</i>
+                    <p>{{ __('User Management') }}</p>
+                </a>
+              </li>
+            @else
+              <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('registration',Auth::user()) }}">
+                    <i class="material-icons">account_circle</i>
+                    <p>{{ __('Registration') }}</p>
+                </a>
+              </li>
+            @endif
           {{-- </ul>
         </div> --}}
       {{-- </li> --}}
