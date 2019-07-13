@@ -43,7 +43,16 @@ Users
                         {{ __('Email') }}
                       </th>
                       <th>
-                        {{ __('Creation date') }}
+                        {{ __('Phone') }}
+                      </th>
+                      <th>
+                          {{ __('Institute') }}
+                      </th>
+                      <th>
+                        {{ __('Department') }}
+                      </th>
+                      <th>
+                          {{ __('Status') }}
                       </th>
                       <th class="text-right">
                         {{ __('Actions') }}
@@ -52,10 +61,11 @@ Users
                     <tbody>
                       <?php $i =1 ;?>
                       @foreach($users as $user)
+                      @if ($user->id != auth()->id() and !$user->admin and Auth::user()->admin)
                         <tr>
-                          <td>
-                            {{$i++}}
-                          </td>
+                          <th>
+                            {{$i++}}.
+                          </th>
                           <td>
                             {{ $user->name }}
                           </td>
@@ -63,31 +73,61 @@ Users
                             {{ $user->email }}
                           </td>
                           <td>
-                            {{ $user->created_at->format('Y-m-d') }}
+                            @if($user->details != null)
+                              {{$user->details->phone}}
+                            @else
+                              {{'--'}}
+                            @endif
+                          </td>
+                          <td>
+                            @if($user->details != null)
+                              {{$user->details->institute}}
+                            @else
+                              {{'--'}}
+                            @endif
+                          </td>
+                          <td>
+                            @if($user->details != null)
+                              {{$user->details->department}}
+                            @else
+                              {{'--'}}
+                            @endif
+                          </td>
+                          <td><strong>
+                            @if($user->details == null)
+                              <span class="text-dange">{{__('Not Yet Registered')}}</span>
+                            @elseif(!$user->details->approved)
+                              <span class="text-warning">{{__('Registered')}}</span>
+                            @else
+                              <span class="text-success">{{__('Approved')}}</span>
+                            @endif
+                          </strong>
                           </td>
                           <td class="td-actions text-right">
-                            @if ($user->id != auth()->id() and Auth::user()->admin)
+                            {{-- @if ($user->id != auth()->id() and Auth::user()->admin) --}}
                               <form action="{{ route('user.destroy', $user) }}" method="post">
                                   @csrf
                                   @method('delete')
-                              
-                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $user) }}" data-original-title="" title="">
-                                    <i class="material-icons">edit</i>
+                                @if($user->details != null)
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('registration', $user) }}" data-original-title="" title="">
+                                    <i class="material-icons">remove_red_eye</i>
                                     <div class="ripple-container"></div>
                                   </a>
+                                @endif
                                   <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                       <i class="material-icons">close</i>
                                       <div class="ripple-container"></div>
                                   </button>
                               </form>
-                            @else
+                            {{-- @else
                               <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('profile.edit') }}" data-original-title="" title="">
                                 <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                               </a>
-                            @endif
+                            @endif --}}
                           </td>
                         </tr>
+                      @endif
                       @endforeach
                     </tbody>
                   </table>

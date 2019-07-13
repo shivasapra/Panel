@@ -24,7 +24,7 @@ class DetailsController extends Controller
         $model->transaction_id = $request->transaction_id;
         $model->payment_date = $request->payment_date;
         $model->save();
-        return redirect()->back()->with($user)->withStatus(__('Registered.'));
+        return redirect()->back()->with('user',$user)->withStatus(__('Registered.'));
     }
 
     public function editRegistration(Request $request,User $user, Details $details){
@@ -40,5 +40,11 @@ class DetailsController extends Controller
         $details->payment_date = $request->payment_date;
         $details->save();
         return redirect()->back()->with('user',$user)->withStatus(__('Updated.'));
+    }
+
+    public function approve(Details $details){
+        $details->approved = 1;
+        $details->save();
+        return redirect()->back()->with('user',$details->user)->withStatus(__('Approved'));
     }
 }

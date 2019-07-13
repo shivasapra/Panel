@@ -31,6 +31,7 @@ Route::delete('destroy/{user}', 'UserController@destroy')->name('user.destroy');
 Route::get('/registration/{user}', 'DetailsController@registration')->name('registration');
 Route::post('/registerr/{user}', 'DetailsController@register')->name('registerr');
 Route::post('/edit/registration/{user}/{details}', 'DetailsController@editRegistration')->name('edit.register');
+Route::get('/edit/registration/{details}', 'DetailsController@approve')->name('approve.registration');
 
 Route::get('/tables', function () {
     return view('pages.table_list');

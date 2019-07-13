@@ -33,19 +33,22 @@
                   </div>
                 </div> --}}
                 <div class="row">
+                    <div class="col-md-9">
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
-                  <div class="col-sm-7">
+                  <div class="col-sm-10">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name',$user->name) }}" required="true" aria-required="true"/>
-                      @if ($errors->has('name'))
+                        <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name',$user->name) }}" required="true" aria-required="true"/>
+                        @if ($errors->has('name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
-                      @endif
+                        @endif
                     </div>
-                  </div>
                 </div>
+                </div>
+            
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
-                  <div class="col-sm-7">
+                  <div class="col-sm-10">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email',$user->email) }}" required />
                       @if ($errors->has('email'))
@@ -56,7 +59,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Gender') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
                         <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('gender'))
@@ -67,7 +70,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Institue Name') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('institue') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('institue') ? ' is-invalid' : '' }}" name="institute" id="input-institute" type="text" placeholder="{{ __('Institue Name') }}" @if($user->details != null)  value="{{$user->details->institute}}"   @else value="{{old('institue')}}" @endif  required="true" aria-required="true"/>
                             @if ($errors->has('institute'))
@@ -78,7 +81,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Department') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('department') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('department') ? ' is-invalid' : '' }}" name="department" id="input-department" type="text" placeholder="{{ __('Department') }}" @if($user->details != null)  value="{{$user->details->department}}"   @else value="{{old('department')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('department'))
@@ -89,7 +92,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Address') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="input-address" type="text" placeholder="{{ __('Address') }}" @if($user->details != null)  value="{{$user->details->address}}"   @else value="{{old('address')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('address'))
@@ -100,7 +103,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Phone') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone') }}" @if($user->details != null)  value="{{$user->details->phone}}"   @else value="{{old('phone')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('phone'))
@@ -109,6 +112,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3 text-center">
+                @if($user->details->approved)
+                    <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                @endif
+            </div>
+        </div>
             </div>
             </div>
             <div class="card ">
@@ -162,9 +172,17 @@
                         </div>
                     </div>
                 </div>
+                @if(!Auth::user()->admin)
                 <div class="card-footer ml-auto mr-auto">
                     <button type="submit" class="btn btn-info">@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
                 </div>
+                @else
+                    @if(!$user->details->approved)
+                        <div class="card-footer ml-auto mr-auto">
+                            <a href="{{route('approve.registration',$user->details)}}"  class="btn btn-success">{{ __('Approve') }}</a>
+                        </div>
+                    @endif
+                @endif
             </div>
           </form>
         </div>
