@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function accomodation(){
         return $this->hasOne('App\Accomodation');
     }
+
+    public function abstract(){
+        return $this->hasOne('App\Abtract');
+    }
 }

@@ -95,7 +95,7 @@ Users
                           </td>
                           <td><strong>
                             @if($user->details == null)
-                              <span class="text-dange">{{__('Not Yet Registered')}}</span>
+                              <span class="text-dange">{{__('Not Registered')}}</span>
                             @elseif(!$user->details->approved)
                               <span class="text-warning">{{__('Registered')}}</span>
                             @else

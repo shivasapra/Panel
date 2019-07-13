@@ -35,6 +35,7 @@ Route::get('/edit/registration/{details}', 'DetailsController@approve')->name('a
 
 Route::get('/accomodation/{user}', 'DetailsController@accomodation')->name('accomodation');
 Route::post('/accomodation/submit/{user}', 'DetailsController@accomodationSubmit')->name('accomodation.submit');
+Route::post('/abstract/submit/{user}', 'DetailsController@abstractSubmit')->name('abstract.submit');
 Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
 Route::get('/tables', function () {
     return view('pages.table_list');

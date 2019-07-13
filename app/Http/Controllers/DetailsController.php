@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Accomodation;
 use App\Details;
+use PhpOffice\PhpWord\IOFactory;
 
 class DetailsController extends Controller
 {
@@ -64,6 +65,13 @@ class DetailsController extends Controller
     }
 
     public function abstract(User $user){
-        dd($user);
+        return view('registration.abstract')->with('user',$user);
+    }
+
+    public function abstractSubmit(Request $request,User $user){
+        $file = $request->file('word');
+        $phpWord = \PhpOffice\PhpWord\IOFactory::load($file);
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+        $objWriter->save('doc.html');
     }
 }
