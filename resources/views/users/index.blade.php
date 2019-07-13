@@ -1,5 +1,7 @@
 @extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
-
+@section('title')
+Users
+@stop
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -32,6 +34,9 @@
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
+                          {{ __('Sno.') }}
+                      </th>
+                      <th>
                           {{ __('Name') }}
                       </th>
                       <th>
@@ -45,8 +50,12 @@
                       </th>
                     </thead>
                     <tbody>
+                      <?php $i =1 ;?>
                       @foreach($users as $user)
                         <tr>
+                          <td>
+                            {{$i++}}
+                          </td>
                           <td>
                             {{ $user->name }}
                           </td>
@@ -57,7 +66,7 @@
                             {{ $user->created_at->format('Y-m-d') }}
                           </td>
                           <td class="td-actions text-right">
-                            @if ($user->id != auth()->id())
+                            @if ($user->id != auth()->id() and Auth::user()->admin)
                               <form action="{{ route('user.destroy', $user) }}" method="post">
                                   @csrf
                                   @method('delete')

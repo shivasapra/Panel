@@ -50,7 +50,7 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
-    {
+    {   
         return view('users.edit', compact('user'));
     }
 
