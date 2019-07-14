@@ -103,4 +103,5 @@ class DetailsController extends Controller
         $accomodation->save();
         return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
     }
+
 }

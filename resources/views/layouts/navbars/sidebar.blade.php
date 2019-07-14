@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+<div class="sidebar" data-color="azure" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -37,6 +37,18 @@
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="material-icons">account_circle</i>
                     <p>{{ __('User Management') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'Accomodations' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('accomodation.index') }}">
+                    <i class="material-icons">stars</i>
+                    <p>{{ __('Accomodations') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'Abstracts' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('abstract.index') }}">
+                    <i class="material-icons">airplay</i>
+                    <p>{{ __('Abstracts') }}</p>
                 </a>
               </li>
             @else

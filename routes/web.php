@@ -38,6 +38,9 @@ Route::post('/accomodation/submit/{user}', 'DetailsController@accomodationSubmit
 Route::get('/approve/accomodation/{accomodation}', 'DetailsController@approveAccomodation')->name('approve.accomodation');
 Route::post('/abstract/submit/{user}', 'DetailsController@abstractSubmit')->name('abstract.submit');
 Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
+Route::get('/accomodations', function () {
+    return view('registration.accomodationIndex');
+})->name('accomodation.index');
 Route::get('/tables', function () {
     return view('pages.table_list');
 })->name('table');
