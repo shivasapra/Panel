@@ -5,8 +5,9 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('IISER') }}
+    
+    <a href="http://www.iisermohali.ac.in/" class="simple-text logo-normal">
+      <img src="{{asset('material/img/iisermlogo.jpg')}}" style="width:50px;"><br>{{ __('IISER') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -51,16 +52,16 @@
                     <p>{{ __('Abstracts') }}</p>
                 </a>
               </li>
-              <li class="nav-item{{ $activePage == 'Registration Transaction Report' ? ' active' : '' }}">
+              <li class="nav-item{{ $activePage == 'Registration Report' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('regTran') }}">
                     <i class="material-icons">description</i>
-                    <p>{{ __('Registration Transaction Report') }}</p>
+                    <p>{{ __('Registration Report') }}</p>
                 </a>
               </li>
-              <li class="nav-item{{ $activePage == 'Accomodation Transaction Report' ? ' active' : '' }}">
+              <li class="nav-item{{ $activePage == 'Accomodation Report' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('accTran') }}">
                     <i class="material-icons">description</i>
-                    <p>{{ __('Accomodation Transaction Report') }}</p>
+                    <p>{{ __('Accomodation Report') }}</p>
                 </a>
               </li>
             @else
