@@ -45,6 +45,13 @@ Route::get('/abstracts', function () {
     return view('registration.abstractIndex');
 })->name('abstract.index');
 
+Route::get('/registration-transaction/report', function () {
+    return view('reports.regTran');
+})->name('regTran');
+Route::get('/accomodation-transaction/report', function () {
+    return view('reports.accTran');
+})->name('accTran');
+
 
 Route::get('/tables', function () {
     return view('pages.table_list');

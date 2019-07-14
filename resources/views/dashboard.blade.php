@@ -71,7 +71,7 @@ Dashboard
               <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons text-info">remove_red_eye</i>
-                    <a href="#"><span  class="text-info"><b> View</b></span></a>
+                    <a href="{{ route('abstract.index') }}"><span  class="text-info"><b> View</b></span></a>
                 </div>
               </div>
             </div>

@@ -51,6 +51,18 @@
                     <p>{{ __('Abstracts') }}</p>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'Registration Transaction Report' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('regTran') }}">
+                    <i class="material-icons">description</i>
+                    <p>{{ __('Registration Transaction Report') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'Accomodation Transaction Report' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('accTran') }}">
+                    <i class="material-icons">description</i>
+                    <p>{{ __('Accomodation Transaction Report') }}</p>
+                </a>
+              </li>
             @else
               <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('registration',Auth::user()) }}">
