@@ -102,7 +102,14 @@
 
     $("#no").click(function () {
         $('.toggle').attr("disabled",'disabled');
-    });
+    })
 });
+window.onload=function(){
+        @if($user->accomodation != null)
+        @if(Auth::user()->admin or $user->accomodation->approved)
+            $('input').attr('disabled','disabled')
+            };
+        @endif
+        @endif
 </script>
 @stop
