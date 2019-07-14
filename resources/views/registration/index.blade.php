@@ -8,7 +8,6 @@
           <form method="post" action="@if($user->details != null){{ route('edit.register',[$user,$user->details]) }}@else {{ route('registerr',$user) }}@endif" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
-
             <div class="card ">
               <div class="card-header card-header-info">
                 <h4 class="card-title">{{ __('Details') }}</h4>
@@ -112,8 +111,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 text-center">
+                </div>
+                <div class="col-md-3 text-center">
                 
                 @if($user->details!= null)
                     @if(!$user->details->approved and auth::user()->admin )
@@ -125,9 +124,9 @@
                         <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
                     @endif
                 @endif
-            </div>
-        </div>
-            </div>
+                </div>
+                </div>
+                </div>
             </div>
             <div class="card ">
                 <div class="card-header card-header-warning">
@@ -260,6 +259,53 @@
                     </div>
                 </div>
                 </div>
+            </div>
+          @endif
+          @if($user->abstract != null)
+            <div class="row">
+                @if($user->abstract->poster != null)
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header card-header-danger">
+                                <h4 class="card-title">{{ __('Abstract For Poster') }}
+                                    {{-- <button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4> --}}
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body">
+                                <iframe src="{{asset($user->abstract->poster)}}"  frameborder="0" style="width:100%;height:500px;"></iframe>
+                            </div>
+                            <input type="file" name="poster" id="poster" style="display:none";>
+                            <br><p style="font-size:20px;margin-left:25px;"><b>Terms & Conditions:</b></p>
+                            <p style="font-size:17px;margin-left:25px;margin-right:10px;">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                            <div class="card-footer ml-auto mr-auto">
+                                
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if($user->abstract->talk != null)
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">{{ __('Abstract For Talk') }}
+                                    {{-- <button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4> --}}
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body">
+                                <iframe src="{{asset($user->abstract->talk)}}" frameborder="0" style="width:100%;height:500px;"></iframe>
+                            </div>
+                            <input type="file" name="talk" id="talk" style="display:none";>
+                            <br><p style="font-size:20px;margin-left:25px;"><b>Terms & Conditions:</b></p>
+                            <p style="font-size:17px;margin-left:25px;margin-right:10px;">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                            <div class="card-footer ml-auto mr-auto">
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
           @endif
         </div>
