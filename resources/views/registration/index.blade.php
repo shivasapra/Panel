@@ -312,4 +312,14 @@
       </div>
     </div>
   </div>
+  
 @endsection
+@section('js')
+<script>
+    window.onload=function(){
+        @if(Auth::user()->admin or $user->details->approved)
+            $('input').attr('disabled','disabled')
+            };
+        @endif
+</script>
+@stop
