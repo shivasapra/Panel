@@ -283,7 +283,10 @@ Dashboard
                               <tr>
                                 <td>{{$abstract->user->name}}</td>
                                 <td>{{$abstract->user->email}}</td>
-                                
+                                <td class="td_talk">
+                                    <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
+                                    <button type="button" onclick="talk(this);" class="btn-btn sm btn-info">View</button>
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -303,6 +306,10 @@ Dashboard
                               <tr>
                                 <td>{{$abstract->user->name}}</td>
                                 <td>{{$abstract->user->email}}</td>
+                                <td class="td_poster">
+                                    <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
+                                    <button type="button" onclick="poster(this);" class="btn-btn sm btn-info">View</button>
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -384,6 +391,10 @@ Dashboard
       @endif
     </div>
   </div>
+<a href="#" id="target2" style="display:none;" data-toggle="modal" data-target="#talk_view"></a>
+<a href="#" id="target" style="display:none;" data-toggle="modal" data-target="#poster_view"></a>
+<div id="talk-modal"></div>
+<div id="poster-modal"></div>
 @endsection
 
 @push('js')
@@ -392,5 +403,72 @@ Dashboard
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
+  </script>
+  <script>
+      function talk(temp){
+          var i = $(temp).parents('.td_talk').find('.ab_id').val();
+          @foreach(App\Abtract::all() as $a)
+            var j = {{$a->id}};
+            if (i == j) {
+                var data = 
+                '<div class="modal fade" id="talk_view">'+
+                    '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                        '<div class="modal-content">'+
+            
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                                '<h4 class="modal-title">Talk Abstract</h4>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+            
+                            '<!-- Modal body -->'+
+                            '<div class="modal-body">'+
+                                '<iframe src="{{asset($a->talk)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+            }
+          @endforeach
+                
+            
+         
+	  $('#talk-modal').html(data);
+	  $('#target2').click();
+          
+      }
+
+      function poster(temp){
+          var i = $(temp).parents('.td_poster').find('.ab_id').val();
+          @foreach(App\Abtract::all() as $a)
+            var j = {{$a->id}};
+            if (i == j) {
+                var data = 
+                '<div class="modal fade" id="poster_view">'+
+                    '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                        '<div class="modal-content">'+
+            
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                                '<h4 class="modal-title">Poster Abstract</h4>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+            
+                            '<!-- Modal body -->'+
+                            '<div class="modal-body">'+
+                                '<iframe src="{{asset($a->poster)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+            }
+          @endforeach
+                
+            
+         
+	  $('#poster-modal').html(data);
+	  $('#target').click();
+          
+      }
   </script>
 @endpush
