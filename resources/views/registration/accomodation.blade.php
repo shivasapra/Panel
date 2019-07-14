@@ -16,7 +16,6 @@
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
-                    @if($user->details != null and $user->details->approved)
                     @if($user->accomodation == null)
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation') }}</label>
@@ -72,11 +71,6 @@
                         </div>
                     </div>
                 </div>
-                @else
-                <div class="text-center">
-                    <h3>{{__('Your Registration Must Be Approved By Admin For Proceeding To Accomodation.')}}</h3>
-                </div>
-                @endif
                 @if($user->accomodation == null and $user->details != null and $user->details->approved)
                     <div class="card-footer ml-auto mr-auto">
                         <button type="submit" class="btn btn-info toggle " disabled>{{ __('Submit') }}</button>

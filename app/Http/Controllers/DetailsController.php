@@ -69,22 +69,30 @@ class DetailsController extends Controller
         return view('registration.abstract')->with('user',$user);
     }
 
-    public function abstractSubmit(Request $request,User $user,Abtract $model){
-        $model->user->id = $user->id;
-        $talk_file = $request->file('talk');
-        $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-        $rand_one = strrandom();
-        $objWriter->save('word/'.$rand_one.'html');
-        $model->talk = 'word/'.$rand_one.'html';
-
-        $poster_file = $request->file('poster');
-        $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-        $rand_two = strrandom();
-        $objWriter->save('word/'.$rand_two.'html');
-        $model->poster = 'word/'.$rand_two.'html';
-
+    public function abstractSubmit(Request $request,User $user){
+        if($user->abstract ==null){
+            $model = new Abtract;
+        }
+        else{
+            $model = $user->abstract;
+        }
+        $model->user_id = $user->id;
+        if($request->hasFile('talk')){
+            $talk_file = $request->file('talk');
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $rand_one = str_random();
+            $objWriter->save('word/'.$rand_one.'html');
+            $model->talk = 'word/'.$rand_one.'html';
+        }
+        if($request->hasFile('poster')){
+            $poster_file = $request->file('poster');
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $rand_two = str_random();
+            $objWriter->save('word/'.$rand_two.'html');
+            $model->poster = 'word/'.$rand_two.'html';
+        }
         $model->save();
 
         return redirect()->back();

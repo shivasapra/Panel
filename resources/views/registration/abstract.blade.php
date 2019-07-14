@@ -13,13 +13,14 @@
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header card-header-success">
-                            <h4 class="card-title">{{ __('Abstract For Poster') }}</h4>
+                            <h4 class="card-title">{{ __('Abstract For Poster') }}
+                                <button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="@if($user->abstract != null){{asset($user->abstract->poster)}}"@endif frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="@if($user->abstract != null and $user->abstract->poster != null){{asset($user->abstract->poster)}} @else test.html @endif"  frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
-                        <input type="file" name="poster">
+                        <input type="file" name="poster" id="poster" style="display:none";>
                         <div class="card-footer ml-auto mr-auto">
                            
                         </div>
@@ -28,13 +29,14 @@
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Abstract For Talk') }}</h4>
+                            <h4 class="card-title">{{ __('Abstract For Talk') }}
+                                <button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="@if($user->abstract != null){{asset($user->abstract->talk)}}"@endif frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="@if($user->abstract != null and $user->abstract->talk != null){{asset($user->abstract->talk)}} @else test.html @endif" frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
-                        <input type="file" name="talk">
+                        <input type="file" name="talk" id="talk" style="display:none";>
                         <div class="card-footer ml-auto mr-auto">
                         </div>
                     </div>
@@ -59,6 +61,16 @@
     $("#no").click(function () {
         $('.toggle').attr("disabled",'disabled');
     });
+
+    $("#poster_button").click(function () {
+        $('#poster').click();
+    });
+
+    $("#talk_button").click(function () {
+        $('#talk').click();
+    });
 });
+
+
 </script>
 @stop
