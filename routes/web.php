@@ -41,6 +41,10 @@ Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
 Route::get('/accomodations', function () {
     return view('registration.accomodationIndex');
 })->name('accomodation.index');
+Route::get('/abstracts', function () {
+    return view('registration.abstractIndex');
+})->name('abstract.index');
+
 Route::get('/tables', function () {
     return view('pages.table_list');
 })->name('table');
