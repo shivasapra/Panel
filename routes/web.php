@@ -45,6 +45,11 @@ Route::get('/abstracts', function () {
     return view('registration.abstractIndex');
 })->name('abstract.index');
 
+Route::get('/talk/word/{id}', function ($id) {
+    $abtract = App\Abtract::find($id);
+    return asset($abtract->talk);
+})->name('word');
+
 Route::get('/tables', function () {
     return view('pages.table_list');
 })->name('table');
