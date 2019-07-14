@@ -16,10 +16,13 @@
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            
                     @if($user->accomodation == null)
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation') }}</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-10">
                             <input type="radio" id="yes" name="accomodation" value="yes" >Yes
                             <input type="radio" id="no" name="accomodation" value="no" checked>No
                         </div>
@@ -28,7 +31,7 @@
                     <br><br>
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
                                 <input class="form-control toggle {{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->accomodation != null)   value="{{$user->accomodation->bank_name}}"   @else disabled value="{{old('bank_name')}}" @endif required="true" aria-required="true"/ >
                                 @if ($errors->has('bank_name'))
@@ -39,7 +42,7 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
                                 <input class="form-control toggle {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else disabled value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
                                 @if ($errors->has('amount'))
@@ -50,7 +53,7 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Transaction Id:') }}</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('transaction_id') ? ' has-danger' : '' }}">
                                 <input class="form-control toggle {{ $errors->has('transaction_id') ? ' is-invalid' : '' }}" name="transaction_id" id="input-transaction_id" type="text" placeholder="{{ __('Transaction Id') }}" @if($user->accomodation != null)  value="{{$user->accomodation->transaction_id}}"   @else disabled value="{{old('transaction_id')}}" @endif required="true" aria-required="true"/ >
                                 @if ($errors->has('transaction_id'))
@@ -61,7 +64,7 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Date Of Payment:') }}</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
                                 <input class="form-control toggle {{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->accomodation != null)  value="{{$user->accomodation->payment_date}}"   @else disabled value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/ >
                                 @if ($errors->has('payment_date'))
@@ -70,8 +73,15 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="col-md-3">
+                        @if($user->accomodation!= null and $user->accomodation->approved )
+                            <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                        @endif
+                    </div>
                 </div>
-                @if($user->accomodation == null and $user->details != null and $user->details->approved)
+                </div>
+                @if($user->accomodation == null and $user->details != null)
                     <div class="card-footer ml-auto mr-auto">
                         <button type="submit" class="btn btn-info toggle " disabled>{{ __('Submit') }}</button>
                     </div>

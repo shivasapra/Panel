@@ -114,8 +114,16 @@
                 </div>
             </div>
             <div class="col-md-3 text-center">
-                @if($user->details!= null and$user->details->approved)
-                    <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                
+                @if($user->details!= null)
+                    @if(!$user->details->approved and auth::user()->admin )
+                        
+                            <a href="{{route('approve.registration',$user->details)}}" style="margin-top:100px;"  class="btn btn-success">{{ __('Approve') }}</a>
+                        
+                    @endif
+                    @if($user->details->approved )
+                        <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                    @endif
                 @endif
             </div>
         </div>
@@ -175,19 +183,85 @@
                 @if($user->details != null and $user->details->approved)
                 @else
                     @if(!Auth::user()->admin)
-                        <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-info">@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
+                        <div>
+                            <button type="submit" class="btn btn-info" >@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
                         </div>
-                    @else
-                        @if($user->details!= null and !$user->details->approved )
-                            <div class="card-footer ml-auto mr-auto">
-                                <a href="{{route('approve.registration',$user->details)}}"  class="btn btn-success">{{ __('Approve') }}</a>
-                            </div>
-                        @endif
                     @endif
                 @endif
             </div>
           </form>
+          @if(Auth::user()->admin and $user->accomodation != null )
+            <div class="card ">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title">{{ __('Accomodation') }}</h4>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+
+                       
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
+                                <input class="form-control toggle {{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->accomodation != null)   value="{{$user->accomodation->bank_name}}"   @else disabled value="{{old('bank_name')}}" @endif required="true" aria-required="true"/ >
+                                @if ($errors->has('bank_name'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                <input class="form-control toggle {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else disabled value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
+                                @if ($errors->has('amount'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Transaction Id:') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('transaction_id') ? ' has-danger' : '' }}">
+                                <input class="form-control toggle {{ $errors->has('transaction_id') ? ' is-invalid' : '' }}" name="transaction_id" id="input-transaction_id" type="text" placeholder="{{ __('Transaction Id') }}" @if($user->accomodation != null)  value="{{$user->accomodation->transaction_id}}"   @else disabled value="{{old('transaction_id')}}" @endif required="true" aria-required="true"/ >
+                                @if ($errors->has('transaction_id'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('transaction_id') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Date Of Payment:') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
+                                <input class="form-control toggle {{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->accomodation != null)  value="{{$user->accomodation->payment_date}}"   @else disabled value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/ >
+                                @if ($errors->has('payment_date'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('payment_date') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        @if($user->accomodation!= null)
+                            @if(!$user->accomodation->approved and auth::user()->admin )
+                                <div class="card-footer ml-auto mr-auto">
+                                    <a href="{{route('approve.accomodation',$user->accomodation)}}" style="margin-top:100px;"  class="btn btn-success">{{ __('Approve') }}</a>
+                                </div>
+                            @endif
+                            @if($user->accomodation->approved )
+                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                            @endif
+                        @endif
+                    </div>
+                </div>
+                </div>
+            </div>
+          @endif
         </div>
       </div>
     </div>

@@ -51,9 +51,9 @@ Users
                       <th>
                         {{ __('Department') }}
                       </th>
-                      <th>
+                      {{-- <th>
                           {{ __('Status') }}
-                      </th>
+                      </th> --}}
                       <th class="text-right">
                         {{ __('Actions') }}
                       </th>
@@ -93,7 +93,7 @@ Users
                               {{'--'}}
                             @endif
                           </td>
-                          <td><strong>
+                          {{-- <td><strong>
                             @if($user->details == null)
                               <span class="text-dange">{{__('Not Registered')}}</span>
                             @elseif(!$user->details->approved)
@@ -102,10 +102,10 @@ Users
                               <span class="text-success">{{__('Approved')}}</span>
                             @endif
                           </strong>
-                          </td>
+                          </td> --}}
                           <td class="td-actions text-right">
                             {{-- @if ($user->id != auth()->id() and Auth::user()->admin) --}}
-                            @if($user->accomodation != null)<a href="{{route('accomodation',$user)}}" class="btn btn-xs btn-info">Accomodation</a>@endif
+                            
                             <form action="{{ route('user.destroy', $user) }}" method="post">
                                 @csrf
                                 @method('delete')

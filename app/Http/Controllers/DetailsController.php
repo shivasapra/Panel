@@ -48,7 +48,7 @@ class DetailsController extends Controller
     public function approve(Details $details){
         $details->approved = 1;
         $details->save();
-        return redirect()->back()->with('user',$details->user)->withStatus(__('Approved'));
+        return redirect()->back()->with('user',$details->user)->withStatus(__(' Details Approved!'));
     }
 
     public function accomodation(User $user){
@@ -96,5 +96,11 @@ class DetailsController extends Controller
         $model->save();
 
         return redirect()->back();
+    }
+
+    public function approveAccomodation(Accomodation $accomodation){
+        $accomodation->approved = 1;
+        $accomodation->save();
+        return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
     }
 }
