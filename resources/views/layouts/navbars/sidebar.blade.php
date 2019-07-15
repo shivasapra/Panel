@@ -96,6 +96,16 @@
                 </a>
               </li>
             @endif
+            <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="material-icons">power_settings_new</i>
+                    <p>{{ __('Logout') }}</p>
+                </a>
+              </li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                  @csrf
+                </form>
+            
           {{-- </ul>
         </div> --}}
       {{-- </li> --}}
