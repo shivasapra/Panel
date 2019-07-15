@@ -320,8 +320,8 @@
         @if($user->details != null)
         @if(Auth::user()->admin or $user->details->approved)
             $('input').attr('disabled','disabled')
+        @endif
+        @endif
             };
-        @endif
-        @endif
 </script>
 @stop

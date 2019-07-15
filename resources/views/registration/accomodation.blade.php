@@ -112,8 +112,8 @@ window.onload=function(){
         @if($user->accomodation != null)
             @if($user->accomodation->approved)
                 $('input').attr('disabled','disabled')
-                };
             @endif
         @endif
+                };
 </script>
 @stop
