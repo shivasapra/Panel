@@ -56,7 +56,10 @@
             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
             {{-- <a class="dropdown-item" href="#">{{ __('Settings') }}</a> --}}
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+              @csrf
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+            </form>
           </div>
         </li>
       </ul>

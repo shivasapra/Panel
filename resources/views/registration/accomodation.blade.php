@@ -101,7 +101,7 @@
                     <h4 class="modal-title">Cancellation</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form  action="{{route('request.cancellation',$user)}}" method="post" class="form-horizontal">
+                <form  action="{{route('request.cancellation',$user)}}" method="post" id="my-form" class="form-horizontal">
                         @csrf
                     @method('post')
                 <!-- Modal body -->
@@ -132,7 +132,14 @@
 window.onload = function(){
         @if($user->accomodation != null)
             @if($user->accomodation->approved)
-                $('input').attr('disabled','disabled')
+                $('input').attr('disabled','disabled');
+                var elements = document.getElementsByTagName('input');
+    
+                for (var i = 0, element; element = elements[i++];) {
+                    if (element.type === "hidden")
+                    element.removeAttribute('disabled');
+                    
+                }
             @endif
         @endif
         };

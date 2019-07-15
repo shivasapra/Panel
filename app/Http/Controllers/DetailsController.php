@@ -57,15 +57,7 @@ class DetailsController extends Controller
         return view('registration.accomodation')->with('user',$user);
     }
 
-    public function accomodationSubmit(Request $request,User $user,Accomodation $model){
-        $model->user_id = $user->id;
-        $model->bank_name = $request->bank_name;
-        $model->amount = $request->amount;
-        $model->transaction_id = $request->transaction_id;
-        $model->payment_date = $request->payment_date;
-        $model->save();
-        return redirect()->back()->with('user',$user)->withStatus(__('Accomodation Added'));
-    }
+    
 
     public function abstract(User $user){
         return view('registration.abstract')->with('user',$user);
@@ -111,6 +103,20 @@ class DetailsController extends Controller
         $feedback->feedback = $request->feedback;
         $feedback->save();
         return redirect()->route('home')->withStatus('FeedbackSent!');
+    }
+
+    public function accomodationSubmit(Request $request,User $user,Accomodation $model){
+        $model->user_id = $user->id;
+        $model->bank_name = $request->bank_name;
+        $model->amount = $request->amount;
+        $model->transaction_id = $request->transaction_id;
+        $model->payment_date = $request->payment_date;
+        $model->save();
+        if ($request->has('remarks')) {
+            $model->cancellation_remarks = $request->remarks;
+            $model->save();
+        }
+        return redirect()->back()->with('user',$user)->withStatus(__('Accomodation Added'));
     }
 
     public function requestCancellation(Request $request,User $user){
