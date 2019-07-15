@@ -45,6 +45,13 @@ Route::get('/abstracts', function () {
     return view('registration.abstractIndex');
 })->name('abstract.index');
 
+Route::get('/approve/cancellation/{id}', function ($id) {
+    $accomodation = App\Accomodation::find($id);
+    $accomodation->cancellation_approved = 1;
+    $accomodation->save();
+    return redirect()->back()->withStatus('Cancellation Approved');
+})->name('approve.cancellation');
+
 Route::get('/registration-transaction/report', function () {
     return view('reports.regTran');
 })->name('regTran');

@@ -46,6 +46,7 @@ Users
                             <th>Amount</th>
                             <th>Transaction Id</th>
                             <th>Payment Date</th>
+                            <th>##</th>
                             </thead>
                             <tbody>
                             @foreach(App\Accomodation::where('approved',1)->take(5)->get() as $accomodation)
@@ -55,6 +56,17 @@ Users
                                 <td>{{$accomodation->amount}}</td>
                                 <td>{{$accomodation->transaction_id}}</td>
                                 <td>{{$accomodation->payment_date}}</td>
+                                <td class="can">
+                                <input type="hidden" value="{{$accomodation->id}}" class="hid">
+                                    @if($accomodation->cancellation_remarks != null and $accomodation->cancellation_approved == 0)
+                                        <button onclick="req(this);" type="button" class="btn btn-sm btn-warning">Requested Cancellation</button><br>
+                                        <a href="{{route('approve.cancellation',['id'=>$accomodation->id])}}" class="btn btn-success btn-sm">Approve Cancellation</a>
+                                    @elseif($accomodation->cancellation_approved)
+                                        <span class="text-success"><b>{{__('Cancellation Approved')}}</b></span>
+                                    @else
+                                        {{__('--')}}
+                                    @endif
+                                </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -124,4 +136,42 @@ Users
       </div>
     </div>
   </div>
+  <a href="#" id="target" style="display:none;" data-toggle="modal" data-target="#cd"></a>
+<div id="c"></div>
 @endsection
+@section('js')
+<script>
+    function req(temp){
+          var i = $(temp).parents('.can').find('.hid').val();
+          @foreach(App\Accomodation::all() as $a)
+            var j = {{$a->id}};
+            if (i == j) {
+                var data = 
+                '<div class="modal fade" id="cd">'+
+                    '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                        '<div class="modal-content">'+
+            
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                                '<h4 class="modal-title">Cancellation Remarks</h4>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+            
+                            '<!-- Modal body -->'+
+                            '<div class="modal-body">'+
+                                    '<textarea name="remarks" id="" placeholder="Enter Remarks..." value="{{$a->cancellation_remarks}}" class="form-control"  style="height:120px !important;border:1px solid #ddd;padding:10px;">{{$a->cancellation_remarks}}</textarea>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+            }
+          @endforeach
+                
+            
+         
+	  $('#c').html(data);
+	  $('#target').click();
+          
+      }
+</script>
+@stop
