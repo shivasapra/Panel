@@ -7,6 +7,8 @@ use App\User;
 use App\Abtract;
 use App\Accomodation;
 use App\Details;
+use App\Feedback;
+use Auth;
 use PhpOffice\PhpWord\IOFactory;
 
 class DetailsController extends Controller
@@ -102,6 +104,13 @@ class DetailsController extends Controller
         $accomodation->approved = 1;
         $accomodation->save();
         return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
+    }
+
+    public function feedbackSubmit(Request $request,Feedback $feedback){
+        $feedback->user_id = Auth::user()->id;
+        $feedback->feedback = $request->feedback;
+        $feedback->save();
+        return redirect()->route('home')->withStatus('FeedbackSent!');
     }
 
 }

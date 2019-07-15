@@ -12,7 +12,7 @@
             
             <div class="card ">
                 <div class="card-header card-header-danger">
-                    <h4 class="card-title">{{ __('Accomodation') }}</h4>
+                    <h4 class="card-title">{{ __('Accomodation') }}@if($user->accomodation != null and $user->accomodation->approved) <span class="pull-right"><button class="btn btn-success btn-sm">Request Cancellation</button></span> @endif</h4>
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
@@ -108,12 +108,12 @@
 });
 </script>
 <script>
-window.onload=function(){
+window.onload = function(){
         @if($user->accomodation != null)
             @if($user->accomodation->approved)
                 $('input').attr('disabled','disabled')
             @endif
         @endif
-                };
+        };
 </script>
 @stop

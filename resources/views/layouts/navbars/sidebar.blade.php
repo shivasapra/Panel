@@ -83,6 +83,12 @@
                     <p>{{ __('Abstract') }}</p>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'Feedback' ? ' active' : '' }}">
+                <a class="nav-link" href="{{route('feedback')}}">
+                  <i class="fa fa-comments-o" aria-hidden="true"></i>
+                    <p>{{ __('Feedback') }}</p>
+                </a>
+              </li>
             @endif
           {{-- </ul>
         </div> --}}

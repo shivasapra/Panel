@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function abstract(){
         return $this->hasOne('App\Abtract');
     }
+
+    public function feedback(){
+        return $this->hasOne('App\Feedback');
+    }
 }
