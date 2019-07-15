@@ -55,10 +55,7 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@himsoftsolutions.com'),
-        'name' => env('MAIL_FROM_NAME', 'Himsoft'),
-    ],
+    'from' => ['address' => 'info@himsoftsolutions.com', 'name' => 'Himsoft'],
 
     /*
     |--------------------------------------------------------------------------
