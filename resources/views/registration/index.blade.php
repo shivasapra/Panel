@@ -182,7 +182,7 @@
                 @if($user->details != null and $user->details->approved)
                 @else
                     @if(!Auth::user()->admin)
-                        <div>
+                        <div class="text-center">
                             <button type="submit" class="btn btn-info" >@if($user->details != null) {{ __('Update') }} @else{{ __('Submit') }} @endif</button>
                         </div>
                     @endif
@@ -261,7 +261,7 @@
                 </div>
             </div>
           @endif
-          @if($user->abstract != null)
+          @if($user->abstract != null and Auth::user()->admin)
             <div class="row">
                 @if($user->abstract->poster != null)
                     <div class="col-md-6">

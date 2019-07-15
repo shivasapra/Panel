@@ -97,6 +97,8 @@
 <script>
     $(document).ready(function() {
     $("#yes").click(function () {
+        console.log('shiva');
+        
         $('.toggle').removeAttr("disabled");
     });
 
@@ -104,12 +106,14 @@
         $('.toggle').attr("disabled",'disabled');
     })
 });
+</script>
+<script>
 window.onload=function(){
         @if($user->accomodation != null)
-        @if(Auth::user()->admin or $user->accomodation->approved)
-            $('input').attr('disabled','disabled')
-            };
-        @endif
+            @if($user->accomodation->approved)
+                $('input').attr('disabled','disabled')
+                };
+            @endif
         @endif
 </script>
 @stop
