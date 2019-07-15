@@ -113,4 +113,10 @@ class DetailsController extends Controller
         return redirect()->route('home')->withStatus('FeedbackSent!');
     }
 
+    public function requestCancellation(Request $request,User $user){
+        $accomodation = $user->accomodation;
+        $accomodation->cancellation_remarks = $request->remarks;
+        $accomodation->save();
+        return redirect()->back()->withStatus('Cancellation Requested');
+    }
 }

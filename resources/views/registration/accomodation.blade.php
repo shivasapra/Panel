@@ -12,7 +12,7 @@
             
             <div class="card ">
                 <div class="card-header card-header-danger">
-                    <h4 class="card-title">{{ __('Accomodation') }}@if($user->accomodation != null and $user->accomodation->approved) <span class="pull-right"><button class="btn btn-success btn-sm">Request Cancellation</button></span> @endif</h4>
+                    <h4 class="card-title">{{ __('Accomodation') }}@if($user->accomodation != null and $user->accomodation->approved and $user->accomodation->cancellation_remarks == null) <span class="pull-right"><a href="#" data-toggle="modal" data-target="#cancel">Request Cancellation</a></span> @endif</h4>
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
@@ -92,6 +92,27 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="cancel">
+        <div class="modal-dialog modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cancellation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form  action="{{route('request.cancellation',$user)}}" method="post" class="form-horizontal">
+                        @csrf
+                    @method('post')
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <textarea name="remarks" id="" placeholder="Enter Remarks..." class="form-control"  style="height:120px !important;border:1px solid #ddd;padding:10px;"></textarea>
+                    <button type="submit" class="btn btn-sm btn-info">{{ __('Submit') }}</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
 <script>

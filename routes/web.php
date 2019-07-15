@@ -56,6 +56,7 @@ Route::get('/feedback', function () {
     return view('feedback');
 })->name('feedback');
 Route::post('/feedback/submit/', 'DetailsController@feedbackSubmit')->name('feedback.submit');
+Route::post('/request/cancellation/{user}', 'DetailsController@requestCancellation')->name('request.cancellation');
 
 Route::get('/tables', function () {
     return view('pages.table_list');

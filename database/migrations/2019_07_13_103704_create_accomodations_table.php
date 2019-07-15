@@ -21,6 +21,7 @@ class CreateAccomodationsTable extends Migration
             $table->string('transaction_id')->nullable();
             $table->Date('payment_date')->nullable();
             $table->boolean('approved')->default(0);
+            $table->longText('cancellation_remarks')->nullable();
             $table->timestamps();
         });
     }
