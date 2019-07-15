@@ -64,6 +64,12 @@
                     <p>{{ __('Accomodation Report') }}</p>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'Feedbacks' ? ' active' : '' }}">
+                <a class="nav-link" href="{{route('feedbacks')}}">
+                  <i class="fa fa-comments-o" aria-hidden="true"></i>
+                    <p>{{ __('Feedbacks') }}</p>
+                </a>
+              </li>
             @else
               <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('registration',Auth::user()) }}">

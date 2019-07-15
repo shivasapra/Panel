@@ -318,9 +318,9 @@
 <script>
     window.onload=function(){
         @if($user->details != null)
-        @if(Auth::user()->admin or $user->details->approved)
-            $('input').attr('disabled','disabled')
-        @endif
+            @if(Auth::user()->admin or $user->details->approved)
+                $('input').attr('disabled','disabled')
+            @endif
         @endif
             };
 </script>
