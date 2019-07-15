@@ -88,6 +88,33 @@
                 @endif
             </div>
           </form>
+          @if($user->accomodation!= null and $user->accomodation->cancellation_remarks != null)
+          <div class="card ">
+                <div class="card-header card-header-warning">
+                    <h4 class="card-title">{{ __('Requested Cancellation') }}</h4>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Remarks:') }}</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                            <textarea name="remarks" id="" placeholder="Enter Remarks..." class="form-control"  style="height:120px !important;border:1px solid #ddd;padding:10px;">{{$user->accomodation->cancellation_remarks}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-3">
+                        @if($user->accomodation!= null and $user->accomodation->cancellation_approved )
+                            <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                        @endif
+                    </div>
+                </div>
+                </div>
+            </div>
+          @endif
         </div>
       </div>
     </div>
