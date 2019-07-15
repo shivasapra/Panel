@@ -742,6 +742,13 @@ Dashboard
       window.onload=function(){
         @if(!Auth::user()->admin)
             $('input').attr('disabled','disabled')
+            var elements = document.getElementsByTagName('input');
+    
+                for (var i = 0, element; element = elements[i++];) {
+                    if (element.type === "hidden")
+                    element.removeAttribute('disabled');
+                    
+                }
             };
         @endif
   </script>

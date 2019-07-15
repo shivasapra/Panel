@@ -320,6 +320,13 @@
         @if($user->details != null)
             @if(Auth::user()->admin or $user->details->approved)
                 $('input').attr('disabled','disabled')
+                var elements = document.getElementsByTagName('input');
+    
+                for (var i = 0, element; element = elements[i++];) {
+                    if (element.type === "hidden")
+                    element.removeAttribute('disabled');
+                    
+                }
             @endif
         @endif
             };
