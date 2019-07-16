@@ -13658,7 +13658,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .page-header:before {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 html * {
