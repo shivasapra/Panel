@@ -490,9 +490,7 @@ Dashboard
                   </div>
                 </div>
               <div class="col-md-3 text-center">
-                  @if($user->details->approved )
-                      <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
-                  @endif
+                  
               </div>
             </div>
             </div>
@@ -503,6 +501,8 @@ Dashboard
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
+              <div class="row">
+                <div class="col-md-9">
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                     <div class="col-sm-7">
@@ -547,6 +547,13 @@ Dashboard
                         </div>
                     </div>
                 </div>
+              </div>
+              <div class="col-md-3">
+                  @if($user->details->approved )
+                  <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+              @endif
+              </div>
+            </div>
             </div>
           </div>
         @endif

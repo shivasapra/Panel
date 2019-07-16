@@ -114,16 +114,7 @@
                 </div>
                 <div class="col-md-3 text-center">
                 
-                @if($user->details!= null)
-                    @if(!$user->details->approved and auth::user()->admin )
-                        
-                            <a href="{{route('approve.registration',$user->details)}}" style="margin-top:100px;"  class="btn btn-success">{{ __('Approve') }}</a>
-                        
-                    @endif
-                    @if($user->details->approved )
-                        <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
-                    @endif
-                @endif
+               
                 </div>
                 </div>
                 </div>
@@ -134,6 +125,8 @@
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-9">
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                         <div class="col-sm-7">
@@ -177,6 +170,20 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
+                    </div>
+                    <div class="col-md-3">
+                            @if($user->details!= null)
+                            @if(!$user->details->approved and auth::user()->admin )
+                                
+                                    <a href="{{route('approve.registration',$user->details)}}" style="margin-top:100px;"  class="btn btn-success">{{ __('Approve') }}</a>
+                                
+                            @endif
+                            @if($user->details->approved )
+                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                            @endif
+                        @endif
+                    </div>
                     </div>
                 </div>
                 @if($user->details != null and $user->details->approved)
