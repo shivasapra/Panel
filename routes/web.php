@@ -49,12 +49,12 @@ Route::get('/approve/cancellation/{id}', function ($id) {
     $accomodation = App\Accomodation::find($id);
     $accomodation->cancellation_approved = 1;
     $accomodation->save();
-    $contactEmail = $accomodation->user->email;
-        $data = ['name'=> $accomodation->user->name];
-        Mail::send('emails.approveCancellationAccomodation', $data, function($message) use ($contactEmail)
-        {  
-            $message->to($contactEmail);
-        });
+    // $contactEmail = $accomodation->user->email;
+    //     $data = ['name'=> $accomodation->user->name];
+    //     Mail::send('emails.approveCancellationAccomodation', $data, function($message) use ($contactEmail)
+    //     {  
+    //         $message->to($contactEmail);
+    //     });
     return redirect()->back()->withStatus('Cancellation Approved');
 })->name('approve.cancellation');
 
