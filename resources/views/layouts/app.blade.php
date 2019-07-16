@@ -27,7 +27,7 @@
             @include('layouts.page_templates.guest')
         @endguest
         
-        <div class="fixed-plugin">
+        {{-- <div class="fixed-plugin">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
               <i class="fa fa-cog fa-2x"> </i>
@@ -71,7 +71,7 @@
               
             </ul>
           </div>
-        </div>
+        </div> --}}
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
