@@ -50,6 +50,9 @@
                         <th>
                             {{ __('Payment Date') }}
                         </th>
+                        <th>
+                            {{ __('Approved') }}
+                        </th>
                     </thead>
                     <tbody>
                       <?php $i =1 ;?>
@@ -96,6 +99,15 @@
                                 @else
                                     {{'--'}}
                                 @endif
+                            </td>
+                            <td>
+                              <strong>
+                                @if($user->accomodation->approved)
+                                  <span class="text-success">Yes</span>
+                                @else
+                                  <span class="text-danger">No</span>
+                                @endif
+                              </strong>
                             </td>
                         </tr>
                       @endif

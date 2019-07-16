@@ -1,6 +1,6 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('Conference Registered Members ')])
 @section('title')
-Users
+Conference Registered Members
 @stop
 {{-- @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
@@ -13,8 +13,7 @@ Users
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-info">
-                <h4 class="card-title ">{{ __('Users') }}</h4>
-                <p class="card-category"> {{ __('Here you can manage users') }}</p>
+                <h4 class="card-title ">{{ __('Conference Registered Members ') }}</h4>
               </div>
               <div class="card-body">
                 @if (session('status'))
@@ -29,11 +28,11 @@ Users
                     </div>
                   </div>
                 @endif
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-12 text-right">
                     <a href="{{ route('user.create') }}" class="btn btn-sm btn-info">{{ __('Add user') }}</a>
                   </div>
-                </div>
+                </div> --}}
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-info">

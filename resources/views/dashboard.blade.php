@@ -13,7 +13,7 @@ Dashboard
                 <div class="card-icon">
                   <i class="material-icons">account_box</i>
                 </div>
-                <p class="card-category">Total Users</p>
+                <p class="card-category">Total Conference Registered Members </p>
                 <h3 class="card-title">{{App\User::where('admin',0)->get()->count()}}
                 </h3>
               </div>

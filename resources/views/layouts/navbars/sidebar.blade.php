@@ -37,7 +37,7 @@
               <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="material-icons">account_circle</i>
-                    <p>{{ __('User Management') }}</p>
+                    <p>{{ __('Registered Members ') }}</p>
                 </a>
               </li>
               <li class="nav-item{{ $activePage == 'Accomodations' ? ' active' : '' }}">
