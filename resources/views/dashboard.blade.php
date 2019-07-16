@@ -505,7 +505,7 @@ Dashboard
                 <div class="col-md-9">
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('bank_name'))
@@ -516,7 +516,7 @@ Dashboard
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('amount'))
@@ -527,7 +527,7 @@ Dashboard
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Transaction Id:') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('transaction_id') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('transaction_id') ? ' is-invalid' : '' }}" name="transaction_id" id="input-transaction_id" type="text" placeholder="{{ __('Transaction Id') }}" @if($user->details != null)  value="{{$user->details->transaction_id}}"   @else value="{{old('transaction_id')}}" @endif required="true" aria-required="true"/>
                             @if ($errors->has('transaction_id'))
@@ -538,7 +538,7 @@ Dashboard
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Date Of Payment:') }}</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->details != null)  value="{{$user->details->payment_date}}"   @else value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/>
                             @if ($errors->has('payment_date'))
