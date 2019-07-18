@@ -32,6 +32,7 @@
                         <th>
                             {{ __('Sno.') }}
                         </th>
+                        <th>Registration ID</th>
                         <th>
                             {{ __('Name') }}
                         </th>
@@ -61,6 +62,13 @@
                         <tr>
                             <th>
                                 {{$i++}}.
+                            </th>
+                            <th>
+                              @if($user->details != null)
+                                {{$user->details->registration_id}}
+                              @else
+                                {{__('--')}}
+                              @endif
                             </th>
                             <td>
                                 {{ $user->name }}

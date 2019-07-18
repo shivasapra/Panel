@@ -165,6 +165,7 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-success">
+                            <th>Registration ID</th>                               
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -174,6 +175,13 @@ Dashboard
                           <tbody>
                             @foreach(App\Accomodation::where('approved',1)->take(5)->get() as $accomodation)
                               <tr>
+                                <th>
+                                  @if($accomodation->user->details != null)
+                                    {{$accomodation->user->details->registration_id}}
+                                  @else
+                                    {{__('--')}}
+                                  @endif
+                                </th>                          
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -189,6 +197,7 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-success">
+                            <th>Registration ID</th>      
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -198,6 +207,13 @@ Dashboard
                           <tbody>
                             @foreach(App\Accomodation::where('approved',0)->take(5)->get() as $accomodation)
                               <tr>
+                                <th>
+                                  @if($accomodation->user->details != null)
+                                    {{$accomodation->user->details->registration_id}}
+                                  @else
+                                    {{__('--')}}
+                                  @endif
+                                </th>  
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -213,6 +229,7 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-success">
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -223,6 +240,13 @@ Dashboard
                           <tbody>
                             @foreach(App\Accomodation::take(5)->get() as $accomodation)
                               <tr>
+                                <th>
+                                  @if($accomodation->user->details != null)
+                                    {{$accomodation->user->details->registration_id}}
+                                  @else
+                                    {{__('--')}}
+                                  @endif
+                                </th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -274,6 +298,7 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-danger">
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>View</th>
@@ -281,6 +306,13 @@ Dashboard
                           <tbody>
                             @foreach(App\Abtract::where('talk','!=',null)->take(5)->get() as $abstract)
                               <tr>
+                                <th>
+                                  @if($abstract->user->details != null)
+                                    {{$abstract->user->details->registration_id}}
+                                  @else
+                                    {{__('--')}}
+                                  @endif
+                                </th>
                                 <td>{{$abstract->user->name}}</td>
                                 <td>{{$abstract->user->email}}</td>
                                 <td class="td_talk">
@@ -297,6 +329,7 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-danger">
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>View</th>
@@ -304,6 +337,13 @@ Dashboard
                           <tbody>
                             @foreach(App\Abtract::where('poster','!=',null)->take(5)->get() as $abstract)
                               <tr>
+                                <th>
+                                  @if($abstract->user->details != null)
+                                    {{$abstract->user->details->registration_id}}
+                                  @else
+                                    {{__('--')}}
+                                  @endif
+                                </th>
                                 <td>{{$abstract->user->name}}</td>
                                 <td>{{$abstract->user->email}}</td>
                                 <td class="td_poster">
@@ -331,6 +371,7 @@ Dashboard
               <div class="card-body table-responsive">
                 <table class="table table-hover">
                   <thead class="text-warning">
+                    <th>Registration ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Gender</th>
@@ -342,6 +383,13 @@ Dashboard
                   <tbody>
                     @foreach(App\User::where('admin',0)->orderBy('id','desc')->take(5)->get() as $user)
                       <tr>
+                        <th>
+                          @if($user->details != null)
+                            {{$user->details->registration_id}}
+                          @else
+                            {{__('--')}}
+                          @endif
+                        </th>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
@@ -419,6 +467,14 @@ Dashboard
               @endif
               <div class="row">
                 <div class="col-md-9">
+                  <div class="row">
+                      <label class="col-sm-2 col-form-label">{{ __('Registration ID') }}</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                            {{$user->details->registration_id}}
+                        </div>
+                      </div>
+                    </div>
                   <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
                     <div class="col-sm-10">

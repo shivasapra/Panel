@@ -33,6 +33,16 @@
                 </div> --}}
                 <div class="row">
                     <div class="col-md-9">
+                @if($user->details != null)
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Registration ID') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                {{$user->details->registration_id}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
                   <div class="col-sm-10">

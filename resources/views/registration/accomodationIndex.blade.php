@@ -42,6 +42,7 @@ Users
                         <table class="table">
                             <thead class=" text-success">
                             <th>Sno.</th>
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -54,6 +55,13 @@ Users
                             @foreach(App\Accomodation::where('approved',1)->take(5)->get() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
+                                <th>
+                                    @if($accomodation->user->details != null)
+                                        {{$accomodation->user->details->registration_id}}
+                                    @else
+                                        {{__('--')}}
+                                    @endif
+                                </th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -81,6 +89,7 @@ Users
                         <table class="table">
                             <thead class=" text-success">
                             <th>Sno.</th>
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -92,6 +101,13 @@ Users
                             @foreach(App\Accomodation::where('approved',0)->take(5)->get() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
+                                <th>
+                                    @if($accomodationuser->details != null)
+                                        {{$accomodationuser->details->registration_id}}
+                                    @else
+                                        {{__('--')}}
+                                    @endif
+                                </th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -108,6 +124,7 @@ Users
                         <table class="table">
                             <thead class=" text-success">
                             <th>Sno.</th>
+                            <th>Registration ID</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -120,6 +137,13 @@ Users
                             @foreach(App\Accomodation::take(5)->get() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
+                                <th>
+                                    @if($accomodation->user->details != null)
+                                        {{$accomodation->user->details->registration_id}}
+                                    @else
+                                        {{__('--')}}
+                                    @endif
+                                </th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>

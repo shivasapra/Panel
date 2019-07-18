@@ -20,6 +20,19 @@ class DetailsController extends Controller
 
     public function register(Request $request,User $user, Details $model){
         $model->user_id = $user->id;
+
+        $test_detail = Details::where('registration_id','AICBC0001')->get();
+        if ($test_detail->count()>0) {
+            $latest = Details::orderBy('id','desc')->take(1)->get();
+            $detail_prev_id = $latest[0]->registration_id;
+            $registration_id = 'AICBC000'.(substr($detail_prev_id,5,8)+1);
+        }
+        else{
+            $registration_id = 'AICBC0001';
+        }
+
+
+        $model->registration_id = $registration_id;
         $model->gender = $request->gender;
         $model->institute = $request->institute;
         $model->department = $request->department;

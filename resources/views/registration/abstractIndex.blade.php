@@ -36,6 +36,7 @@ Users
                                 <table class="table">
                                 <thead class=" text-danger">
                                     <th>Sno.</th>
+                                    <th>Registration ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -48,6 +49,13 @@ Users
                                     @foreach(App\Abtract::where('talk','!=',null)->take(5)->get() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
+                                        <th>
+                                            @if($abstract->user->details != null)
+                                                {{$abstract->user->details->registration_id}}
+                                            @else
+                                                {{__('--')}}
+                                            @endif
+                                        </th>
                                         <td>{{$abstract->user->name}}</td>
                                         <td>{{$abstract->user->email}}</td>
                                         <td>
@@ -86,6 +94,8 @@ Users
                                 <table class="table">
                                 <thead class=" text-danger">
                                     <th>Sno.</th>
+                                    <th>Registration ID</th>
+                                    <th>Registration ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -98,6 +108,13 @@ Users
                                     @foreach(App\Abtract::where('poster','!=',null)->take(5)->get() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
+                                        <th>
+                                            @if($abstract->user->details != null)
+                                                {{$abstract->user->details->registration_id}}
+                                            @else
+                                                {{__('--')}}
+                                            @endif
+                                        </th>
                                         <td>{{$abstract->user->name}}</td>
                                         <td>{{$abstract->user->email}}</td>
                                         <td>
