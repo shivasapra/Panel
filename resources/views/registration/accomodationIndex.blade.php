@@ -41,6 +41,7 @@ Users
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-success">
+                            <th>Sno.</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -49,8 +50,10 @@ Users
                             <th>##</th>
                             </thead>
                             <tbody>
+                                <?php $i =1;?>
                             @foreach(App\Accomodation::where('approved',1)->take(5)->get() as $accomodation)
                                 <tr>
+                                <th>{{$i++}}.</th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -77,6 +80,7 @@ Users
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-success">
+                            <th>Sno.</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -84,8 +88,10 @@ Users
                             <th>Payment Date</th>
                             </thead>
                             <tbody>
+                                <?php $i = 1;?>
                             @foreach(App\Accomodation::where('approved',0)->take(5)->get() as $accomodation)
                                 <tr>
+                                <th>{{$i++}}.</th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>
@@ -101,6 +107,7 @@ Users
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-success">
+                            <th>Sno.</th>
                             <th>Name</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -109,8 +116,10 @@ Users
                             <th>Status</th>
                             </thead>
                             <tbody>
+                                <?php $i = 1; ?>
                             @foreach(App\Accomodation::take(5)->get() as $accomodation)
                                 <tr>
+                                <th>{{$i++}}.</th>
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->bank_name}}</td>
                                 <td>{{$accomodation->amount}}</td>

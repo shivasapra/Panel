@@ -333,6 +333,7 @@ Dashboard
                   <thead class="text-warning">
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Gender</th>
                     <th>Phone</th>
                     <th>Institute</th>
                     <th>Department</th>
@@ -343,6 +344,13 @@ Dashboard
                       <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>
+                            @if($user->details != null)
+                              {{$user->details->gender}}
+                            @else
+                              {{'--'}}
+                            @endif
+                        </td>
                         <td>
                           @if($user->details != null)
                             {{$user->details->phone}}

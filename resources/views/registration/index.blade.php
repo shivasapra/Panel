@@ -60,7 +60,13 @@
                     <label class="col-sm-2 col-form-label">{{ __('Gender') }}</label>
                     <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/>
+                            <select name="gender" class="form-control" style="color:black" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male" @if($user->details != null) {{($user->details->gender == 'Male')? 'selected': ' '}} @endif>Male</option>
+                                <option value="Female" @if($user->details != null) {{($user->details->gender == 'Female')? 'selected': ' '}} @endif>Female</option>
+                                <option value="Transgender" @if($user->details != null) {{($user->details->gender == 'Transgender')? 'selected': ' '}} @endif>Transgender</option>
+                            </select>
+                        {{-- <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/> --}}
                             @if ($errors->has('gender'))
                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('gender') }}</span>
                             @endif
@@ -326,7 +332,8 @@
     window.onload=function(){
         @if($user->details != null)
             @if(Auth::user()->admin or $user->details->approved)
-                $('input').attr('disabled','disabled')
+                $('input').attr('disabled','disabled');
+                $('select').attr('disabled','disabled');
                 var elements = document.getElementsByTagName('input');
     
                 for (var i = 0, element; element = elements[i++];) {

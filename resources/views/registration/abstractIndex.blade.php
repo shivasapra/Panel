@@ -35,6 +35,7 @@ Users
                             <div class="table-responsive">
                                 <table class="table">
                                 <thead class=" text-danger">
+                                    <th>Sno.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -43,8 +44,10 @@ Users
                                     <th>View</th>
                                 </thead>
                                 <tbody>
+                                    <?php $i =1 ;?>
                                     @foreach(App\Abtract::where('talk','!=',null)->take(5)->get() as $abstract)
                                     <tr>
+                                        <th>{{$i++}}.</th>
                                         <td>{{$abstract->user->name}}</td>
                                         <td>{{$abstract->user->email}}</td>
                                         <td>
@@ -82,6 +85,7 @@ Users
                             <div class="table-responsive">
                                 <table class="table">
                                 <thead class=" text-danger">
+                                    <th>Sno.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -90,8 +94,10 @@ Users
                                     <th>View</th>
                                 </thead>
                                 <tbody>
+                                    <?php $i =1;?>
                                     @foreach(App\Abtract::where('poster','!=',null)->take(5)->get() as $abstract)
                                     <tr>
+                                        <th>{{$i++}}.</th>
                                         <td>{{$abstract->user->name}}</td>
                                         <td>{{$abstract->user->email}}</td>
                                         <td>

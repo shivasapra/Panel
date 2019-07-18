@@ -46,6 +46,9 @@ Conference Registered Members
                         {{ __('Email') }}
                       </th>
                       <th>
+                        {{ __('Gender') }}
+                      </th>
+                      <th>
                         {{ __('Phone') }}
                       </th>
                       <th>
@@ -74,6 +77,13 @@ Conference Registered Members
                           </td>
                           <td>
                             {{ $user->email }}
+                          </td>
+                          <td>
+                            @if($user->details != null)
+                              {{$user->details->gender}}
+                            @else
+                              {{'--'}}
+                            @endif
                           </td>
                           <td>
                             @if($user->details != null)
