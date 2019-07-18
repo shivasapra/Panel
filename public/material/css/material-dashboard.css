@@ -13152,12 +13152,12 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .navbar-brand {
   position: relative;
-  color: inherit;
+  color: black;
   height: 50px;
   font-size: 1.125rem;
   line-height: 30px;
   padding: 0.625rem 0;
-  font-weight: 300;
+  font-weight: 400;
   margin-left: 1rem;
 }
 
@@ -14654,7 +14654,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a {
   margin: 10px 15px 0;
   border-radius: 3px;
-  color: #3C4858;
+  color: black;
+  font-weight:400;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -16291,7 +16292,7 @@ thead.thead-inverse th,
 body {
   background-color: #eee;
   color: #3C4858;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 legend {
@@ -17310,8 +17311,9 @@ label {
 }
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
-  color: #999999;
+  color: black;
   font-size: 14px;
+  font-weight:500;
 }
 
 .card-stats .card-header+.card-footer {

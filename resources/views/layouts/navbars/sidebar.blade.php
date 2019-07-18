@@ -64,12 +64,12 @@
                     <p>{{ __('Accomodation Report') }}</p>
                 </a>
               </li>
-              <li class="nav-item{{ $activePage == 'Feedbacks' ? ' active' : '' }}">
+              {{-- <li class="nav-item{{ $activePage == 'Feedbacks' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('feedbacks')}}">
                   <i class="fa fa-comments-o" aria-hidden="true"></i>
                     <p>{{ __('Feedbacks') }}</p>
                 </a>
-              </li>
+              </li> --}}
             @else
               <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('registration',Auth::user()) }}">
@@ -89,12 +89,12 @@
                     <p>{{ __('Abstract') }}</p>
                 </a>
               </li>
-              <li class="nav-item{{ $activePage == 'Feedback' ? ' active' : '' }}">
+              {{-- <li class="nav-item{{ $activePage == 'Feedback' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('feedback')}}">
                   <i class="fa fa-comments-o" aria-hidden="true"></i>
                     <p>{{ __('Feedback') }}</p>
                 </a>
-              </li>
+              </li> --}}
             @endif
             <li class="nav-item">
                     <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
