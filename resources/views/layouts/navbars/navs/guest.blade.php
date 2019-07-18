@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
   <div class="container">
     <div class="navbar-wrapper">
-    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{asset('material/img/iisermlogo.jpg')}}" style="width:100px;"><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('IISER')}}</b></a>
+    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{asset('material/img/iisermlogo.jpg')}}" style="width:100px;"><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:black">{{__('IISER')}}</span></b></a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="sr-only">Toggle navigation</span>
@@ -18,12 +18,12 @@
           </a>
         </li> --}}
         <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
-          <a href="{{ route('register') }}" class="nav-link">
+          <a href="{{ route('register') }}" class="nav-link" style="color:black">
             <i class="material-icons">person_add</i> {{ __('Register') }}
           </a>
         </li>
         <li class="nav-item{{ $activePage == 'login' ? ' active' : '' }}">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ route('login') }}" class="nav-link" style="color:black">
             <i class="material-icons">fingerprint</i> {{ __('Login') }}
           </a>
         </li>
