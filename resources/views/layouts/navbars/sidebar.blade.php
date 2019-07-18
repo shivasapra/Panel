@@ -64,6 +64,12 @@
                     <p>{{ __('Accomodation Report') }}</p>
                 </a>
               </li>
+              <li class="nav-item{{ $activePage == 'Settings' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('settings') }}">
+                    <i class="material-icons">settings</i>
+                    <p>{{ __('Settings') }}</p>
+                </a>
+              </li>
               {{-- <li class="nav-item{{ $activePage == 'Feedbacks' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('feedbacks')}}">
                   <i class="fa fa-comments-o" aria-hidden="true"></i>

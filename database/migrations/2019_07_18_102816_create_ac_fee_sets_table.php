@@ -16,16 +16,12 @@ class CreateAcFeeSetsTable extends Migration
         Schema::create('ac_fee_sets', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->Date('student_from')->nullable();
-            $table->Date('student_to')->nullable();
-            $table->float('student_valid_amount')->nullable();
-            $table->float('student_invalid_amount')->nullable();
+            $table->string('category');
+            $table->Date('from')->nullable();
+            $table->Date('to')->nullable();
+            $table->float('valid_amount')->nullable();
+            $table->float('invalid_amount')->nullable();
             
-            $table->Date('faculty_from')->nullable();
-            $table->Date('faculty_to')->nullable();
-            $table->float('faculty_valid_amount')->nullable();
-            $table->float('faculty_invalid_amount')->nullable();
-
             $table->float('fixed_amount')->nullable();
 
             $table->timestamps();

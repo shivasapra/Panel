@@ -58,6 +58,10 @@ Route::get('/approve/cancellation/{id}', function ($id) {
     return redirect()->back()->withStatus('Cancellation Approved');
 })->name('approve.cancellation');
 
+
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
 Route::get('/registration-transaction/report', function () {
     return view('reports.regTran');
 })->name('regTran');
