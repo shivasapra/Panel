@@ -49,19 +49,17 @@ Route::get('/approve/cancellation/{id}', function ($id) {
     $accomodation = App\Accomodation::find($id);
     $accomodation->cancellation_approved = 1;
     $accomodation->save();
-    // $contactEmail = $accomodation->user->email;
-    //     $data = ['name'=> $accomodation->user->name];
-    //     Mail::send('emails.approveCancellationAccomodation', $data, function($message) use ($contactEmail)
-    //     {  
-    //         $message->to($contactEmail);
-    //     });
+    $contactEmail = $accomodation->user->email;
+        $data = ['name'=> $accomodation->user->name];
+        Mail::send('emails.approveCancellationAccomodation', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail);
+        });
     return redirect()->back()->withStatus('Cancellation Approved');
 })->name('approve.cancellation');
 
+Route::get('/settings', 'SettingsController@index')->name('settings');
 
-Route::get('/settings', function () {
-    return view('settings');
-})->name('settings');
 Route::get('/registration-transaction/report', function () {
     return view('reports.regTran');
 })->name('regTran');

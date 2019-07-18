@@ -102,8 +102,8 @@ Users
                                 <tr>
                                 <th>{{$i++}}.</th>
                                 <th>
-                                    @if($accomodationuser->details != null)
-                                        {{$accomodationuser->details->registration_id}}
+                                    @if($accomodation->user->details != null)
+                                        {{$accomodation->user->details->registration_id}}
                                     @else
                                         {{__('--')}}
                                     @endif

@@ -67,11 +67,11 @@ class DetailsController extends Controller
         $details->approved = 1;
         $details->save();
         $contactEmail = $details->user->email;
-        // $data = ['name'=> $details->user->name];
-        // Mail::send('emails.approveRegistration', $data, function($message) use ($contactEmail)
-        // {  
-        //     $message->to($contactEmail);
-        // });
+        $data = ['name'=> $details->user->name];
+        Mail::send('emails.approveRegistration', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail);
+        });
         return redirect()->back()->with('user',$details->user)->withStatus(__(' Details Approved!'));
     }
 
@@ -119,10 +119,10 @@ class DetailsController extends Controller
         $accomodation->save();
         $contactEmail = $accomodation->user->email;
         $data = ['name'=> $accomodation->user->name];
-        // Mail::send('emails.approveAccomodation', $data, function($message) use ($contactEmail)
-        // {  
-        //     $message->to($contactEmail);
-        // });
+        Mail::send('emails.approveAccomodation', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail);
+        });
         return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
     }
 
