@@ -117,6 +117,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Category') }}</label>
+                    <div class="col-sm-10">
+                        <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
+                            <select name="category" class="form-control" style="color:black" required id="input-category">
+                                <option value="">Select Category</option>
+                                <option value="Student/Post Doc" @if($user->details != null) {{($user->details->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
+                                <option value="Faculty" @if($user->details != null) {{($user->details->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                            </select>
+                        {{-- <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/> --}}
+                            @if ($errors->has('accompanied_person'))
+                            <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Accompanied Person') }}</label>
+                    <div class="col-sm-10">
+                        <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
+                            @if ($errors->has('accompanied_person'))
+                            <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('accompanied_person') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="col-md-3 text-center">
                 

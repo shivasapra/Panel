@@ -25,6 +25,8 @@ class DetailsController extends Controller
         $model->department = $request->department;
         $model->address = $request->address;
         $model->phone = $request->phone;
+        $model->category = $request->category;
+        $model->accompanied_person = $request->accompanied_person;
         $model->bank_name = $request->bank_name;
         $model->amount = $request->amount;
         $model->transaction_id = $request->transaction_id;
