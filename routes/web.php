@@ -53,7 +53,7 @@ Route::get('/approve/cancellation/{id}', function ($id) {
         $data = ['name'=> $accomodation->user->name];
         Mail::send('emails.approveCancellationAccomodation', $data, function($message) use ($contactEmail)
         {  
-            $message->to($contactEmail);
+            $message->to($contactEmail)->subject('Cancellation Of Accomodation Approved');;
         });
     return redirect()->back()->withStatus('Cancellation Approved');
 })->name('approve.cancellation');

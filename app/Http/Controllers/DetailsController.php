@@ -108,7 +108,7 @@ class DetailsController extends Controller
         $data = ['name'=> $details->user->name];
         Mail::send('emails.approveRegistration', $data, function($message) use ($contactEmail)
         {  
-            $message->to($contactEmail);
+            $message->to($contactEmail)->subject('Registration Approved');
         });
         return redirect()->back()->with('user',$details->user)->withStatus(__(' Details Approved!'));
     }
@@ -183,7 +183,7 @@ class DetailsController extends Controller
         $data = ['name'=> $accomodation->user->name];
         Mail::send('emails.approveAccomodation', $data, function($message) use ($contactEmail)
         {  
-            $message->to($contactEmail);
+            $message->to($contactEmail)->subject('Accomodation Approved');
         });
         return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
     }
