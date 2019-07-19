@@ -23,6 +23,9 @@ class CreateAccomodationsTable extends Migration
             $table->boolean('approved')->default(0);
             $table->longText('cancellation_remarks')->nullable();
             $table->boolean('cancellation_approved')->default(0);
+            $table->string('category');
+            $table->integer('accomodation_for');
+            $table->float('accomodation_charges');
             $table->timestamps();
         });
     }

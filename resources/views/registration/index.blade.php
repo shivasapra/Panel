@@ -158,7 +158,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Registration Fee') }}</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" name="registration_fee" id="registration_fee" readonly  class="form-control">
+                            <input type="text" name="registration_fee" id="registration_fee" readonly  class="form-control" @if($user->details != null)  value="{{$user->details->registration_fee}}" @endif>
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Accompanied Person Fee') }}</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" name="accompanied_person_fee" id="accompanied_person_fee" readonly class="form-control">
+                            <input type="text" name="accompanied_person_fee" id="accompanied_person_fee" readonly class="form-control" @if($user->details != null)  value="{{$user->details->accompanied_person_fee}}"  @endif>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Total Registration Fee') }}</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" name="total_registration_fee" id="total_registration_fee" readonly class="form-control">
+                            <input type="text" name="total_registration_fee" id="total_registration_fee" readonly class="form-control" @if($user->details != null)  value="{{$user->details->total_registration_fee}}" @endif>
                         </div>
                     </div>
                 </div>
@@ -272,7 +272,38 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-9">
-
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Category') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
+                                <select name="category" class="form-control" style="color:black" required id="input-category">
+                                    <option value="">Select Category</option>
+                                    <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
+                                    <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                                </select>
+                            {{-- <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/> --}}
+                                @if ($errors->has('accompanied_person'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Accomodation For') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Accomodation Charges') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else disabled value="{{old('accomodation_charges')}}" @endif>
+                            </div>
+                        </div>
+                    </div>
                        
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
@@ -408,27 +439,29 @@
 </script>
 
 <script>
-setInterval(function(){ 
-    var category = document.getElementById('input-category').value;
-    var accompanied_person = document.getElementById('input-accompanied_person').value;
-    
-        if (category == 'Student/Post Doc') {
-            var registration_fee = {{$registration_fee_student}};
-            var temp = {{$accompanied_person_fee_student}};
-            var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
-            $('#registration_fee').val(registration_fee);
-            $('#accompanied_person_fee').val(accompanied_person_fee);
-            $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-        }
-        if (category == 'Faculty') {
-            var registration_fee = {{$registration_fee_faculty}};
-            var temp = {{$accompanied_person_fee_faculty}};
-            var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
-            $('#registration_fee').val(registration_fee);
-            $('#accompanied_person_fee').val(accompanied_person_fee);
-            $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-        }
+@if(!Auth::user()->admin and $user->details == null)
+    setInterval(function(){ 
+        var category = document.getElementById('input-category').value;
+        var accompanied_person = document.getElementById('input-accompanied_person').value;
+        
+            if (category == 'Student/Post Doc') {
+                var registration_fee = {{$registration_fee_student}};
+                var temp = {{$accompanied_person_fee_student}};
+                var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+                $('#registration_fee').val(registration_fee);
+                $('#accompanied_person_fee').val(accompanied_person_fee);
+                $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+            }
+            if (category == 'Faculty') {
+                var registration_fee = {{$registration_fee_faculty}};
+                var temp = {{$accompanied_person_fee_faculty}};
+                var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+                $('#registration_fee').val(registration_fee);
+                $('#accompanied_person_fee').val(accompanied_person_fee);
+                $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+            }
 
     }, 1000);
+@endif
 </script>
 @stop

@@ -30,6 +30,38 @@
                     @endif
                     <br><br>
                     <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Category') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
+                                <select name="category" class="form-control" style="color:black" required id="input-category">
+                                    <option value="">Select Category</option>
+                                    <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
+                                    <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                                </select>
+                            {{-- <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/> --}}
+                                @if ($errors->has('accompanied_person'))
+                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Accomodation For') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Accomodation Charges') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else disabled value="{{old('accomodation_charges')}}" @endif>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
@@ -170,5 +202,28 @@ window.onload = function(){
             @endif
         @endif
         };
+</script>
+
+<script>
+@if(!Auth::user()->admin)
+    setInterval(function(){ 
+        var category = document.getElementById('input-category').value;
+        var accomodation_for = document.getElementById('accomodation_for').value;
+        
+            if (category == 'Student/Post Doc') {
+                console.log(accomodation_for);
+                
+                var accomodation_fee = {{$accomodation_fee_student}};
+                var accomodation_charges = accomodation_for * accomodation_fee;
+                $('#accomodation_charges').val(accomodation_charges);
+            }
+            if (category == 'Faculty') {
+                var accomodation_fee = {{$accomodation_fee_faculty}};
+                var accomodation_charges = accomodation_for * accomodation_fee;
+                $('#accomodation_charges').val(accomodation_charges);
+            }
+    
+    }, 1000);
+@endif
 </script>
 @stop

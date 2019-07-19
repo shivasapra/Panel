@@ -12,6 +12,7 @@ use Auth;
 use Mail;
 use PhpOffice\PhpWord\IOFactory;
 use App\ReFeeSet;
+use App\AcFeeSet;
 use Carbon\Carbon;
 
 class DetailsController extends Controller
@@ -78,6 +79,9 @@ class DetailsController extends Controller
         $model->amount = $request->amount;
         $model->transaction_id = $request->transaction_id;
         $model->payment_date = $request->payment_date;
+        $model->registration_fee = $request->registration_fee;
+        $model->accompanied_person_fee = $request->accompanied_person_fee;
+        $model->total_registration_fee = $request->total_registration_fee;
         $model->save();
         return redirect()->back()->with('user',$user)->withStatus(__('Registered.'));
     }
@@ -110,7 +114,31 @@ class DetailsController extends Controller
     }
 
     public function accomodation(User $user){
-        return view('registration.accomodation')->with('user',$user);
+
+        $acFeeSet = AcFeeSet::where('category','Student')->first();
+        if ($acFeeSet->fixed_amount == null) {
+            if(Carbon::now()->between(Carbon::parse($acFeeSet->from),Carbon::parse($acFeeSet->to))){
+                $accomodation_fee_student = $acFeeSet->valid_amount;
+            }else{
+                $accomodation_fee_student = $acFeeSet->invalid_amount;
+            }
+        }else{
+            $accomodation_fee_student = $acFeeSet->fixed_amount;
+        }
+
+        $acFeeSet = AcFeeSet::where('category','Faculty')->first();
+        if ($acFeeSet->fixed_amount == null) {
+            if(Carbon::now()->between(Carbon::parse($acFeeSet->from),Carbon::parse($acFeeSet->to))){
+                $accomodation_fee_faculty = $acFeeSet->valid_amount;
+            }else{
+                $accomodation_fee_faculty = $acFeeSet->invalid_amount;
+            }
+        }else{
+            $accomodation_fee_faculty = $acFeeSet->fixed_amount;
+        }
+        return view('registration.accomodation')->with('user',$user)
+                                                ->with('accomodation_fee_student',$accomodation_fee_student)
+                                                ->with('accomodation_fee_faculty',$accomodation_fee_faculty);
     }
 
     
@@ -170,6 +198,9 @@ class DetailsController extends Controller
     public function accomodationSubmit(Request $request,User $user,Accomodation $model){
         $model->user_id = $user->id;
         $model->bank_name = $request->bank_name;
+        $model->accomodation_for = $request->accomodation_for;
+        $model->accomodation_charges = $request->accomodation_charges;
+        $model->category = $request->category;
         $model->amount = $request->amount;
         $model->transaction_id = $request->transaction_id;
         $model->payment_date = $request->payment_date;

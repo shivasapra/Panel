@@ -25,6 +25,9 @@ class CreateDetailsTable extends Migration
             $table->float('amount')->nullable();
             $table->string('transaction_id')->nullable();
             $table->Date('payment_date')->nullable();
+            $table->float('registration_fee')->nullable();
+            $table->float('accompanied_person_fee')->nullable();
+            $table->float('total_registration_fee')->nullable();
             $table->boolean('approved')->default(0);
             $table->timestamps();
         });
