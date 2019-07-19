@@ -168,20 +168,20 @@
                             <div id="datewise-ac-student" class="div_two" style="display:none;">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <label for="ac_ac_from_student">From:</label>
-                                        <input type="Date" class="form-control" name="ac_ac_from_student">
+                                        <label for="ac_from_student">From:</label>
+                                        <input type="Date" class="form-control" name="ac_from_student">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_ac_to_student">To:</label>
-                                        <input type="Date" class="form-control" name="ac_ac_to_student">
+                                        <label for="ac_to_student">To:</label>
+                                        <input type="Date" class="form-control" name="ac_to_student">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_ac_valid_amount_student">Valid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_ac_valid_amount_student">
+                                        <label for="ac_valid_amount_student">Valid Period Amount:</label>
+                                        <input type="text" class="form-control" name="ac_valid_amount_student">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_ac_invalid_amount_student">Invalid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_ac_invalid_amount_student">
+                                        <label for="ac_invalid_amount_student">Invalid Period Amount:</label>
+                                        <input type="text" class="form-control" name="ac_invalid_amount_student">
                                     </div>
                                 </div>
                             </div>
@@ -189,8 +189,8 @@
                             <div id="fixed-ac-student" class="div_two" style="display:none;">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="ac_ac_fixed_amount_student">Fixed Amount:</label>
-                                        <input type="text" class="form-control" name="ac_ac_fixed_amount_student">
+                                        <label for="ac_fixed_amount_student">Fixed Amount:</label>
+                                        <input type="text" class="form-control" name="ac_fixed_amount_student">
                                     </div>
                                 </div>
                             </div>

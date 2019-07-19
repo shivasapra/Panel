@@ -23,6 +23,7 @@ class SettingsController extends Controller
             $model->to = $request->reg_to_student;
             $model->valid_amount = $request->reg_valid_amount_student;
             $model->invalid_amount = $request->reg_invalid_amount_student;
+            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_student;
             $model->save();
         }
         if($request->reg_type_student == 'fixed-reg-student'){
@@ -37,13 +38,14 @@ class SettingsController extends Controller
         foreach (ReFeeSet::where('category','Faculty')->get() as $re) {
             $re->delete();
         }
-        if($request->reg_type_student == 'datewise-reg-faculty'){
+        if($request->reg_type_faculty == 'datewise-reg-faculty'){
             $model = new ReFeeSet;
             $model->category = 'Faculty';
             $model->from = $request->reg_from_faculty;
             $model->to = $request->reg_to_faculty;
             $model->valid_amount = $request->reg_valid_amount_faculty;
             $model->invalid_amount = $request->reg_invalid_amount_faculty;
+            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_faculty;
             $model->save();
         }
         if($request->reg_type_faculty == 'fixed-reg-faculty'){
