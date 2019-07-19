@@ -178,6 +178,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                        <label class="col-sm-6 col-form-label"><b>{{ __('Deposit Registration Charges On Below Mentioned Bank Account:') }}</b></label><br>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Bank') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Account No.') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('IFSC Code') }}</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="number" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3 text-center">
                 
