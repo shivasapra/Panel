@@ -24,7 +24,7 @@
                             </div>
                             @endif
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                 DateWise Amount <input type="radio" value="datewise-reg-student" name="reg_type_student" id="reg-datewise-student" @if(App\RefeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) checked @endif>
                                 Fixed Amount <input type="radio" value="fixed-reg-student" name="reg_type_student" id="reg-fixed-student"  @if(App\RefeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
@@ -96,7 +96,7 @@
                             </div>
                             @endif
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     DateWise Amount <input type="radio" value="datewise-reg-faculty" name="reg_type_faculty" id="reg-datewise-faculty" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) checked @endif>
                                     Fixed Amount <input type="radio" value="fixed-reg-faculty" name="reg_type_faculty" id="reg-fixed-faculty" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
@@ -168,7 +168,7 @@
                             </div>
                             @endif
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-6">
                                     DateWise Amount <input type="radio" value="datewise-ac-student" name="ac_type_student" id="ac-datewise-student" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) checked @endif>
                                     Fixed Amount <input type="radio" value="fixed-ac-student" name="ac_type_student" id="ac-fixed-student" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
@@ -229,7 +229,7 @@
                             </div>
                             @endif
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-6">
                                     DateWise Amount <input type="radio" value="datewise-ac-faculty" name="ac_type_faculty" id="ac-datewise-faculty" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) checked @endif>
                                     Fixed Amount <input type="radio" value="fixed-ac-faculty" name="ac_type_faculty" id="ac-fixed-faculty" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
