@@ -64,8 +64,8 @@
                                         <input type="text" class="form-control" name="reg_fixed_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->fixed_amount}}"@endif>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="reg_accompanied_person_amount_student">Accompanied Person Amount To Be Deducted:</label>
-                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->accompanied_person_amount}}"@endif>
+                                        <label for="reg_accompanied_person_amount_student_two">Accompanied Person Amount To Be Deducted:</label>
+                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_student_two" @if($reg_type_student != null)value="{{$reg_type_student->accompanied_person_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -136,8 +136,8 @@
                                         <input type="text" class="form-control" name="reg_fixed_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->fixed_amount}}"@endif>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="reg_accompanied_person_amount_student">Accompanied Person Amount To Be Deducted:</label>
-                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->accompanied_person_amount}}"@endif>
+                                        <label for="reg_accompanied_person_amount_faculty_two">Accompanied Person Amount To Be Deducted:</label>
+                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_faculty_two" @if($reg_type_faculty != null)value="{{$reg_type_faculty->accompanied_person_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>

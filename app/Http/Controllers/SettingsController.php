@@ -34,7 +34,7 @@ class SettingsController extends Controller
             $model = new ReFeeSet;
             $model->category = 'Student';
             $model->fixed_amount = $request->reg_fixed_amount_student;
-            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_student;
+            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_student_two;
             $model->save();
         }
         return redirect()->back()->with('reg_type_student', ReFeeSet::where('category','Student')->first());
@@ -58,7 +58,7 @@ class SettingsController extends Controller
             $model = new ReFeeSet;
             $model->category = 'Faculty';
             $model->fixed_amount = $request->reg_fixed_amount_faculty;
-            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_student;
+            $model->accompanied_person_amount = $request->reg_accompanied_person_amount_faculty_two;
             $model->save();
         }
         return redirect()->back()->with('reg_type_faculty', ReFeeSet::where('category','Faculty')->first());

@@ -32,7 +32,7 @@
                   </div>
                 </div> --}}
                 <div class="row">
-                    <div class="col-md-9">
+                <div class="col-md-9">
                 @if($user->details != null)
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Registration ID') }}</label>
@@ -151,6 +151,30 @@
                             @if ($errors->has('accompanied_person'))
                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('accompanied_person') }}</span>
                             @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Registration Fee') }}</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <input type="text" name="registration_fee" id="registration_fee" readonly  class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Accompanied Person Fee') }}</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <input type="text" name="accompanied_person_fee" id="accompanied_person_fee" readonly class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Total Registration Fee') }}</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <input type="text" name="total_registration_fee" id="total_registration_fee" readonly class="form-control">
                         </div>
                     </div>
                 </div>
@@ -381,5 +405,30 @@
             @endif
         @endif
             };
+</script>
+
+<script>
+setInterval(function(){ 
+    var category = document.getElementById('input-category').value;
+    var accompanied_person = document.getElementById('input-accompanied_person').value;
+    
+        if (category == 'Student/Post Doc') {
+            var registration_fee = {{$registration_fee_student}};
+            var temp = {{$accompanied_person_fee_student}};
+            var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+            $('#registration_fee').val(registration_fee);
+            $('#accompanied_person_fee').val(accompanied_person_fee);
+            $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+        }
+        if (category == 'Faculty') {
+            var registration_fee = {{$registration_fee_faculty}};
+            var temp = {{$accompanied_person_fee_faculty}};
+            var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+            $('#registration_fee').val(registration_fee);
+            $('#accompanied_person_fee').val(accompanied_person_fee);
+            $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+        }
+
+    }, 1000);
 </script>
 @stop
