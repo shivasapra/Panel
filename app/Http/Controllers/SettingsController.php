@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\ReFeeSet;
 use App\AcFeeSet;
 use Illuminate\Http\Request;
+use Session;
 
 class SettingsController extends Controller
 {
@@ -32,6 +33,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->reg_fixed_amount_student;
             $model->save();
         }
+        return redirect()->back();
     }
 
     public function facultyRegSettings(Request $request){
@@ -54,6 +56,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->reg_fixed_amount_faculty;
             $model->save();
         }
+        return redirect()->back();
     }
 
     public function studentAcSettings(Request $request){
@@ -75,6 +78,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->ac_fixed_amount_student;
             $model->save();
         }
+        return redirect()->back();
     }
 
     public function facultyAcSettings(Request $request){
@@ -96,5 +100,6 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->ac_fixed_amount_faculty;
             $model->save();
         }
+        return redirect()->back();
     }
 }

@@ -18,18 +18,18 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('status') }}</span>
+                                    <span>{{ session('status_one') }}</span>
                                 </div>
                                 </div>
                             </div>
                             @endif
                             <div class="row">
                                 <div class="col-md-3">
-                                DateWise <input type="radio" value="datewise-reg-student" name="reg_type_student" id="reg-datewise-student">
-                                Fixed <input type="radio" value="fixed-reg-student" name="reg_type_student" id="reg-fixed-student">
+                                DateWise <input type="radio" value="datewise-reg-student" name="reg_type_student" id="reg-datewise-student" @if(App\RefeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) checked @endif>
+                                Fixed <input type="radio" value="fixed-reg-student" name="reg_type_student" id="reg-fixed-student"  @if(App\RefeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
                             </div><br>
-                            <div id="datewise-reg-student" class="div" style="display:none;">
+                            <div id="datewise-reg-student" class="div" @if(App\RefeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) style="" @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="reg_from_student">From:</label>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="fixed-reg-student" class="div" style="display:none;">
+                            <div id="fixed-reg-student" class="div" @if(App\RefeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) style="" @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_fixed_amount_student">Fixed Amount:</label>
@@ -86,18 +86,18 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('status') }}</span>
+                                    <span>{{ session('status_two') }}</span>
                                 </div>
                                 </div>
                             </div>
                             @endif
                             <div class="row">
                                 <div class="col-md-3">
-                                    DateWise <input type="radio" value="datewise-reg-faculty" name="reg_type_faculty" id="reg-datewise-faculty">
-                                    Fixed <input type="radio" value="fixed-reg-faculty" name="reg_type_faculty" id="reg-fixed-faculty">
+                                    DateWise <input type="radio" value="datewise-reg-faculty" name="reg_type_faculty" id="reg-datewise-faculty" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) checked @endif>
+                                    Fixed <input type="radio" value="fixed-reg-faculty" name="reg_type_faculty" id="reg-fixed-faculty" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
                             </div><br>
-                            <div id="datewise-reg-faculty" class="div_three" style="display:none;">
+                            <div id="datewise-reg-faculty" class="div_three" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="reg_from_faculty">From:</label>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="fixed-reg-faculty" class="div_three" style="display:none;">
+                            <div id="fixed-reg-faculty" class="div_three" @if(App\RefeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_fixed_amount_faculty">Fixed Amount:</label>
@@ -154,18 +154,18 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('status') }}</span>
+                                    <span>{{ session('status_three') }}</span>
                                 </div>
                                 </div>
                             </div>
                             @endif
                             <div class="row">
                                 <div class="col-md-2">
-                                    DateWise <input type="radio" value="datewise-ac-student" name="ac_type_student" id="ac-datewise-student">
-                                    Fixed <input type="radio" value="fixed-ac-student" name="ac_type_student" id="ac-fixed-student">
+                                    DateWise <input type="radio" value="datewise-ac-student" name="ac_type_student" id="ac-datewise-student" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) checked @endif>
+                                    Fixed <input type="radio" value="fixed-ac-student" name="ac_type_student" id="ac-fixed-student" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
                             </div><br>
-                            <div id="datewise-ac-student" class="div_two" style="display:none;">
+                            <div id="datewise-ac-student" class="div_two" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="ac_from_student">From:</label>
@@ -186,7 +186,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="fixed-ac-student" class="div_two" style="display:none;">
+                            <div id="fixed-ac-student" class="div_two" @if(App\AcfeeSet::where('category','Student')->where('fixed_amount','!=',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="ac_fixed_amount_student">Fixed Amount:</label>
@@ -215,18 +215,18 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('status') }}</span>
+                                    <span>{{ session('status_four') }}</span>
                                 </div>
                                 </div>
                             </div>
                             @endif
                             <div class="row">
                                 <div class="col-md-2">
-                                    DateWise <input type="radio" value="datewise-ac-faculty" name="ac_type_faculty" id="ac-datewise-faculty">
-                                    Fixed <input type="radio" value="fixed-ac-faculty" name="ac_type_faculty" id="ac-fixed-faculty">
+                                    DateWise <input type="radio" value="datewise-ac-faculty" name="ac_type_faculty" id="ac-datewise-faculty" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) checked @endif>
+                                    Fixed <input type="radio" value="fixed-ac-faculty" name="ac_type_faculty" id="ac-fixed-faculty" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) checked @endif>
                                 </div>
                             </div><br>
-                            <div id="datewise-ac-faculty" class="div_four" style="display:none;">
+                            <div id="datewise-ac-faculty" class="div_four" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="ac_from_faculty">From:</label>
@@ -247,7 +247,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div id="fixed-ac-faculty" class="div_four" style="display:none;">
+                            <div id="fixed-ac-faculty" class="div_four" @if(App\AcfeeSet::where('category','Faculty')->where('fixed_amount','!=',null)->count()>0) style=" " @else style="display:none;" @endif>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="ac_fixed_amount_faculty">Fixed Amount:</label>
