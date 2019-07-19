@@ -33,26 +33,26 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="reg_from_student">From:</label>
-                                        <input type="Date" class="form-control" name="reg_from_student">
+                                        <input type="Date" class="form-control" name="reg_from_student" @if($reg_type_student != null)value="{{$reg_type_student->from}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_to_student">To:</label>
-                                        <input type="Date" class="form-control" name="reg_to_student">
+                                        <input type="Date" class="form-control" name="reg_to_student" @if($reg_type_student != null)value="{{$reg_type_student->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_valid_amount_student">Valid Period Amount:</label>
-                                        <input type="text" class="form-control" name="reg_valid_amount_student">
+                                        <input type="text" class="form-control" name="reg_valid_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_invalid_amount_student">Invalid Period Amount:</label>
-                                        <input type="text" class="form-control" name="reg_invalid_amount_student">
+                                        <input type="text" class="form-control" name="reg_invalid_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->invalid_amount}}"@endif>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_accompanied_person_amount_student">Accompanied Person Amount To Be Deducted:</label>
-                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_student">
+                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->accompanied_person_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_fixed_amount_student">Fixed Amount:</label>
-                                        <input type="text" class="form-control" name="reg_fixed_amount_student">
+                                        <input type="text" class="form-control" name="reg_fixed_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->fixed_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -101,26 +101,26 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="reg_from_faculty">From:</label>
-                                        <input type="Date" class="form-control" name="reg_from_faculty">
+                                        <input type="Date" class="form-control" name="reg_from_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->from}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_to_faculty">To:</label>
-                                        <input type="Date" class="form-control" name="reg_to_faculty">
+                                        <input type="Date" class="form-control" name="reg_to_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_valid_amount_faculty">Valid Period Amount:</label>
-                                        <input type="text" class="form-control" name="reg_valid_amount_faculty">
+                                        <input type="text" class="form-control" name="reg_valid_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="reg_invalid_amount_faculty">Invalid Period Amount:</label>
-                                        <input type="text" class="form-control" name="reg_invalid_amount_faculty">
+                                        <input type="text" class="form-control" name="reg_invalid_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->invalid_amount}}"@endif>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_accompanied_person_amount_faculty">Accompanied Person Amount To Be Deducted:</label>
-                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_faculty">
+                                        <input type="text" class="form-control" name="reg_accompanied_person_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->accompanied_person_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="reg_fixed_amount_faculty">Fixed Amount:</label>
-                                        <input type="text" class="form-control" name="reg_fixed_amount_faculty">
+                                        <input type="text" class="form-control" name="reg_fixed_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->fixed_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -169,19 +169,19 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="ac_from_student">From:</label>
-                                        <input type="Date" class="form-control" name="ac_from_student">
+                                        <input type="Date" class="form-control" name="ac_from_student" @if($ac_type_student != null)value="{{$ac_type_student->from}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_to_student">To:</label>
-                                        <input type="Date" class="form-control" name="ac_to_student">
+                                        <input type="Date" class="form-control" name="ac_to_student" @if($ac_type_student != null)value="{{$ac_type_student->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_valid_amount_student">Valid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_valid_amount_student">
+                                        <input type="text" class="form-control" name="ac_valid_amount_student" @if($ac_type_student != null)value="{{$ac_type_student->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_invalid_amount_student">Invalid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_invalid_amount_student">
+                                        <input type="text" class="form-control" name="ac_invalid_amount_student" @if($ac_type_student != null)value="{{$ac_type_student->invalid_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="ac_fixed_amount_student">Fixed Amount:</label>
-                                        <input type="text" class="form-control" name="ac_fixed_amount_student">
+                                        <input type="text" class="form-control" name="ac_fixed_amount_student" @if($ac_type_student != null)value="{{$ac_type_student->fixed_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -230,19 +230,19 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="ac_from_faculty">From:</label>
-                                        <input type="Date" class="form-control" name="ac_from_faculty">
+                                        <input type="Date" class="form-control" name="ac_from_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->from}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_to_faculty">To:</label>
-                                        <input type="Date" class="form-control" name="ac_to_faculty">
+                                        <input type="Date" class="form-control" name="ac_to_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_valid_amount_faculty">Valid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_valid_amount_faculty">
+                                        <input type="text" class="form-control" name="ac_valid_amount_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="ac_invalid_amount_faculty">Invalid Period Amount:</label>
-                                        <input type="text" class="form-control" name="ac_invalid_amount_faculty">
+                                        <input type="text" class="form-control" name="ac_invalid_amount_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->invalid_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +251,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="ac_fixed_amount_faculty">Fixed Amount:</label>
-                                        <input type="text" class="form-control" name="ac_fixed_amount_faculty">
+                                        <input type="text" class="form-control" name="ac_fixed_amount_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->fixed_amount}}"@endif>
                                     </div>
                                 </div>
                             </div>

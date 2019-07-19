@@ -9,7 +9,10 @@ use Session;
 class SettingsController extends Controller
 {
     public function index(){
-        return view('settings');
+        return view('settings')->with('reg_type_student', ReFeeSet::where('category','Student')->first())
+                                ->with('reg_type_faculty', ReFeeSet::where('category','Faculty')->first())
+                                ->with('ac_type_student', AcFeeSet::where('category','Student')->first())
+                                ->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first());
     }
 
     public function studentRegSettings(Request $request){
@@ -33,7 +36,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->reg_fixed_amount_student;
             $model->save();
         }
-        return redirect()->back();
+        return redirect()->back()->with('reg_type_student', ReFeeSet::where('category','Student')->first());
     }
 
     public function facultyRegSettings(Request $request){
@@ -56,7 +59,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->reg_fixed_amount_faculty;
             $model->save();
         }
-        return redirect()->back();
+        return redirect()->back()->with('reg_type_faculty', ReFeeSet::where('category','Faculty')->first());
     }
 
     public function studentAcSettings(Request $request){
@@ -78,7 +81,7 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->ac_fixed_amount_student;
             $model->save();
         }
-        return redirect()->back();
+        return redirect()->back()->with('ac_type_student', AcFeeSet::where('category','Student')->first());
     }
 
     public function facultyAcSettings(Request $request){
@@ -100,6 +103,6 @@ class SettingsController extends Controller
             $model->fixed_amount = $request->ac_fixed_amount_faculty;
             $model->save();
         }
-        return redirect()->back();
+        return redirect()->back()->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first());
     }
 }
