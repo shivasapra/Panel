@@ -49,7 +49,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation For') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                                <input type="number" class="form-control" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else  value="{{old('accomodation_for')}}" @endif>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation Charges') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else disabled value="{{old('accomodation_charges')}}" @endif>
+                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else  value="{{old('accomodation_charges')}}" @endif>
                             </div>
                         </div>
                     </div>
