@@ -10,5 +10,19 @@ class SettingsController extends Controller
         return view('settings');
     }
 
-    
+    public function studentRegSettings(Request $request){
+        //
+    }
+
+    public function facultyRegSettings(Request $request){
+        //
+    }
+
+    public function studentAcSettings(Request $request){
+        //
+    }
+
+    public function facultyAcSettings(Request $request){
+        //
+    }
 }

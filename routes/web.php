@@ -103,3 +103,8 @@ Route::get('/language', function () {
 Route::get('/upgrade', function () {
     return view('pages.upgrade');
 })->name('upgrade');
+
+Route::post('/student-reg-settings', 'SettingsController@studentRegSettings')->name('student.reg.settings');
+Route::post('/faculty-reg-settings', 'SettingsController@facultyRegSettings')->name('faculty.reg.settings');
+Route::post('/student-ac-settings', 'SettingsController@studentAcSettings')->name('student.ac.settings');
+Route::post('/faculty-ac-settings', 'SettingsController@facultyAcSettings')->name('faculty.ac.settings');
