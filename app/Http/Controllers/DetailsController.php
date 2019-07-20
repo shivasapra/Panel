@@ -190,8 +190,8 @@ class DetailsController extends Controller
 
     public function allotment(Request $request){
         $accomodation = Accomodation::find($request->acc_id);
-        $accomodation->room_no = $request->room_no;
-        $accomodation->address = $request->address;
+        $accomodation->Room_no = $request->room_no;
+        $accomodation->Address = $request->address;
         $accomodation->save();
         return redirect()->back()->withStatus('Room Alloted');
     } 

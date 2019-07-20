@@ -8,7 +8,7 @@ Users
       <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header card-header-tabs card-header-success">
+                <div class="card-header card-header-tabs card-header-info">
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
                     <span class="nav-tabs-title">Accomodations:</span>
@@ -36,6 +36,18 @@ Users
                 </div>
                 </div>
                 <div class="card-body">
+                        @if (session('status'))
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="alert alert-success">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                              </button>
+                              <span>{{ session('status') }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      @endif
                 <div class="tab-content">
                     <div class="tab-pane active" id="approved">
                     <div class="table-responsive">
@@ -81,7 +93,13 @@ Users
                                 </td>
                                 <td class="parent-td">
                                     <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
-                                    <button type="button" onclick="temp(this);" class="btn-btn sm btn-info">Allot Room</button>
+                                    @if($accomodation->Room_no == null)
+                                        <button type="button" onclick="temp(this);" class="btn-btn sm btn-info">Allot Room</button>
+                                    @else
+                                        <input type="hidden" value="{{$accomodation->Room_no}}" class="all_room_no">
+                                        <input type="hidden" value="{{$accomodation->Address}}" class="all_address">
+                                        <button type="button" onclick="temp_two(this);" class="btn-btn sm btn-info">Room Alloted</button>
+                                    @endif
                                 </td>
                                 </tr>
                             @endforeach
@@ -179,6 +197,9 @@ Users
 <a href="#" id="target_two" style="display:none;" data-toggle="modal" data-target="#room-allot"></a>
 <div id="room"></div>
 
+<a href="#" id="target_three" style="display:none;" data-toggle="modal" data-target="#room-alloted"></a>
+<div id="room_all"></div>
+
 @endsection
 @section('js')
 <script>
@@ -226,7 +247,7 @@ Users
             
                             '<!-- Modal Header -->'+
                             '<div class="modal-header">'+
-                                '<h4 class="modal-title">Room Allotment</h4>'+
+                                '<h3 class="modal-title">Room Allotment</h3>'+
                                 '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
                             '</div>'+
             
@@ -240,7 +261,43 @@ Users
                                         '<label for="address">Address</label>'+
                                         '<input type="text" name="address" class="form-control">'+
                                 '</div>'+
+                                '<div class="text-center">'+
+                                '<button type="submit" class="btn btn-sm btn-success">Submit</button>'+
+                                '</div>'+
                             '</form>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+
+	  $('#room').html(data);
+	  $('#target_two').click();
+          
+      }
+</script>
+
+<script>
+    function temp_two(temp){
+          var room_no = $(temp).parents('.parent-td').find('.all_room_no').val();
+          var address = $(temp).parents('.parent-td').find('.all_address').val();
+                var data = 
+                '<div class="modal fade" id="room-allot">'+
+                    '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                        '<div class="modal-content">'+
+            
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                                '<h3 class="modal-title">Room Alloted</h3>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+            
+                            '<!-- Modal body -->'+
+                                '<div class="modal-body">'+
+                                        
+                                        '<label for="room_no">Room No.</label>'+
+                                        '<input type="text" name="room_no" value="'+room_no+'" class="form-control"><br>'+
+                                        '<label for="address">Address</label>'+
+                                        '<input type="text" name="address" value="'+address+'" class="form-control">'+
+                                '</div>'+
                         '</div>'+
                     '</div>'+
                 '</div>';
