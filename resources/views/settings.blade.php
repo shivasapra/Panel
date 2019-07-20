@@ -40,11 +40,11 @@
                                         <input type="Date" class="form-control" name="reg_to_student" @if($reg_type_student != null)value="{{$reg_type_student->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="reg_valid_amount_student">Valid Period Amount:</label>
+                                        <label for="reg_valid_amount_student">Charges:</label>
                                         <input type="text" class="form-control" name="reg_valid_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="reg_invalid_amount_student">Invalid Period Amount:</label>
+                                        <label for="reg_invalid_amount_student">Late Fee Charges:</label>
                                         <input type="text" class="form-control" name="reg_invalid_amount_student" @if($reg_type_student != null)value="{{$reg_type_student->invalid_amount}}"@endif>
                                     </div>
                                 </div>
@@ -112,11 +112,11 @@
                                         <input type="Date" class="form-control" name="reg_to_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="reg_valid_amount_faculty">Valid Period Amount:</label>
+                                        <label for="reg_valid_amount_faculty">Charges:</label>
                                         <input type="text" class="form-control" name="reg_valid_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="reg_invalid_amount_faculty">Invalid Period Amount:</label>
+                                        <label for="reg_invalid_amount_faculty">Late Fee Charges:</label>
                                         <input type="text" class="form-control" name="reg_invalid_amount_faculty" @if($reg_type_faculty != null)value="{{$reg_type_faculty->invalid_amount}}"@endif>
                                     </div>
                                 </div>
@@ -184,11 +184,11 @@
                                         <input type="Date" class="form-control" name="ac_to_student" @if($ac_type_student != null)value="{{$ac_type_student->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_valid_amount_student">Valid Period Amount:</label>
+                                        <label for="ac_valid_amount_student">Charges:</label>
                                         <input type="text" class="form-control" name="ac_valid_amount_student" @if($ac_type_student != null)value="{{$ac_type_student->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_invalid_amount_student">Invalid Period Amount:</label>
+                                        <label for="ac_invalid_amount_student">Late Fee Charges:</label>
                                         <input type="text" class="form-control" name="ac_invalid_amount_student" @if($ac_type_student != null)value="{{$ac_type_student->invalid_amount}}"@endif>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                     <form action="{{route('faculty.ac.settings')}}" method="post">
                         @csrf
                         <div class="card-header card-header-info">
-                            <h4 class="card-title ">{{ __('Accomodation Charges Fot Faculty') }}</h4>
+                            <h4 class="card-title ">{{ __('Accomodation Charges For Faculty') }}</h4>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -245,11 +245,11 @@
                                         <input type="Date" class="form-control" name="ac_to_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->to}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_valid_amount_faculty">Valid Period Amount:</label>
+                                        <label for="ac_valid_amount_faculty">Charges:</label>
                                         <input type="text" class="form-control" name="ac_valid_amount_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->valid_amount}}"@endif>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="ac_invalid_amount_faculty">Invalid Period Amount:</label>
+                                        <label for="ac_invalid_amount_faculty">Late Fee Charges:</label>
                                         <input type="text" class="form-control" name="ac_invalid_amount_faculty" @if($ac_type_faculty != null)value="{{$ac_type_faculty->invalid_amount}}"@endif>
                                     </div>
                                 </div>
