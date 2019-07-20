@@ -108,4 +108,18 @@ class SettingsController extends Controller
         }
         return redirect()->back()->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first());
     }
+
+    public function store(Request $request){
+        if (Settings::first() != null) {
+            $settings = Settings::first();
+        }else{
+            $settings = new Settings;
+        }
+        $settings->bank = $request->bank;
+        $settings->account_no = $request->account_no;
+        $settings->account_holder_name = $request->account_holder_name;
+        $settings->IFSC = $request->IFSC;
+        $settings->save();
+        return redirect()->back();
+    }
 }

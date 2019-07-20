@@ -269,6 +269,52 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card">
+                    <form action="{{route('settings.store')}}" method="post">
+                        @csrf
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title ">{{ __('Bank Details') }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" name="bank" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($settings != null)  value="{{$settings->bank}}"   @else value="{{old('bank')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Account No') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" name="account_no" type="text" placeholder="{{ __('Account No') }}" @if($settings != null)  value="{{$settings->account_no}}"   @else value="{{old('account_no')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Account Holder Name') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" name="account_holder_name" type="text" placeholder="{{ __('Account Holder Name') }}" @if($settings != null)  value="{{$settings->account_holder_name}}"   @else value="{{old('account_holder_name')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('IFSC Code') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" name="IFSC" type="text" placeholder="{{ __('IFSC Code') }}" @if($settings != null)  value="{{$settings->IFSC}}"   @else value="{{old('IFSC')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-sm btn-info">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>     
     </div>
