@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($user->accomodation != null and $useraccomodation->Room_no != null)
+                    @if($user->accomodation != null and $user->accomodation->Room_no != null)
                         <div class="row">
                             <label class="col-sm-2 col-form-label">{{ __('Room No:') }}</label>
                             <div class="col-sm-10">
