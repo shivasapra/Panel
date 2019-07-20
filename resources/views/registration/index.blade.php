@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="row">
-                        <label class="col-sm-6 col-form-label"><b>{{ __('Deposit Registration Charges On Below Mentioned Bank Account:') }}</b></label><br>
+                        <label class="col-sm-6 col-form-label"><b>{{ __('Deposit Registration- Charges On Below Mentioned Bank Account:') }}</b></label><br>
                     </div>
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank') }}</label>
@@ -376,6 +376,24 @@
                             </div>
                         </div>
                     </div>
+                    @if($user->accomodation != null and $useraccomodation->Room_no != null)
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Room No:') }}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input class="form-control toggle" name="room_no"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Room_no}}" @endif  required="true" aria-required="true"/ >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Address:') }}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input class="form-control toggle  name="address"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Address}}" @endif  required="true" aria-required="true"/ >
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     </div>
                     <div class="col-md-3 text-center">
                         @if($user->accomodation!= null)
