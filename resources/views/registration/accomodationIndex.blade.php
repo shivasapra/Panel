@@ -97,7 +97,7 @@ Users
                                 </td>
                                 <td class="parent-td">
                                     <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
-                                    @if($accomodation->Room_no == null)
+                                    @if($accomodation->Room_no != null)
                                         <button type="button" onclick="temp_one(this);" class="btn-btn sm btn-info">Allot Room</button>
                                     @else
                                         <input type="hidden" value="{{$accomodation->Room_no}}" class="all_room_no">
@@ -306,7 +306,7 @@ Users
                     '</div>'+
                 '</div>';
 
-	  $('#room').html(data);
+	  $('#room_all').html(data);
 	  $('#target_three').click();
           
       }
