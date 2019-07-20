@@ -256,7 +256,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
+                                <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" readonly name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
                                 @if ($errors->has('amount'))
                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
                                 @endif
@@ -367,7 +367,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
-                                <input class="form-control toggle {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else disabled value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
+                                <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" readonly @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else  value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
                                 @if ($errors->has('amount'))
                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
                                 @endif
@@ -516,6 +516,7 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                        $('#input-amount').val(registration_fee + accompanied_person_fee);
                     }
                     if (category == 'Faculty') {
                         var registration_fee = {{$registration_fee_faculty}};
@@ -524,6 +525,7 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                        $('#input-amount').val(registration_fee + accompanied_person_fee);
                     }
 
             }, 1000);

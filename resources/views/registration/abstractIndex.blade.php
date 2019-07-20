@@ -39,6 +39,7 @@ Users
                             <div class="table-responsive">
                                 <table class="table example">
                                 <thead class=" text-danger">
+                                    <tr>
                                     <th>Sno.</th>
                                     <th>Registration ID</th>
                                     <th>Name</th>
@@ -47,6 +48,7 @@ Users
                                     <th>Institute</th>
                                     <th>Department</th>
                                     <th>View</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i =1 ;?>
@@ -97,8 +99,8 @@ Users
                             <div class="table-responsive">
                                 <table class="table example">
                                 <thead class=" text-danger">
+                                    <tr>
                                     <th>Sno.</th>
-                                    <th>Registration ID</th>
                                     <th>Registration ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -106,6 +108,7 @@ Users
                                     <th>Institute</th>
                                     <th>Department</th>
                                     <th>View</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i =1;?>
@@ -165,6 +168,23 @@ Users
 <div id="poster-modal"></div>
 @endsection
 @section('js')
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+
+<script>
+        $(document).ready(function() {
+      $('.example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+          ]
+      } );
+  } );
+  </script>
   <script>
       function talk(temp){
           var i = $(temp).parents('.td_talk').find('.ab_id').val();

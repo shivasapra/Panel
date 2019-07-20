@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('accomodation.submit',$user) }}" autocomplete="off" class="form-horizontal">
+            <form method="post" action="{{ route('accomodation.submit',$user) }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
 
@@ -33,7 +33,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Category') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                <select name="category" class="form-control" style="color:black" required id="input-category">
+                                <select name="category" class="form-control toggle" style="color:black" required id="input-category" disabled>
                                     <option value="">Select Category</option>
                                     <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                     <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
@@ -49,7 +49,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation For') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else  value="{{old('accomodation_for')}}" @endif>
+                                <input type="number" class="form-control toggle" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Accomodation Charges') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else  value="{{old('accomodation_charges')}}" @endif>
+                                <input type="number" class="form-control toggle" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else disabled value="{{old('accomodation_charges')}}" @endif>
                             </div>
                         </div>
                     </div>
@@ -88,6 +88,42 @@
                             </div>
                         </div>
                     </div>
+                    @if($user->accomodation != null and $user->accomodation->Room_no != null)
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Room No:') }}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input class="form-control toggle" name="room_no"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Room_no}}" @endif  required="true" aria-required="true"/ >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">{{ __('Address:') }}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input class="form-control toggle  name="address"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Address}}" @endif  required="true" aria-required="true"/ >
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    </div>
+                    <div class="col-md-3">
+                        @if($user->accomodation!= null and $user->accomodation->approved )
+                            <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                        @endif
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+            
+            <div class="card ">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title">{{ __('Accomodation Charges Details') }}</h4>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                         <div class="col-sm-10">
@@ -103,7 +139,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('Amount') }}</label>
                         <div class="col-sm-10">
                             <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
-                                <input class="form-control toggle {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else disabled value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
+                                <input class="form-control  {{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" readonly @if($user->accomodation != null)  value="{{$user->accomodation->amount}}"   @else  value="{{old('amount')}}" @endif required="true" aria-required="true"/ >
                                 @if ($errors->has('amount'))
                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
                                 @endif
@@ -132,32 +168,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($user->accomodation != null and $user->accomodation->Room_no != null)
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">{{ __('Room No:') }}</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <input class="form-control toggle" name="room_no"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Room_no}}" @endif  required="true" aria-required="true"/ >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">{{ __('Address:') }}</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <input class="form-control toggle  name="address"  type="text" @if($user->accomodation != null)  value="{{$user->accomodation->Address}}" @endif  required="true" aria-required="true"/ >
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    </div>
-                    <div class="col-md-3">
-                        @if($user->accomodation!= null and $user->accomodation->approved )
-                            <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
-                        @endif
-                    </div>
-                </div>
+                </form>
                 </div>
                 @if($user->accomodation == null and $user->details != null)
                     <div class="card-footer ml-auto mr-auto">
@@ -165,7 +176,6 @@
                     </div>
                 @endif
             </div>
-          </form>
           @if($user->accomodation!= null and $user->accomodation->cancellation_remarks != null)
           <div class="card ">
                 <div class="card-header card-header-warning">
@@ -220,6 +230,7 @@
     </div>
 @endsection
 @section('js')
+
 <script>
     $(document).ready(function() {
     $("#yes").click(function () {
@@ -262,11 +273,13 @@ window.onload = function(){
                 var accomodation_fee = {{$accomodation_fee_student}};
                 var accomodation_charges = accomodation_for * accomodation_fee;
                 $('#accomodation_charges').val(accomodation_charges);
+                $('#input-amount').val(accomodation_charges);
             }
             if (category == 'Faculty') {
                 var accomodation_fee = {{$accomodation_fee_faculty}};
                 var accomodation_charges = accomodation_for * accomodation_fee;
                 $('#accomodation_charges').val(accomodation_charges);
+                $('#input-amount').val(accomodation_charges);
             }
     
     }, 1000);

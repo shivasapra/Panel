@@ -14,7 +14,9 @@
                     <div class="card ">
                         <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Abstract For Poster') }}
-                                <button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4>
+                                <button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                                <button type="button"  class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            </h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -34,7 +36,9 @@
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">{{ __('Abstract For Talk') }}
-                                <button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button></h4>
+                                    <button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                                <button type="button"  class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            </h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
