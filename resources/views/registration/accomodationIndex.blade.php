@@ -98,7 +98,7 @@ Users
                                 <td class="parent-td">
                                     <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
                                     @if($accomodation->Room_no == null)
-                                        <button type="button" onclick="temp(this);" class="btn-btn sm btn-info">Allot Room</button>
+                                        <button type="button" onclick="temp_one(this);" class="btn-btn sm btn-info">Allot Room</button>
                                     @else
                                         <input type="hidden" value="{{$accomodation->Room_no}}" class="all_room_no">
                                         <input type="hidden" value="{{$accomodation->Address}}" class="all_address">
@@ -242,7 +242,7 @@ Users
 </script>
 
 <script>
-    function temp(temp){
+    function temp_one(temp){
           var i = $(temp).parents('.parent-td').find('.acc-id').val();
                 var data = 
                 '<div class="modal fade" id="room-allot">'+
