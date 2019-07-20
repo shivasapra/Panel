@@ -193,6 +193,12 @@ class DetailsController extends Controller
         $accomodation->Room_no = $request->room_no;
         $accomodation->Address = $request->address;
         $accomodation->save();
+        $contactEmail = $accomodation->user->email;
+        $data = ['name'=> $accomodation->user->name,'room_no'=> $accomodation->room_no, 'address'=> $accomodation->address];
+        Mail::send('emails.roomAllotment', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Room Alloted');
+        });
         return redirect()->back()->withStatus('Room Alloted');
     } 
 
