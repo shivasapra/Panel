@@ -15,6 +15,8 @@
 
 Auth::routes();
 
+Route::get('/searchInstitute','DetailsController@InstituteSearch');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');

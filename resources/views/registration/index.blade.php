@@ -1,5 +1,21 @@
 @extends('layouts.app', ['activePage' => 'Registration', 'titlePage' => __('Registration')])
-
+@section('css')
+<style>
+.institute_html {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+.institute_html option {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 7px 15px;
+}
+.institute_html option:hover{
+    cursor: pointer;
+    background-color:#54458b;
+    color:#fff;
+}
+</style>
+@stop
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -87,11 +103,15 @@
                     <label class="col-sm-2 col-form-label">{{ __('Institue Name') }}</label>
                     <div class="col-sm-10">
                         <div class="form-group{{ $errors->has('institue') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('institue') ? ' is-invalid' : '' }}" name="institute" id="input-institute" type="text" placeholder="{{ __('Institue Name') }}" @if($user->details != null)  value="{{$user->details->institute}}"   @else value="{{old('institue')}}" @endif  required="true" aria-required="true"/>
+                            <div class="dropdown">	<div id="myDropdown" class="dropdown-content">
+                            <input class="form-control{{ $errors->has('institue') ? ' is-invalid' : '' }} institute-name" onkeyup="InstituteDataExtract(this)" name="institute" id="myInput" type="text" placeholder="{{ __('Institue Name') }}" @if($user->details != null)  value="{{$user->details->institute}}"   @else value="{{old('institue')}}" @endif  required="true" aria-required="true"/>
+                            <div class="institute_html"></div></div></div>
                             @if ($errors->has('institute'))
                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('institute') }}</span>
                             @endif
                         </div>
+                        
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -465,48 +485,67 @@
   
 @endsection
 @section('js')
-<script>
-    window.onload=function(){
-        @if($user->details != null)
-            @if(Auth::user()->admin or $user->details->approved)
-                $('input').attr('disabled','disabled');
-                $('select').attr('disabled','disabled');
-                var elements = document.getElementsByTagName('input');
-    
-                for (var i = 0, element; element = elements[i++];) {
-                    if (element.type === "hidden")
-                    element.removeAttribute('disabled');
-                    
-                }
-            @endif
-        @endif
-            };
-</script>
-
-<script>
-@if(!Auth::user()->admin and $user->details == null)
-    setInterval(function(){ 
-        var category = document.getElementById('input-category').value;
-        var accompanied_person = document.getElementById('input-accompanied_person').value;
+    <script>
+        window.onload=function(){
+            @if($user->details != null)
+                @if(Auth::user()->admin or $user->details->approved)
+                    $('input').attr('disabled','disabled');
+                    $('select').attr('disabled','disabled');
+                    var elements = document.getElementsByTagName('input');
         
-            if (category == 'Student/Post Doc') {
-                var registration_fee = {{$registration_fee_student}};
-                var temp = {{$accompanied_person_fee_student}};
-                var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
-                $('#registration_fee').val(registration_fee);
-                $('#accompanied_person_fee').val(accompanied_person_fee);
-                $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-            }
-            if (category == 'Faculty') {
-                var registration_fee = {{$registration_fee_faculty}};
-                var temp = {{$accompanied_person_fee_faculty}};
-                var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
-                $('#registration_fee').val(registration_fee);
-                $('#accompanied_person_fee').val(accompanied_person_fee);
-                $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-            }
+                    for (var i = 0, element; element = elements[i++];) {
+                        if (element.type === "hidden")
+                        element.removeAttribute('disabled');
+                        
+                    }
+                @endif
+            @endif
+                };
+    </script>
 
-    }, 1000);
-@endif
-</script>
+    <script>
+        @if(!Auth::user()->admin and $user->details == null)
+            setInterval(function(){ 
+                var category = document.getElementById('input-category').value;
+                var accompanied_person = document.getElementById('input-accompanied_person').value;
+                
+                    if (category == 'Student/Post Doc') {
+                        var registration_fee = {{$registration_fee_student}};
+                        var temp = {{$accompanied_person_fee_student}};
+                        var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+                        $('#registration_fee').val(registration_fee);
+                        $('#accompanied_person_fee').val(accompanied_person_fee);
+                        $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                    }
+                    if (category == 'Faculty') {
+                        var registration_fee = {{$registration_fee_faculty}};
+                        var temp = {{$accompanied_person_fee_faculty}};
+                        var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
+                        $('#registration_fee').val(registration_fee);
+                        $('#accompanied_person_fee').val(accompanied_person_fee);
+                        $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                    }
+
+            }, 1000);
+        @endif
+    </script>
+    <script>
+            function InstituteDataExtract(test){
+                $value = test.value;
+                $.ajax({
+                    type : 'get',
+                    url : '{{URL::to('searchInstitute')}}',
+                    data:{'search':$value},
+                    success:function(data){
+                        $(test).next(".institute_html").html(data);
+                    }
+                });
+            }
+            function InstituteAssign(temp){
+                var div = $(temp).closest(".dropdown-content");
+                div.find('.institute-name').val(temp.value);
+                $(temp).closest(".institute_html").html('');
+            }
+        
+        </script>
 @stop

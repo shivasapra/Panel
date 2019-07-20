@@ -10,6 +10,7 @@ use App\Details;
 use App\Feedback;
 use Auth;
 use Mail;
+use App\Institues;
 use PhpOffice\PhpWord\IOFactory;
 use App\ReFeeSet;
 use App\AcFeeSet;
@@ -70,6 +71,14 @@ class DetailsController extends Controller
         $model->registration_id = $registration_id;
         $model->gender = $request->gender;
         $model->institute = $request->institute;
+
+        
+        if(!Institues::all()->pluck('name')->contains($request->institute)){
+            $institute = new Institues;
+            $institute->name =  $request->institute;
+            $institute->save();
+        }
+
         $model->department = $request->department;
         $model->address = $request->address;
         $model->phone = $request->phone;
@@ -231,5 +240,18 @@ class DetailsController extends Controller
         $accomodation->cancellation_remarks = $request->remarks;
         $accomodation->save();
         return redirect()->back()->withStatus('Cancellation Requested');
+    }
+
+    public function InstituteSearch(Request $request){
+        if($request->ajax()){
+            $output= "";
+            $institutes = Institues::where('name','LIKE','%'.$request->search."%")->get();
+            if($institutes){
+                    foreach ($institutes as $key => $product) {
+                        $output.='<a><option onClick="InstituteAssign(this)" value="'.$product->name.'">'.$product->name.'</option></a>';
+                    }
+                return Response($output);
+            }
+        }
     }
 }
