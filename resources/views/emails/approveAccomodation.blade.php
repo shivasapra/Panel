@@ -8,7 +8,7 @@
     <title>Thank You</title>
 
   </head>
-  <body style="margin:0;padding:0;font-family: 'Open Sans', sans-serif;background-color:#ffedc3;word-break:break-word;">
+  <body style="margin:0;padding:0;font-family: 'Open Sans', sans-serif;background-color:#ffedc3;word-break:break-word;padding-top:40px;">
 		<style>
 			@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
 		</style>
