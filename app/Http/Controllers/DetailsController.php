@@ -248,7 +248,7 @@ class DetailsController extends Controller
             $institutes = Institues::where('name','LIKE','%'.$request->search."%")->get();
             if($institutes){
                     foreach ($institutes as $key => $product) {
-                        $output.='<a><option onClick="InstituteAssign(this)" value="'.$product->name.'">'.$product->name.'</option></a>';
+                        $output.='<option onClick="InstituteAssign(this)" value="'.$product->name.'">'.$product->name.'</option>';
                     }
                 return Response($output);
             }
