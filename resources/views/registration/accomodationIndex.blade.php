@@ -284,7 +284,7 @@ Users
           var room_no = $(temp).parents('.parent-td').find('.all_room_no').val();
           var address = $(temp).parents('.parent-td').find('.all_address').val();
                 var data = 
-                '<div class="modal fade" id="room-allot">'+
+                '<div class="modal fade" id="room-alloted">'+
                     '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
                         '<div class="modal-content">'+
             
@@ -307,7 +307,7 @@ Users
                 '</div>';
 
 	  $('#room').html(data);
-	  $('#target_two').click();
+	  $('#target_three').click();
           
       }
 </script>
