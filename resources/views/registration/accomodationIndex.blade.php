@@ -49,6 +49,7 @@ Users
                             <th>Transaction Id</th>
                             <th>Payment Date</th>
                             <th>##</th>
+                            <th>Room Allotment</th>
                             </thead>
                             <tbody>
                                 <?php $i =1;?>
@@ -77,6 +78,10 @@ Users
                                     @else
                                         {{__('--')}}
                                     @endif
+                                </td>
+                                <td class="parent-td">
+                                    <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
+                                    <button type="button" onclick="temp(this);" class="btn-btn sm btn-info">Allot Room</button>
                                 </td>
                                 </tr>
                             @endforeach
@@ -171,6 +176,9 @@ Users
   </div>
   <a href="#" id="target" style="display:none;" data-toggle="modal" data-target="#cd"></a>
 <div id="c"></div>
+<a href="#" id="target_two" style="display:none;" data-toggle="modal" data-target="#room-allot"></a>
+<div id="room"></div>
+
 @endsection
 @section('js')
 <script>
@@ -204,6 +212,41 @@ Users
          
 	  $('#c').html(data);
 	  $('#target').click();
+          
+      }
+</script>
+
+<script>
+    function temp(temp){
+          var i = $(temp).parents('.parent-td').find('.acc-id').val();
+                var data = 
+                '<div class="modal fade" id="room-allot">'+
+                    '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                        '<div class="modal-content">'+
+            
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                                '<h4 class="modal-title">Room Allotment</h4>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+            
+                            '<!-- Modal body -->'+
+                            '<form action="{{route("allotment")}}" method="post">'+
+                            '@csrf'+
+                                '<div class="modal-body">'+
+                                        '<input type="hidden" value="'+i+'" name="acc_id">'+
+                                        '<label for="room_no">Room No.</label>'+
+                                        '<input type="text" name="room_no" class="form-control"><br>'+
+                                        '<label for="address">Address</label>'+
+                                        '<input type="text" name="address" class="form-control">'+
+                                '</div>'+
+                            '</form>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+
+	  $('#room').html(data);
+	  $('#target_two').click();
           
       }
 </script>

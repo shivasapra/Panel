@@ -26,6 +26,8 @@ class CreateAccomodationsTable extends Migration
             $table->string('category');
             $table->integer('accomodation_for');
             $table->float('accomodation_charges');
+            $table->string('Room_no')->nullable();
+            $table->string('Address')->nullable();
             $table->timestamps();
         });
     }

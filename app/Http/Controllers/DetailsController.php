@@ -188,6 +188,14 @@ class DetailsController extends Controller
         return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
     }
 
+    public function allotment(Request $request){
+        $accomodation = Accomodation::find($request->acc_id);
+        $accomodation->room_no = $request->room_no;
+        $accomodation->address = $request->address;
+        $accomodation->save();
+        return redirect()->back()->withStatus('Room Alloted');
+    } 
+
     public function feedbackSubmit(Request $request,Feedback $feedback){
         $feedback->user_id = Auth::user()->id;
         $feedback->feedback = $request->feedback;

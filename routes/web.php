@@ -45,6 +45,7 @@ Route::get('/abstracts', function () {
     return view('registration.abstractIndex');
 })->name('abstract.index');
 
+Route::post('/allotment', 'DetailsController@allotment')->name('allotment');
 Route::get('/approve/cancellation/{id}', function ($id) {
     $accomodation = App\Accomodation::find($id);
     $accomodation->cancellation_approved = 1;

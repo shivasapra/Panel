@@ -365,8 +365,8 @@ Dashboard
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-warning">
-                <h4 class="card-title">Users Stats</h4>
-                <p class="card-category">Recent Users</p>
+                <h4 class="card-title">Members Stats</h4>
+                <p class="card-category">Recent  Members</p>
               </div>
               <div class="card-body table-responsive">
                 <table class="table table-hover">
@@ -430,10 +430,10 @@ Dashboard
                                 <div class="ripple-container"></div>
                               </a>
                             @endif
-                              <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                              {{-- <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                   <i class="material-icons">close</i>
                                   <div class="ripple-container"></div>
-                              </button>
+                              </button> --}}
                           </form>
                         </td>
                       </tr>
