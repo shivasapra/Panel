@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\ReFeeSet;
 use App\AcFeeSet;
 use Illuminate\Http\Request;
-use Session;
+use App\Settings;
 
 class SettingsController extends Controller
 {
@@ -12,7 +12,8 @@ class SettingsController extends Controller
         return view('settings')->with('reg_type_student', ReFeeSet::where('category','Student')->first())
                                 ->with('reg_type_faculty', ReFeeSet::where('category','Faculty')->first())
                                 ->with('ac_type_student', AcFeeSet::where('category','Student')->first())
-                                ->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first());
+                                ->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first())
+                                ->with('settings',Settings::first());
     }
 
     public function studentRegSettings(Request $request){
