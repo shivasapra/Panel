@@ -97,8 +97,8 @@ Users
                                 </td>
                                 <td class="parent-td">
                                     <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
-                                    @if($accomodation->Room_no != null)
-                                        <button type="button" onclick="temp_one(this);" class="btn-btn sm btn-info">Allot Room</button>
+                                    @if($accomodation->Room_no == null)
+                                        <button type="button" onclick="temp(this);" class="btn-btn sm btn-info">Allot Room</button>
                                     @else
                                         <input type="hidden" value="{{$accomodation->Room_no}}" class="all_room_no">
                                         <input type="hidden" value="{{$accomodation->Address}}" class="all_address">
@@ -242,7 +242,7 @@ Users
 </script>
 
 <script>
-    function temp_one(temp){
+    function temp(temp){
           var i = $(temp).parents('.parent-td').find('.acc-id').val();
                 var data = 
                 '<div class="modal fade" id="room-allot">'+
@@ -312,22 +312,4 @@ Users
       }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-
-
-<script>
-        $(document).ready(function() {
-      $('.example').DataTable( {
-          dom: 'Bfrtip',
-          buttons: [
-          ]
-      } );
-  } );
-  </script>
 @stop
