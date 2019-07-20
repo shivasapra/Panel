@@ -2,10 +2,10 @@
 @section('title')
 Conference Registered Members
 @stop
-{{-- @section('css')
+@section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-@stop --}}
+@stop
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -34,7 +34,7 @@ Conference Registered Members
                   </div>
                 </div> --}}
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" id="example">
                     <thead class=" text-info">
                       <th>
                           {{ __('Sno.') }}
@@ -161,7 +161,7 @@ Conference Registered Members
     </div>
   </div>
 @endsection
-{{-- @section('js')
+@section('js')
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
@@ -171,14 +171,14 @@ Conference Registered Members
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 
 
-  <script>
-  	$(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-        ]
-    } );
-} );
-</script>
+<script>
+        $(document).ready(function() {
+      $('#example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+          ]
+      } );
+  } );
+  </script>
 
-@stop --}}
+@stop
