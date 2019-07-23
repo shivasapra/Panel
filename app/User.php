@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function feedback(){
         return $this->hasOne('App\Feedback');
     }
+
+    public function conference(){
+        return $this->hasOne('App\Conference');
+    }
 }

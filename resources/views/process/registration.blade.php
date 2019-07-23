@@ -300,7 +300,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <textarea name="reason" id="reason" class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
+                                                                    <textarea name="reason" id="reason" required class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
                                                                 </div>
                                                             </div>
                                                         </div>
