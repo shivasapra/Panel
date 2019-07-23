@@ -246,7 +246,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Category') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                                                    <select name="category_acc" class="form-control toggle" style="color:black" required id="category" @if($active != 'accomodation') disabled @endif>
+                                                                    <select name="category_acc" class="form-control toggle" style="color:black" required id="category_acc" @if($active != 'accomodation') disabled @endif>
                                                                         <option value="">Select Category</option>
                                                                         <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                                                         <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
@@ -394,7 +394,7 @@
     </script>
     <script>
         setInterval(function(){ 
-            var category = document.getElementById('input-category').value;
+            var category = document.getElementById('category_acc').value;
             var accomodation_for = document.getElementById('accomodation_for').value;
             var amount = document.getElementById('input-amount').value;
             
