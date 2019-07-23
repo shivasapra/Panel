@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                       <?php $i =1 ;?>
-                      @foreach(App\User::where('admin',0)->get() as $user)
+                      @foreach(App\User::where('admin',0)->get()->reverse() as $user)
                       @if($user->accomodation != null)
                         <tr>
                             <th>

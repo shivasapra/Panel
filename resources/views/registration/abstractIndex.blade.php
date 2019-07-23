@@ -52,7 +52,7 @@ Users
                                 </thead>
                                 <tbody>
                                     <?php $i =1 ;?>
-                                    @foreach(App\Abtract::where('talk','!=',null)->get() as $abstract)
+                                    @foreach(App\Abtract::where('talk','!=',null)->get()->reverse() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
                                         <th>
@@ -112,7 +112,7 @@ Users
                                 </thead>
                                 <tbody>
                                     <?php $i =1;?>
-                                    @foreach(App\Abtract::where('poster','!=',null)->get() as $abstract)
+                                    @foreach(App\Abtract::where('poster','!=',null)->get()->reverse() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
                                         <th>

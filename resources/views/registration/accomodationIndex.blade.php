@@ -69,7 +69,7 @@ Users
                             </thead>
                             <tbody>
                                 <?php $i =1;?>
-                            @foreach(App\Accomodation::where('approved',1)->get() as $accomodation)
+                            @foreach(App\Accomodation::where('approved',1)->get()->reverse() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
                                 <th>
@@ -125,7 +125,7 @@ Users
                             </thead>
                             <tbody>
                                 <?php $i = 1;?>
-                            @foreach(App\Accomodation::where('approved',0)->get() as $accomodation)
+                            @foreach(App\Accomodation::where('approved',0)->get()->reverse() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
                                 <th>
@@ -161,7 +161,7 @@ Users
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                            @foreach(App\Accomodation::all() as $accomodation)
+                            @foreach(App\Accomodation::all()->reverse() as $accomodation)
                                 <tr>
                                 <th>{{$i++}}.</th>
                                 <th>

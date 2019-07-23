@@ -67,7 +67,7 @@ Conference Registered Members
                     </thead>
                     <tbody>
                       <?php $i =1 ;?>
-                      @foreach($users as $user)
+                      @foreach($users->reverse() as $user)
                       @if ($user->id != auth()->id() and !$user->admin and Auth::user()->admin)
                         <tr>
                           <th>
