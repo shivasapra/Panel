@@ -102,7 +102,7 @@
                 </a>
               </li> --}}
               <li class="nav-item{{ $activePage == 'Registration Process' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('registration.process',Auth::user()) }}">
+                <a class="nav-link" href="{{ route('registration.process',['user'=>Auth::user(),'active'=>'registration']) }}">
                     <i class="material-icons">account_circle</i>
                     <p>{{ __('Registration Process') }}</p>
                 </a>

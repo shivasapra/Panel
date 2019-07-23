@@ -15,47 +15,51 @@
 
 Auth::routes();
 
-Route::get('/Registration-Process/{user}','ProcessController@index')->name('registration.process');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/searchInstitute','DetailsController@InstituteSearch');
-
 Route::get('/', 'HomeController@index')->name('home');
-
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::put('update/profile', 'ProfileController@update')->name('profile.update');
 Route::put('profile/password', 'ProfileController@password')->name('profile.password');
 
 Route::get('/users', 'UserController@index')->name('user.index');
+
+Route::get('/searchInstitute','DetailsController@InstituteSearch');
+
+Route::get('/Registration-Process/{user}/{active}','ProcessController@index')->name('registration.process');
+
+Route::post('/Registration-Store/{user}','ProcessController@storeRegistration')->name('registration.store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('create/user', 'UserController@create')->name('user.create');
 Route::post('store/user', 'UserController@store')->name('user.store');
 Route::get('edit/{user}', 'UserController@edit')->name('user.edit');
