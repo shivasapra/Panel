@@ -131,12 +131,9 @@ class SettingsController extends Controller
             $objWriter->save('abstract/'.explode('.',$abstract_new_name)[0].'html');
 
             $abstract = $request->abstract;
-            // $abstract_new_name = time().$abstract->getClientOriginalName();
             $abstract->move('abstract',$abstract_new_name);
             $settings->abstract = 'abstract/'.$abstract_new_name;
             $settings->save();
-
-            
         }
 
         return redirect()->back();

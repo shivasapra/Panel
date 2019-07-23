@@ -166,19 +166,27 @@ class DetailsController extends Controller
         $model->user_id = $user->id;
         if($request->hasFile('talk')){
             $talk_file = $request->file('talk');
+            $talk_new_name = time().$talk_file->getClientOriginalName();
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $rand_one = str_random();
-            $objWriter->save('word/'.$rand_one.'html');
-            $model->talk = 'word/'.$rand_one.'html';
+            $objWriter->save('talk/'.explode('.',$talk_new_name)[0].'html');
+
+            $talk = $request->talk;
+            $talk->move('talk',$talk_new_name);
+            $model->talk = 'talk/'.$talk_new_name;
+            $model->save();
         }
         if($request->hasFile('poster')){
             $poster_file = $request->file('poster');
+            $poster_new_name = time().$poster_file->getClientOriginalName();
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $rand_two = str_random();
-            $objWriter->save('word/'.$rand_two.'html');
-            $model->poster = 'word/'.$rand_two.'html';
+            $objWriter->save('poster/'.explode('.',$poster_new_name)[0].'html');
+
+            $poster = $request->poster;
+            $poster->move('poster',$poster_new_name);
+            $model->poster = 'poster/'.$poster_new_name;
+            $model->save();
         }
         $model->save();
 

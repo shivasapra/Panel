@@ -15,14 +15,18 @@
                         <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Abstract For Poster') }}
                                 <button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>
-                                <button type="button"  class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></button>
+                                <a href="@if($user->abstract != null and $user->abstract->poster != null)
+                                            {{asset($user->abstract->poster)}} 
+                                        @else 
+                                            {{asset(App\Settings::first()->abstract)}}
+                                        @endif" download   class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>
                             </h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             <iframe src="
                                 @if($user->abstract != null and $user->abstract->poster != null)
-                                    {{asset($user->abstract->poster)}} 
+                                    {{asset(explode('.',$user->abstract->poster)[0].'html')}}
                                 @else 
                                     {{asset(explode('.',App\Settings::first()->abstract)[0].'html')}}
                                 @endif"  frameborder="0" style="width:100%;height:500px;"></iframe>
@@ -41,14 +45,18 @@
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">{{ __('Abstract For Talk') }}
                                     <button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>
-                                <button type="button"  class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-download" aria-hidden="true"></i></button>
+                                    <a href="@if($user->abstract != null and $user->abstract->talk != null)
+                                            {{asset($user->abstract->talk)}} 
+                                        @else 
+                                            {{asset(App\Settings::first()->abstract)}}
+                                        @endif" download   class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>
                             </h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             <iframe src="
                                 @if($user->abstract != null and $user->abstract->talk != null)
-                                    {{asset($user->abstract->talk)}} 
+                                    {{asset(explode('.',$user->abstract->talk)[0].'html')}}
                                 @else 
                                 {{asset(explode('.',App\Settings::first()->abstract)[0].'html')}}
                                 @endif" frameborder="0" style="width:100%;height:500px;">
