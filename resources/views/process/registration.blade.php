@@ -224,7 +224,7 @@
                                                 </div>
                                                 <br>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration' or $user->details->approved) style="display:none;" @endif>Save & Next</button>
+                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
                                                 </div>
                                             </form> 
                                         </div>
@@ -276,11 +276,40 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'accomodation' or  $user->details->approved) style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'conference' ? ' active' : '' }}" id="conference">
+                                            <form action="{{route('accomodation.store',$user)}}" method="post">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-10 col-form-label"><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <textarea name="reason" id="reason" class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+                                                        <button type="submit" class="btn btn-md btn-info" @if($active != 'conference') style="display:none;" @endif>Save & Next</button>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'payment' ? ' active' : '' }}" id="payment">
                                             <form action="{{route('payment.store',$user)}}" method="post">
@@ -370,7 +399,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'payment' or  $user->details->approved) style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    <button type="submit" @if($active != 'payment') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -454,7 +483,8 @@
         setInterval(function(){
             var registration_charges = document.getElementById('total_registration_fee').value; 
             var accomodation_charges = document.getElementById('accomodation_charges').value;
-            $('#input-amount').val(Number(registration_charges) + Number(accomodation_charges));
+            var conference_amount = document.getElementById('conference_amount').value;
+            $('#input-amount').val(Number(registration_charges) + Number(accomodation_charges) + Number(conference_amount));
         },1000)
     </script>
     <script>
