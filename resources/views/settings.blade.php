@@ -271,10 +271,10 @@
                 </div>
 
                 <div class="card">
-                    <form action="{{route('settings.store')}}" method="post">
+                    <form action="{{route('settings.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header card-header-info">
-                            <h4 class="card-title ">{{ __('Bank Details') }}</h4>
+                            <h4 class="card-title ">{{ __('Bank Details & Abstract') }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -306,6 +306,14 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <input class="form-control" name="IFSC" type="text" placeholder="{{ __('IFSC Code') }}" @if($settings != null)  value="{{$settings->IFSC}}"   @else value="{{old('IFSC')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Abstract') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" type="file" name="abstract" />
                                     </div>
                                 </div>
                             </div>

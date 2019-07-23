@@ -120,6 +120,24 @@ class SettingsController extends Controller
         $settings->account_holder_name = $request->account_holder_name;
         $settings->IFSC = $request->IFSC;
         $settings->save();
+
+        if($request->hasFile('abstract')){
+            \File::delete($settings->abstract);
+            \File::delete('abstract/templatehtml');
+            $talk_file = $request->file('abstract');
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $objWriter->save('abstract/templatehtml');
+
+            $abstract = $request->abstract;
+            $abstract_new_name = time().$abstract->getClientOriginalName();
+            $abstract->move('abstract',$abstract_new_name);
+            $settings->abstract = 'abstract/'.$abstract_new_name;
+            $settings->save();
+
+            
+        }
+
         return redirect()->back();
     }
 }

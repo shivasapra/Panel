@@ -20,7 +20,12 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="@if($user->abstract != null and $user->abstract->poster != null){{asset($user->abstract->poster)}} @else test.html @endif"  frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="
+                                @if($user->abstract != null and $user->abstract->poster != null)
+                                    {{asset($user->abstract->poster)}} 
+                                @else 
+                                    {{asset('abstract/templatehtml')}}
+                                @endif"  frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
                         <input type="file" name="poster" id="poster" style="display:none";>
                         <br><p style="font-size:20px;margin-left:25px;"><b>Terms & Conditions:</b></p>
@@ -28,7 +33,6 @@
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
                         <div class="card-footer ml-auto mr-auto">
-                           
                         </div>
                     </div>
                 </div>
@@ -42,7 +46,13 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            <iframe src="@if($user->abstract != null and $user->abstract->talk != null){{asset($user->abstract->talk)}} @else test.html @endif" frameborder="0" style="width:100%;height:500px;"></iframe>
+                            <iframe src="
+                                @if($user->abstract != null and $user->abstract->talk != null)
+                                    {{asset($user->abstract->talk)}} 
+                                @else 
+                                    {{asset('abstract/templatehtml')}}
+                                @endif" frameborder="0" style="width:100%;height:500px;">
+                            </iframe>
                         </div>
                         <input type="file" name="talk" id="talk" style="display:none";>
                         <br><p style="font-size:20px;margin-left:25px;"><b>Terms & Conditions:</b></p>
