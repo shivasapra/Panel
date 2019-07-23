@@ -24,7 +24,7 @@
                                 @if($user->abstract != null and $user->abstract->poster != null)
                                     {{asset($user->abstract->poster)}} 
                                 @else 
-                                    {{asset('abstract/templatehtml')}}
+                                    {{asset(explode('.',App\Settings::first()->abstract)[0].'html')}}
                                 @endif"  frameborder="0" style="width:100%;height:500px;"></iframe>
                         </div>
                         <input type="file" name="poster" id="poster" style="display:none";>
@@ -50,7 +50,7 @@
                                 @if($user->abstract != null and $user->abstract->talk != null)
                                     {{asset($user->abstract->talk)}} 
                                 @else 
-                                    {{asset('abstract/templatehtml')}}
+                                {{asset(explode('.',App\Settings::first()->abstract)[0].'html')}}
                                 @endif" frameborder="0" style="width:100%;height:500px;">
                             </iframe>
                         </div>

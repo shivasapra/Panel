@@ -123,14 +123,15 @@ class SettingsController extends Controller
 
         if($request->hasFile('abstract')){
             \File::delete($settings->abstract);
-            \File::delete('abstract/templatehtml');
-            $talk_file = $request->file('abstract');
-            $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
+            \File::delete(explode('.',$settings->abstract)[0].'html');
+            $abstract = $request->file('abstract');
+            $abstract_new_name = time().$abstract->getClientOriginalName();
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($abstract);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $objWriter->save('abstract/templatehtml');
+            $objWriter->save('abstract/'.explode('.',$abstract_new_name)[0].'html');
 
             $abstract = $request->abstract;
-            $abstract_new_name = time().$abstract->getClientOriginalName();
+            // $abstract_new_name = time().$abstract->getClientOriginalName();
             $abstract->move('abstract',$abstract_new_name);
             $settings->abstract = 'abstract/'.$abstract_new_name;
             $settings->save();
