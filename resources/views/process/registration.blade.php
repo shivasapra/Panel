@@ -281,7 +281,7 @@
                                             </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'conference' ? ' active' : '' }}" id="conference">
-                                            <form action="{{route('accomodation.store',$user)}}" method="post">
+                                            <form action="{{route('conference.store',$user)}}" method="post">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-8">
@@ -289,7 +289,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
+                                                                    <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->conference_amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -399,7 +399,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'payment') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    <button type="submit" @if($active != 'payment' or $user->details != null) @if($user->details->payment_date != null) style="display:none;" @endif @endif class="btn btn-md btn-info">Submit</button>
                                                 </div>
                                             </form>
                                         </div>

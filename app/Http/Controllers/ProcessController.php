@@ -9,6 +9,7 @@ use App\AcFeeSet;
 use App\Details;
 use App\Accomodation;
 use App\Institues;
+use App\Conference;
 use Carbon\Carbon;
 
 
@@ -139,14 +140,30 @@ class ProcessController extends Controller
 
     public function storePayment(Request $request,User $user){
 
-        $details = $user->detail;
+        $details = $user->details;
         
         $details->bank_name = $request->bank_name;
         $details->amount = $request->amount;
         $details->transaction_id = $request->transaction_id;
         $details->payment_date = $request->payment_date;
         $details->save();
-        return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
+        return redirect()->back()->withStatus('Registered Successfully');
+
+    }
+
+    public function storeConference(Request $request,User $user){
+
+        if($user->conference != null){
+            $model = $user->conference;
+        }
+        else{
+            $model = new Conference;
+        }
+        $model->user_id = $user->id;
+        $model->conference_amount = $request->conference_amount;
+        $model->reason = $request->reason;
+        $model->save();
+        return redirect()->route('registration.process',['user'=>$user,'active'=>'payment']);
 
     }
 }

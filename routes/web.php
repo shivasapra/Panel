@@ -32,6 +32,8 @@ Route::post('/Accomodation-Store/{user}','ProcessController@storeAccomodation')-
 
 Route::post('/Payment-Store/{user}','ProcessController@storePayment')->name('payment.store');
 
+Route::post('/Conference-Store/{user}','ProcessController@storeConference')->name('conference.store');
+
 
 
 
