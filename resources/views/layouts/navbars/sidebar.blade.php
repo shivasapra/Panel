@@ -77,7 +77,13 @@
                 </a>
               </li> --}}
             @else
-              <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
+              <li class="nav-item{{ $activePage == 'Registration Process' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('registration.process',['user'=>Auth::user(),'active'=>'registration']) }}">
+                    <i class="material-icons">account_circle</i>
+                    <p>{{ __('Registration Process') }}</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item{{ $activePage == 'Registration' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('registration',Auth::user()) }}">
                     <i class="material-icons">account_circle</i>
                     <p>{{ __('Registration') }}</p>
@@ -88,7 +94,7 @@
                     <i class="material-icons">stars</i>
                     <p>{{ __('Accomodation') }}</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item{{ $activePage == 'Abstract' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('abstract',Auth::user())}}">
                     <i class="material-icons">airplay</i>
@@ -101,12 +107,7 @@
                     <p>{{ __('Feedback') }}</p>
                 </a>
               </li> --}}
-              <li class="nav-item{{ $activePage == 'Registration Process' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('registration.process',['user'=>Auth::user(),'active'=>'registration']) }}">
-                    <i class="material-icons">account_circle</i>
-                    <p>{{ __('Registration Process') }}</p>
-                </a>
-              </li>
+              
             @endif
             <li class="nav-item">
                     <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">

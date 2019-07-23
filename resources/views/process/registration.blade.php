@@ -183,7 +183,7 @@
                                                         </div>
 
                                                         <div class="row">
-                                                            <label class="col-sm-3 col-form-label">{{ __('Accompanied Person') }}</label>
+                                                            <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Atendee Of The Conference)') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
                                                                     <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
@@ -246,7 +246,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Category') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                                                    <select name="category_acc" class="form-control toggle" style="color:black" required id="category" disabled>
+                                                                    <select name="category_acc" class="form-control toggle" style="color:black" required id="category" @if($active != 'accomodation') disabled @endif>
                                                                         <option value="">Select Category</option>
                                                                         <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                                                         <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
