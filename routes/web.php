@@ -15,6 +15,38 @@
 
 Auth::routes();
 
+Route::get('/Registration-Process/{user}','ProcessController@index')->name('registration.process');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/searchInstitute','DetailsController@InstituteSearch');
 
 Route::get('/', 'HomeController@index')->name('home');

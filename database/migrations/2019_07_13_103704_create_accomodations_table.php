@@ -16,18 +16,18 @@ class CreateAccomodationsTable extends Migration
         Schema::create('accomodations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('bank_name')->nullable();
-            $table->float('amount')->nullable();
-            $table->string('transaction_id')->nullable();
-            $table->Date('payment_date')->nullable();
-            $table->boolean('approved')->default(0);
-            $table->longText('cancellation_remarks')->nullable();
-            $table->boolean('cancellation_approved')->default(0);
+            
             $table->string('category');
             $table->integer('accomodation_for');
             $table->float('accomodation_charges');
+            
             $table->string('Room_no')->nullable();
             $table->string('Address')->nullable();
+
+            $table->longText('cancellation_remarks')->nullable();
+            $table->boolean('cancellation_approved')->default(0);
+
+            $table->boolean('approved')->default(0);
             $table->timestamps();
         });
     }

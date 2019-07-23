@@ -101,6 +101,12 @@
                     <p>{{ __('Feedback') }}</p>
                 </a>
               </li> --}}
+              <li class="nav-item{{ $activePage == 'Registration Process' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('registration.process',Auth::user()) }}">
+                    <i class="material-icons">account_circle</i>
+                    <p>{{ __('Registration Process') }}</p>
+                </a>
+              </li>
             @endif
             <li class="nav-item">
                     <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
