@@ -224,7 +224,7 @@
                                                 </div>
                                                 <br>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
+                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration' or $user->details->approved) style="display:none;" @endif>Save & Next</button>
                                                 </div>
                                             </form> 
                                         </div>
@@ -276,97 +276,103 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    <button type="submit" @if($active != 'accomodation' or  $user->details->approved) style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'conference' ? ' active' : '' }}" id="conference">
                                         </div>
                                         <div class="tab-pane {{ $active== 'payment' ? ' active' : '' }}" id="payment">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <label class="col-sm-10 col-form-label"><b>{{ __('Deposit The Amount On Below Mentioned Bank Account:') }}</b></label><br>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Bank') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->bank}}" @endif>
+                                            <form action="{{route('payment.store',$user)}}" method="post">
+                                            @csrf
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <label class="col-sm-10 col-form-label"><b>{{ __('Deposit The Amount On Below Mentioned Bank Account:') }}</b></label><br>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Bank') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->bank}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Account Holder Name') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_holder_name}}" @endif>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Account Holder Name') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_holder_name}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Account No.') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_no}}" @endif>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Account No.') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_no}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('IFSC Code') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->IFSC}}" @endif>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('IFSC Code') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->IFSC}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <br><hr>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Bank Name') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
-                                                                @if ($errors->has('bank_name'))
-                                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
-                                                                @endif
+                                                        <br><hr>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Bank Name') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
+                                                                    <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
+                                                                    @if ($errors->has('bank_name'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Amount') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" readonly name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
-                                                                @if ($errors->has('amount'))
-                                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
-                                                                @endif
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Amount') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                                                    <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" readonly name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
+                                                                    @if ($errors->has('amount'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Transaction Id:') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group{{ $errors->has('transaction_id') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('transaction_id') ? ' is-invalid' : '' }}" name="transaction_id" id="input-transaction_id" type="text" placeholder="{{ __('Transaction Id') }}" @if($user->details != null)  value="{{$user->details->transaction_id}}"   @else value="{{old('transaction_id')}}" @endif required="true" aria-required="true"/>
-                                                                @if ($errors->has('transaction_id'))
-                                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('transaction_id') }}</span>
-                                                                @endif
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Transaction Id:') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('transaction_id') ? ' has-danger' : '' }}">
+                                                                    <input class="form-control{{ $errors->has('transaction_id') ? ' is-invalid' : '' }}" name="transaction_id" id="input-transaction_id" type="text" placeholder="{{ __('Transaction Id') }}" @if($user->details != null)  value="{{$user->details->transaction_id}}"   @else value="{{old('transaction_id')}}" @endif required="true" aria-required="true"/>
+                                                                    @if ($errors->has('transaction_id'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('transaction_id') }}</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Date Of Payment:') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->details != null and $user->details->payment_date != null)  value="{{$user->details->payment_date}}"   @else value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/>
-                                                                @if ($errors->has('payment_date'))
-                                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('payment_date') }}</span>
-                                                                @endif
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Date Of Payment:') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
+                                                                    <input class="form-control{{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->details != null and $user->details->payment_date != null)  value="{{$user->details->payment_date}}"   @else value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/>
+                                                                    @if ($errors->has('payment_date'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('payment_date') }}</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="text-center">
+                                                    <button type="submit" @if($active != 'payment' or  $user->details->approved) style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

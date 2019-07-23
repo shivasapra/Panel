@@ -30,6 +30,8 @@ Route::post('/Registration-Store/{user}','ProcessController@storeRegistration')-
 
 Route::post('/Accomodation-Store/{user}','ProcessController@storeAccomodation')->name('accomodation.store');
 
+Route::post('/Payment-Store/{user}','ProcessController@storePayment')->name('payment.store');
+
 
 
 

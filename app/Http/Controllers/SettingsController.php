@@ -119,6 +119,7 @@ class SettingsController extends Controller
         $settings->account_no = $request->account_no;
         $settings->account_holder_name = $request->account_holder_name;
         $settings->IFSC = $request->IFSC;
+        $settings->conference_amount = $request->conference_amount;
         $settings->save();
 
         if($request->hasFile('abstract')){

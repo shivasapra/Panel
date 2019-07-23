@@ -136,4 +136,17 @@ class ProcessController extends Controller
         return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
 
     }
+
+    public function storePayment(Request $request,User $user){
+
+        $details = $user->detail;
+        
+        $details->bank_name = $request->bank_name;
+        $details->amount = $request->amount;
+        $details->transaction_id = $request->transaction_id;
+        $details->payment_date = $request->payment_date;
+        $details->save();
+        return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
+
+    }
 }

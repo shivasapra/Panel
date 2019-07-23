@@ -317,6 +317,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Conference Amount') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" @if($settings != null)  value="{{$settings->conference_amount}}"   @else value="{{old('conference_amount')}}" @endif name="conference_amount" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-sm btn-info">Submit</button>
