@@ -28,6 +28,8 @@ Route::get('/Registration-Process/{user}/{active}','ProcessController@index')->n
 
 Route::post('/Registration-Store/{user}','ProcessController@storeRegistration')->name('registration.store');
 
+Route::post('/Accomodation-Store/{user}','ProcessController@storeAccomodation')->name('accomodation.store');
+
 
 
 

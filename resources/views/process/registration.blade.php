@@ -170,7 +170,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Category') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                                                    <select name="category" class="form-control" style="color:black" required id="input-category">
+                                                                    <select name="category" class="form-control" style="color:black" required id="input-category" @if($active != 'registration') disabled @endif>
                                                                         <option value="">Select Category</option>
                                                                         <option value="Student/Post Doc" @if($user->details != null) {{($user->details->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                                                         <option value="Faculty" @if($user->details != null) {{($user->details->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
@@ -186,7 +186,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Accompanied Person') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
+                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('accompanied_person'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('accompanied_person') }}</span>
                                                                     @endif
@@ -224,60 +224,103 @@
                                                 </div>
                                                 <br>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-md btn-info">Save & Next</button>
+                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
                                                 </div>
                                             </form> 
                                         </div>
                                         <div class="tab-pane {{ $active== 'accomodation' ? ' active' : '' }}" id="accomodation">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Do You Want Accomodation?') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <input type="radio" id="yes" name="accomodation" value="yes" >Yes
-                                                            <input type="radio" id="no" name="accomodation" value="no" checked>No
-                                                        </div>
-                                                    </div><hr>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Category') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                                                <select name="category" class="form-control toggle" style="color:black" required id="category" disabled>
-                                                                    <option value="">Select Category</option>
-                                                                    <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
-                                                                    <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
-                                                                </select>
-                                                            {{-- <input class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" id="input-gender" type="text" placeholder="{{ __('Gender') }}" @if($user->details != null)  value="{{$user->details->gender}}"   @else value="{{old('gender')}}" @endif required="true" aria-required="true"/> --}}
-                                                                @if ($errors->has('accompanied_person'))
-                                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
-                                                                @endif
+                                            <form action="{{route('accomodation.store',$user)}}" method="post">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        @if($user->accomodation == null)
+                                                            <div class="row">
+                                                                <label class="col-sm-4 col-form-label">{{ __('Do You Want Accomodation?') }}</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="radio" id="yes" name="accomodation" value="yes" >Yes
+                                                                    <input type="radio" id="no" name="accomodation" value="no" checked>No
+                                                                </div>
+                                                            </div><hr>
+                                                        @endif
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Category') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
+                                                                    <select name="category_acc" class="form-control toggle" style="color:black" required id="category" disabled>
+                                                                        <option value="">Select Category</option>
+                                                                        <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
+                                                                        <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                                                                    </select>
+                                                                    @if ($errors->has('accompanied_person'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Accomodation For') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="number" class="form-control toggle" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Accomodation For') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="number" class="form-control toggle" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label">{{ __('Accomodation Charges') }}</label>
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <input type="number" class="form-control" name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else readonly value="{{old('accomodation_charges')}}" @endif>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Accomodation Charges') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="number" class="form-control" readonly name="accomodation_charges" id="accomodation_charges" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_charges}}"   @else readonly value="{{old('accomodation_charges')}}" @endif>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="text-center">
+                                                    <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'conference' ? ' active' : '' }}" id="conference">
                                         </div>
                                         <div class="tab-pane {{ $active== 'payment' ? ' active' : '' }}" id="payment">
                                             <div class="row">
                                                 <div class="col-md-8">
+                                                    <div class="row">
+                                                        <label class="col-sm-10 col-form-label"><b>{{ __('Deposit The Amount On Below Mentioned Bank Account:') }}</b></label><br>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label">{{ __('Bank') }}</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->bank}}" @endif>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label">{{ __('Account Holder Name') }}</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_holder_name}}" @endif>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label">{{ __('Account No.') }}</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->account_no}}" @endif>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label">{{ __('IFSC Code') }}</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->IFSC}}" @endif>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><hr>
                                                     <div class="row">
                                                         <label class="col-sm-4 col-form-label">{{ __('Bank Name') }}</label>
                                                         <div class="col-sm-8">
@@ -315,7 +358,7 @@
                                                         <label class="col-sm-4 col-form-label">{{ __('Date Of Payment:') }}</label>
                                                         <div class="col-sm-8">
                                                             <div class="form-group{{ $errors->has('payment_date') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->details != null)  value="{{$user->details->payment_date}}"   @else value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/>
+                                                                <input class="form-control{{ $errors->has('payment_date') ? ' is-invalid' : '' }}" name="payment_date" id="input-payment_date" type="date" placeholder="{{ __('Payment Date') }}" @if($user->details != null and $user->details->payment_date != null)  value="{{$user->details->payment_date}}"   @else value="{{ Carbon\Carbon::now()->toDateString() }}" @endif  required="true" aria-required="true"/>
                                                                 @if ($errors->has('payment_date'))
                                                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('payment_date') }}</span>
                                                                 @endif

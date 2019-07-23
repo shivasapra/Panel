@@ -7,6 +7,7 @@ use App\User;
 use App\ReFeeSet;
 use App\AcFeeSet;
 use App\Details;
+use App\Accomodation;
 use App\Institues;
 use Carbon\Carbon;
 
@@ -117,5 +118,22 @@ class ProcessController extends Controller
         $model->total_registration_fee = $request->total_registration_fee;
         $model->save();
         return redirect()->route('registration.process',['user'=>$user,'active'=>'accomodation']);
+    }
+
+    public function storeAccomodation(Request $request,User $user){
+
+        if($user->accomodation != null){
+            $model = $user->accomodation;
+        }
+        else{
+            $model = new Accomodation;
+        }
+        $model->user_id = $user->id;
+        $model->accomodation_for = $request->accomodation_for;
+        $model->accomodation_charges = $request->accomodation_charges;
+        $model->category = $request->category_acc;
+        $model->save();
+        return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
+
     }
 }
