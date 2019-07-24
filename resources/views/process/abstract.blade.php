@@ -97,13 +97,30 @@
 @endsection
 @section('js')
     <script>
+        
+        function clickitposter(){
+            $('#poster').click();
+        }
+
+        function clickittalk(){
+            $('#talk').click();
+        }
+
+        function clickitsame(){
+            $('#same').click();
+        }
+            
+        
+    </script>
+
+    <script>
         function check(){
             if($('#poster_yes').is(':checked')){
                 var poster = 
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Poster") }}'+
-                                '<button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                '<button type="button" id="poster_button" onclick="clickitposter();" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                 '<a href="@if($user->abstract != null and $user->abstract->poster != null)'+
                                             '{{asset($user->abstract->poster)}} '+
                                         '@else '+
@@ -132,7 +149,7 @@
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Talk") }}'+
-                                    '<button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<button type="button" id="talk_button" onclick="clickittalk();"  class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->talk != null)'+
                                             '{{asset($user->abstract->talk)}} '+
                                         '@else '+
@@ -184,7 +201,7 @@
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Poster & Talk") }}'+
-                                    '<button type="button" id="same_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<button type="button" id="same_button" onclick="clickitsame();"  class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->same != null)'+
                                             '{{asset($user->abstract->same)}} '+
                                         '@else '+
@@ -212,4 +229,5 @@
             }
         }
     </script>
+
 @stop
