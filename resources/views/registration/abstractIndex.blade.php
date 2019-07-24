@@ -1,7 +1,5 @@
 @extends('layouts.app', ['activePage' => 'Abstracts', 'titlePage' => __('Abstracts')])
-@section('title')
-Users
-@stop
+
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
@@ -52,7 +50,7 @@ Users
                                 </thead>
                                 <tbody>
                                     <?php $i =1 ;?>
-                                    @foreach(App\Abtract::where('talk','!=',null)->get()->reverse() as $abstract)
+                                    @foreach(App\Abtract::where('talk','!=',null)->orWhere('same','!=',null)->get()->reverse() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
                                         <th>
@@ -112,7 +110,7 @@ Users
                                 </thead>
                                 <tbody>
                                     <?php $i =1;?>
-                                    @foreach(App\Abtract::where('poster','!=',null)->get()->reverse() as $abstract)
+                                    @foreach(App\Abtract::where('poster','!=',null)->orWhere('same','!=',null)->get()->reverse() as $abstract)
                                     <tr>
                                         <th>{{$i++}}.</th>
                                         <th>

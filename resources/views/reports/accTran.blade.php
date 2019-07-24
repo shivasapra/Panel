@@ -40,16 +40,10 @@
                             {{ __('Institute') }}
                         </th>
                         <th>
-                            {{ __('Bank') }}
+                            {{ __('No. Of Persons') }}
                         </th>
                         <th>
-                            {{ __('Amount') }}
-                        </th>
-                        <th>
-                            {{ __('Transaction Id') }}
-                        </th>
-                        <th>
-                            {{ __('Payment Date') }}
+                            {{ __('Charges') }}
                         </th>
                         <th>
                             {{ __('Approved') }}
@@ -82,28 +76,14 @@
                             </td>
                             <td>
                                 @if($user->accomodation != null)
-                                    {{$user->accomodation->bank_name}}
+                                    {{$user->accomodation->accomodation_for}}
                                 @else
                                     {{'--'}}
                                 @endif
                             </td>
                             <td>
                                 @if($user->accomodation != null)
-                                    {{$user->accomodation->amount}}
-                                @else
-                                    {{'--'}}
-                                @endif
-                            </td>
-                            <td>
-                                @if($user->accomodation != null)
-                                    {{$user->accomodation->transaction_id}}
-                                @else
-                                    {{'--'}}
-                                @endif
-                            </td>
-                            <td>
-                                @if($user->accomodation != null)
-                                    {{$user->accomodation->payment_date}}
+                                    {{$user->accomodation->accomodation_charges}}
                                 @else
                                     {{'--'}}
                                 @endif
