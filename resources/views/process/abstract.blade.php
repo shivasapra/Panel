@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'Abstract', 'titlePage' => 'Abstract'])
-
+<?php use App\Settings;?>
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -73,7 +73,14 @@
                             
                         </div>
                     </div>
-                    <div id="abstract"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="abstract_poster"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="abstract_talk"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,21 +90,79 @@
     <script>
         function check(){
             if($('#poster_yes').is(':checked')){
-                if($('#talk_yes').is(':checked')){
-                    var data =  
-                        '<div class="row">'+
-                            '<label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>'+
-                            '<div class="col-sm-4">'+
-                                '<input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();" required> Yes'+
-                                '<input type="radio" name="same" value="same_No" id="same_no" onclick="checkSame();"  required> No'+
-                            '</div>'+
-                        '</div>';
-                    $('#same').html(data);
-                }
-                else{
-                    $('#same').html('');
-                }
+                var poster = 
+                    '<div class="card ">'+
+                        '<div class="card-header card-header-success">'+
+                            '<h4 class="card-title">{{ __("Abstract For Poster") }}'+
+                                '<button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                '<a href="@if($user->abstract != null and $user->abstract->poster != null)'+
+                                            '{{asset($user->abstract->poster)}} '+
+                                        '@else '+
+                                            '{{asset(Settings::first()->abstract)}}'+
+                                        '@endif" download   class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
+                            '</h4>'+
+                            '<p class="card-category"></p>'+
+                        '</div>'+
+                        '<div class="card-body">'+
+                            '<iframe src="'+
+                                '@if($user->abstract != null and $user->abstract->poster != null)'+
+                                    '{{asset(explode('.',$user->abstract->poster)[0]."html")}}'+
+                                '@else '+
+                                    '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                        '</div>'+
+                        '<input type="file" name="poster" id="poster" style="display:none";>'+
+                    '</div>';
+                $('#abstract_poster').html(poster);
+            }else{
+                $('#abstract_poster').html("");
             }
+
+            if($('#talk_yes').is(':checked')){
+                var talk = 
+                    '<div class="card ">'+
+                        '<div class="card-header card-header-primary">'+
+                            '<h4 class="card-title">{{ __("Abstract For Talk") }}'+
+                                    '<button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<a href="@if($user->abstract != null and $user->abstract->talk != null)'+
+                                            '{{asset($user->abstract->talk)}} '+
+                                        '@else '+
+                                            '{{asset(Settings::first()->abstract)}}'+
+                                        '@endif" download   class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
+                            '</h4>'+
+                            '<p class="card-category"></p>'+
+                        '</div>'+
+                        '<div class="card-body">'+
+                            '<iframe src="'+
+                                '@if($user->abstract != null and $user->abstract->talk != null)'+
+                                    '{{asset(explode('.',$user->abstract->talk)[0]."html")}}'+
+                                '@else '+
+                                '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                '@endif" frameborder="0" style="width:100%;height:500px;">'+
+                            '</iframe>'+
+                        '</div>'+
+                        '<input type="file" name="talk" id="talk" style="display:none";>'+
+                    '</div>';
+                $('#abstract_talk').html(talk);
+            }else{
+                $('#abstract_talk').html("");
+            }
+
+            if($('#poster_yes').is(':checked') && $('#talk_yes').is(':checked')){
+                var data =  
+                    '<div class="row">'+
+                        '<label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>'+
+                        '<div class="col-sm-4">'+
+                            '<input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();" required> Yes'+
+                            '<input type="radio" name="same" value="same_No" id="same_no" onclick="checkSame();"  required> No'+
+                        '</div>'+
+                    '</div>';
+                $('#same').html(data);
+            }
+            else{
+                $('#same').html('');
+            }
+            
         }
     </script>
 
