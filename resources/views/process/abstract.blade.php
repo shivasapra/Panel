@@ -65,9 +65,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div id="target">
-
-                                    </div>
+                                    <div id="same"></div>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +73,7 @@
                             
                         </div>
                     </div>
+                    <div id="abstract"></div>
                 </div>
             </div>
         </div>
@@ -89,16 +88,26 @@
                         '<div class="row">'+
                             '<label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>'+
                             '<div class="col-sm-4">'+
-                                '<input type="radio" name="same" value="Yes"   required> Yes'+
-                                '<input type="radio" name="same" value="No"  required> No'+
+                                '<input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();" required> Yes'+
+                                '<input type="radio" name="same" value="same_No" id="same_no" onclick="checkSame();"  required> No'+
                             '</div>'+
                         '</div>';
-                        
-                    $('#target').html(data);
+                    $('#same').html(data);
                 }
                 else{
-                    $('#target').html('');
+                    $('#same').html('');
                 }
+            }
+        }
+    </script>
+
+    <script>
+        function checkSame(){
+            if($('#same_yes').is(':checked')){
+                $('#abstract').html('same yes');
+            }
+            if($('#same_no').is(':checked')){
+                $('#abstract').html('same no');
             }
         }
     </script>
