@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        <form action="{{route('abstract.submit',$user)}}" method="post">
+        <form action="{{route('abstract.submit',$user)}}" method="post" enctype="multipart/form-data">
            @csrf
             <div class="row">
                 <div class="col-md-12">
@@ -107,7 +107,7 @@
         }
 
         function clickitsame(){
-            $('#same').click();
+            $('#same_b').click();
         }
             
         
@@ -132,9 +132,9 @@
                         '<div class="card-body">'+
                             '<iframe src="'+
                                 '@if($user->abstract != null and $user->abstract->poster != null)'+
-                                    '{{asset(explode('.',$user->abstract->poster)[0]."html")}}'+
+                                    '{{asset(explode(".",$user->abstract->poster)[0]."html")}}'+
                                 '@else '+
-                                    '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                    '{{asset(explode(".",Settings::first()->abstract)[0]."html")}}'+
                                 '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                         '</div>'+
                         '<input type="file" name="poster" id="poster" style="display:none";>'+
@@ -161,9 +161,9 @@
                         '<div class="card-body">'+
                             '<iframe src="'+
                                 '@if($user->abstract != null and $user->abstract->talk != null)'+
-                                    '{{asset(explode('.',$user->abstract->talk)[0]."html")}}'+
+                                    '{{asset(explode(".",$user->abstract->talk)[0]."html")}}'+
                                 '@else '+
-                                '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                '{{asset(explode(".",Settings::first()->abstract)[0]."html")}}'+
                                 '@endif" frameborder="0" style="width:100%;height:500px;">'+
                             '</iframe>'+
                         '</div>'+
@@ -213,13 +213,13 @@
                         '<div class="card-body">'+
                             '<iframe src="'+
                                 '@if($user->abstract != null and $user->abstract->same != null)'+
-                                    '{{asset(explode('.',$user->abstract->same)[0]."html")}}'+
+                                    '{{asset(explode(".",$user->abstract->same)[0]."html")}}'+
                                 '@else '+
-                                '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                    '{{asset(explode(".",Settings::first()->abstract)[0]."html")}}'+
                                 '@endif" frameborder="0" style="width:100%;height:500px;">'+
                             '</iframe>'+
                         '</div>'+
-                        '<input type="file" name="same" id="same" style="display:none";>'+
+                        '<input type="file" name="same" id="same_b" style="display:none";>'+
                     '</div>';
                 $('#same_abstract').html(same);
             }

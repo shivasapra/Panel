@@ -187,11 +187,11 @@ class ProcessController extends Controller
             $talk_new_name = time().$talk_file->getClientOriginalName();
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $objWriter->save('talk/'.explode('.',$talk_new_name)[0].'html');
+            $objWriter->save('abstract/talk/'.explode('.',$talk_new_name)[0].'html');
 
             $talk = $request->talk;
-            $talk->move('talk',$talk_new_name);
-            $model->talk = 'talk/'.$talk_new_name;
+            $talk->move('abstract/talk',$talk_new_name);
+            $model->talk = 'abstract/talk/'.$talk_new_name;
             $model->save();
         }
         if($request->hasFile('poster')){
@@ -199,11 +199,11 @@ class ProcessController extends Controller
             $poster_new_name = time().$poster_file->getClientOriginalName();
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $objWriter->save('poster/'.explode('.',$poster_new_name)[0].'html');
+            $objWriter->save('abstract/poster/'.explode('.',$poster_new_name)[0].'html');
 
             $poster = $request->poster;
-            $poster->move('poster',$poster_new_name);
-            $model->poster = 'poster/'.$poster_new_name;
+            $poster->move('abstract/poster',$poster_new_name);
+            $model->poster = 'abstract/poster/'.$poster_new_name;
             $model->save();
         }
 
@@ -212,11 +212,11 @@ class ProcessController extends Controller
             $same_new_name = time().$same_file->getClientOriginalName();
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($same_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-            $objWriter->save('same/'.explode('.',$same_new_name)[0].'html');
+            $objWriter->save('abstract/same/'.explode('.',$same_new_name)[0].'html');
 
             $same = $request->same;
-            $same->move('same',$same_new_name);
-            $model->same = 'same/'.$same_new_name;
+            $same->move('abstract/same',$same_new_name);
+            $model->same = 'abstract/same/'.$same_new_name;
             $model->save();
         }
 
