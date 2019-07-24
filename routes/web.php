@@ -34,7 +34,7 @@ Route::post('/Payment-Store/{user}','ProcessController@storePayment')->name('pay
 
 Route::post('/Conference-Store/{user}','ProcessController@storeConference')->name('conference.store');
 
-
+Route::get('/abstract/{user}', 'ProcessController@abstract')->name('abstract');
 
 
 
@@ -81,7 +81,7 @@ Route::get('/accomodation/{user}', 'DetailsController@accomodation')->name('acco
 Route::post('/accomodation/submit/{user}', 'DetailsController@accomodationSubmit')->name('accomodation.submit');
 Route::get('/approve/accomodation/{accomodation}', 'DetailsController@approveAccomodation')->name('approve.accomodation');
 Route::post('/abstract/submit/{user}', 'DetailsController@abstractSubmit')->name('abstract.submit');
-Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
+// Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
 Route::post('/settings', 'SettingsController@store')->name('settings.store');
 Route::get('/accomodations', function () {
     return view('registration.accomodationIndex');

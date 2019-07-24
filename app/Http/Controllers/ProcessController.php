@@ -166,4 +166,8 @@ class ProcessController extends Controller
         return redirect()->route('registration.process',['user'=>$user,'active'=>'payment']);
 
     }
+
+    public function abstract(User $user){
+        return view('process.abstract')->with('user',$user);
+    }
 }

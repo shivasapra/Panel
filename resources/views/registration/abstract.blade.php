@@ -49,7 +49,7 @@
                                             {{asset($user->abstract->talk)}} 
                                         @else 
                                             {{asset(App\Settings::first()->abstract)}}
-                                        @endif" download   class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        @endif" download   class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>
                             </h4>
                             <p class="card-category"></p>
                         </div>
