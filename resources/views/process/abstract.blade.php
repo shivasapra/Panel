@@ -31,42 +31,53 @@
                                         <label class="col-sm-4 col-form-label">{{ __('Subject Area (Closest) :') }}</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <input type="radio" name="subject_area" value="Biophysics/Biochemistry/Molecular Biology (bbmb)"  required> Biophysics/Biochemistry/Molecular Biology (bbmb) <br>
-                                                <input type="radio" name="subject_area" value="Developmental Biology (db)"  required> Developmental Biology (db) <br>
-                                                <input type="radio" name="subject_area" value="Neurobiology (nb)" required> Neurobiology (nb) <br>
+                                                <input type="radio" name="subject_area" value="Biophysics/Biochemistry/Molecular Biology (bbmb)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Biophysics/Biochemistry/Molecular Biology (bbmb)") checked  @endif @endif  required> Biophysics/Biochemistry/Molecular Biology (bbmb) <br>
+                                                <input type="radio" name="subject_area" value="Developmental Biology (db)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Developmental Biology (db)") checked  @endif @endif  required> Developmental Biology (db) <br>
+                                                <input type="radio" name="subject_area" value="Neurobiology (nb)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Neurobiology (nb)" ) checked  @endif @endif required> Neurobiology (nb) <br>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <input type="radio" name="subject_area" value="Immunology (im)" required> Immunology (im) <br>
-                                                <input type="radio" name="subject_area" value="Genetics (gen)" required> Genetics (gen) <br>
-                                                <input type="radio" name="subject_area" value="Evolution (evo)" required> Evolution (evo) <br>
-                                                <input type="radio" name="subject_area" value="Genetics/Cytogenetics (gc)" required> Genetics/Cytogenetics (gc) <br>
+                                                <input type="radio" name="subject_area" value="Immunology (im)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Immunology (im)" ) checked  @endif @endif required> Immunology (im) <br>
+                                                <input type="radio" name="subject_area" value="Genetics (gen)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Genetics (gen)" ) checked  @endif @endif required> Genetics (gen) <br>
+                                                <input type="radio" name="subject_area" value="Evolution (evo)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Evolution (evo)" ) checked  @endif @endif required> Evolution (evo) <br>
+                                                <input type="radio" name="subject_area" value="Genetics/Cytogenetics (gc)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Genetics/Cytogenetics (gc)" ) checked  @endif @endif required> Genetics/Cytogenetics (gc) <br>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-4 col-form-label">{{ __('Presenting Author Name:') }}</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="presenting_author_name" required>
+                                            <input type="text" class="form-control" @if($user->abstract != null) value="{{$user->abstract->presenting_author_name}}" disabled @endif name="presenting_author_name" required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <label class="col-sm-4 col-form-label">{{ __('Do You Want To Submit Abstract For Poster?') }}</label>
                                         <div class="col-sm-4">
-                                            <input type="radio" name="poster" value="poster_yes" id="poster_yes" onclick="check();" required> Yes
-                                            <input type="radio" name="poster" value="poster_No" onclick="check();" required> No
+                                            <input type="radio" name="poster" value="poster_yes" id="poster_yes" onclick="check();" @if($user->abstract != null) disabled @if($user->abstract->poster != null or $user->abstract->same != null ) checked  @endif @endif required> Yes
+                                            <input type="radio" name="poster" value="poster_No"  id="poster_no"  onclick="check();" @if($user->abstract != null) disabled @if($user->abstract->poster == null and $user->abstract->same == null ) checked  @endif @endif required> No
                                         </div>
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-4 col-form-label">{{ __('Do You Want To Submit Abstract For talk?') }}</label>
                                         <div class="col-sm-4">
-                                            <input type="radio" name="talk" value="talk_yes" id="talk_yes" onclick="check();" required> Yes
-                                            <input type="radio" name="talk" value="talk_No" onclick="check();" required> No
+                                            <input type="radio" name="talk" value="talk_yes" id="talk_yes" onclick="check();" @if($user->abstract != null) disabled @if($user->abstract->talk != null or $user->abstract->same != null ) checked  @endif @endif required> Yes
+                                            <input type="radio" name="talk" value="talk_No"  id="talk_yes" onclick="check();" @if($user->abstract != null) disabled @if($user->abstract->talk == null and $user->abstract->same == null ) checked  @endif @endif required > No
                                         </div>
                                     </div>
                                     <br>
+                                    @if($user->abstract != null)
+                                        @if($user->abstract->same != null)
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>
+                                                <div class="col-sm-4">
+                                                    <input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();" checked disabled  required> Yes
+                                                    <input type="radio" name="same" value="same_No" id="same_no" onclick="checkSame();"    disabled required> No
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
                                     <div id="same"></div>
                                 </div>
                             </div>
@@ -88,9 +99,11 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-                <button class="btn btn-md btn-info" type="submit">Submit</button>
-            </div>
+            @if($user->abstract == null)
+                <div class="text-center">
+                    <button class="btn btn-md btn-info" type="submit">Submit</button>
+                </div>
+            @endif
         </form>
     </div>
 </div>
@@ -120,7 +133,7 @@
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Poster") }}'+
-                                '<button type="button" id="poster_button" onclick="clickitposter();" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                '<button type="button" id="poster_button" onclick="clickitposter();" @if($user->abstract != null) style="display:none;" @endif class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                 '<a href="@if($user->abstract != null and $user->abstract->poster != null)'+
                                             '{{asset($user->abstract->poster)}} '+
                                         '@else '+
@@ -149,7 +162,7 @@
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Talk") }}'+
-                                    '<button type="button" id="talk_button" onclick="clickittalk();"  class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<button type="button" id="talk_button" onclick="clickittalk();" @if($user->abstract != null) style="display:none;" @endif  class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->talk != null)'+
                                             '{{asset($user->abstract->talk)}} '+
                                         '@else '+
@@ -174,12 +187,13 @@
                 $('#abstract_talk').html("");
             }
 
+        @if($user->abstract == null)
             if($('#poster_yes').is(':checked') && $('#talk_yes').is(':checked')){
                 var data =  
                     '<div class="row">'+
                         '<label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>'+
                         '<div class="col-sm-4">'+
-                            '<input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();" required> Yes'+
+                            '<input type="radio" name="same" value="same_Yes" id="same_yes" onclick="checkSame();"  required> Yes'+
                             '<input type="radio" name="same" value="same_No" id="same_no" onclick="checkSame();" checked  required> No'+
                         '</div>'+
                     '</div>';
@@ -188,6 +202,7 @@
             else{
                 $('#same').html('');
             }
+        @endif
             
         }
     </script>
@@ -201,7 +216,7 @@
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Poster & Talk") }}'+
-                                    '<button type="button" id="same_button" onclick="clickitsame();"  class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<button type="button" id="same_button" onclick="clickitsame();" @if($user->abstract != null) style="display:none;" @endif class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->same != null)'+
                                             '{{asset($user->abstract->same)}} '+
                                         '@else '+
@@ -230,4 +245,10 @@
         }
     </script>
 
+    <script>
+        window.onload=function(){
+            check();
+            checkSame();
+        }
+    </script>
 @stop
