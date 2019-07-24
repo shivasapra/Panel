@@ -18,6 +18,9 @@ class CreateAbtractsTable extends Migration
             $table->integer('user_id');
             $table->string('poster')->nullable();
             $table->string('talk')->nullable();
+            $table->string('same')->nullable();
+            $table->string('subject_area')->nullable();
+            $table->string('presenting_author_name')->nullable();
             $table->timestamps();
         });
     }
