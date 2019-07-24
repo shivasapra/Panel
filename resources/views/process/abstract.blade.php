@@ -80,7 +80,9 @@
                         <div class="col-md-6">
                             <div id="abstract_talk"></div>
                         </div>
-                        <div id="same_abstract"></div>
+                        <div class="col-md-12">
+                            <div id="same_abstract"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,14 +95,14 @@
             if($('#poster_yes').is(':checked')){
                 var poster = 
                     '<div class="card ">'+
-                        '<div class="card-header card-header-success">'+
+                        '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Poster") }}'+
-                                '<button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                '<button type="button" id="poster_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                 '<a href="@if($user->abstract != null and $user->abstract->poster != null)'+
                                             '{{asset($user->abstract->poster)}} '+
                                         '@else '+
                                             '{{asset(Settings::first()->abstract)}}'+
-                                        '@endif" download   class="btn btn-sm btn-rounded btn-success pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
+                                        '@endif" download   class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
                             '</h4>'+
                             '<p class="card-category"></p>'+
                         '</div>'+
@@ -122,14 +124,14 @@
             if($('#talk_yes').is(':checked')){
                 var talk = 
                     '<div class="card ">'+
-                        '<div class="card-header card-header-primary">'+
+                        '<div class="card-header card-header-info">'+
                             '<h4 class="card-title">{{ __("Abstract For Talk") }}'+
-                                    '<button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<button type="button" id="talk_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->talk != null)'+
                                             '{{asset($user->abstract->talk)}} '+
                                         '@else '+
                                             '{{asset(Settings::first()->abstract)}}'+
-                                        '@endif" download   class="btn btn-sm btn-rounded btn-primary pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
+                                        '@endif" download   class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
                             '</h4>'+
                             '<p class="card-category"></p>'+
                         '</div>'+
@@ -172,7 +174,31 @@
             if($('#same_yes').is(':checked')){
                 $('#abstract_talk').html("");
                 $('#abstract_poster').html("");
-                $('#same_abstract').html('same yes');
+                var same = 
+                    '<div class="card ">'+
+                        '<div class="card-header card-header-info">'+
+                            '<h4 class="card-title">{{ __("Abstract For Talk And Abstract") }}'+
+                                    '<button type="button" id="same_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
+                                    '<a href="@if($user->abstract != null and $user->abstract->same != null)'+
+                                            '{{asset($user->abstract->same)}} '+
+                                        '@else '+
+                                            '{{asset(Settings::first()->abstract)}}'+
+                                        '@endif" download   class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-download" aria-hidden="true"></i></a>'+
+                            '</h4>'+
+                            '<p class="card-category"></p>'+
+                        '</div>'+
+                        '<div class="card-body">'+
+                            '<iframe src="'+
+                                '@if($user->abstract != null and $user->abstract->same != null)'+
+                                    '{{asset(explode('.',$user->abstract->same)[0]."html")}}'+
+                                '@else '+
+                                '{{asset(explode('.',Settings::first()->abstract)[0]."html")}}'+
+                                '@endif" frameborder="0" style="width:100%;height:500px;">'+
+                            '</iframe>'+
+                        '</div>'+
+                        '<input type="file" name="same" id="same" style="display:none";>'+
+                    '</div>';
+                $('#same_abstract').html(same);
             }
             if($('#same_no').is(':checked')){
                 check();
