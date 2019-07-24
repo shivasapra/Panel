@@ -38,8 +38,9 @@ Route::get('/abstract/{user}', 'ProcessController@abstract')->name('abstract');
 
 Route::post('/abstract/submit/{user}', 'ProcessController@abstractSubmit')->name('abstract.submit');
 
+Route::get('/approve/registration/{details}', 'ProcessController@approve')->name('approve.registration');
 
-
+Route::get('/approve/accomodation/{accomodation}', 'ProcessController@approveAccomodation')->name('approve.accomodation');
 
 
 
@@ -77,11 +78,11 @@ Route::delete('destroy/{user}', 'UserController@destroy')->name('user.destroy');
 Route::get('/registration/{user}', 'DetailsController@registration')->name('registration');
 Route::post('/registerr/{user}', 'DetailsController@register')->name('registerr');
 Route::post('/edit/registration/{user}/{details}', 'DetailsController@editRegistration')->name('edit.register');
-Route::get('/approve/registration/{details}', 'DetailsController@approve')->name('approve.registration');
+// Route::get('/approve/registration/{details}', 'DetailsController@approve')->name('approve.registration');
 
 Route::get('/accomodation/{user}', 'DetailsController@accomodation')->name('accomodation');
 Route::post('/accomodation/submit/{user}', 'DetailsController@accomodationSubmit')->name('accomodation.submit');
-Route::get('/approve/accomodation/{accomodation}', 'DetailsController@approveAccomodation')->name('approve.accomodation');
+// Route::get('/approve/accomodation/{accomodation}', 'DetailsController@approveAccomodation')->name('approve.accomodation');
 // Route::post('/abstract/submit/{user}', 'DetailsController@abstractSubmit')->name('abstract.submit');
 // Route::get('/abstract/{user}', 'DetailsController@abstract')->name('abstract');
 Route::post('/settings', 'SettingsController@store')->name('settings.store');

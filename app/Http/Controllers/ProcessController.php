@@ -12,6 +12,7 @@ use App\Institues;
 use App\Conference;
 use Carbon\Carbon;
 use App\Abtract;
+use Mail;
 
 
 class ProcessController extends Controller
@@ -223,5 +224,29 @@ class ProcessController extends Controller
         $model->save();
 
         return redirect()->back();
+    }
+
+    public function approveAccomodation(Accomodation $accomodation){
+        $accomodation->approved = 1;
+        $accomodation->save();
+        $contactEmail = $accomodation->user->email;
+        $data = ['name'=> $accomodation->user->name];
+        Mail::send('emails.approveAccomodation', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Accomodation Approved');
+        });
+        return redirect()->back()->with('user',$accomodation->user)->withStatus(__('Accomodation Approved!'));
+    }
+
+    public function approve(Details $details){
+        $details->approved = 1;
+        $details->save();
+        $contactEmail = $details->user->email;
+        $data = ['name'=> $details->user->name];
+        Mail::send('emails.approveRegistration', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Registration Approved');
+        });
+        return redirect()->back()->with('user',$details->user)->withStatus(__(' Details Approved!'));
     }
 }

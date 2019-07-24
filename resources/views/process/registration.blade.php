@@ -227,6 +227,16 @@
                                                     <div class="text-center">
                                                         <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
                                                     </div>
+                                                @else
+                                                    @if($user->details != null)
+                                                        <div class="text-center">
+                                                            @if(!$user->details->approved)
+                                                                <a href="{{route('approve.registration',$user->details)}}" class="btn btn-md btn-success">Approve</a>
+                                                            @else
+                                                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                                                            @endif
+                                                        </div>
+                                                    @endif
                                                 @endif
                                             </form> 
                                         </div>
@@ -280,6 +290,16 @@
                                                 <div class="text-center">
                                                     @if(!Auth::user()->admin)
                                                         <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    @else
+                                                    @if($user->accomodation != null)
+                                                        <div class="text-center">
+                                                            @if(!$user->accomodation->approved)
+                                                                <a href="{{route('approve.accomodation',$user->accomodation)}}" class="btn btn-md btn-success">Approve</a>
+                                                            @else
+                                                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                                                            @endif
+                                                        </div>
+                                                    @endif
                                                     @endif
                                                 </div>
                                             </form>
