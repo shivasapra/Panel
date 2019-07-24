@@ -89,12 +89,15 @@
                         '<div class="row">'+
                             '<label class="col-sm-4 col-form-label">{{ __("Do You Want To Submit Same Abstract For Both ?") }}</label>'+
                             '<div class="col-sm-4">'+
-                                '<input type="radio" name="same" value="Yes"  onclick="check();" required> Yes'+
-                                '<input type="radio" name="same" value="No" onclick="check();" required> No'+
+                                '<input type="radio" name="same" value="Yes"   required> Yes'+
+                                '<input type="radio" name="same" value="No"  required> No'+
                             '</div>'+
-                        '</div>'+
+                        '</div>';
                         
                     $('#target').html(data);
+                }
+                else{
+                    $('#target').html('');
                 }
             }
         }
