@@ -11,6 +11,7 @@ use App\Accomodation;
 use App\Institues;
 use App\Conference;
 use Carbon\Carbon;
+use App\Abtract;
 
 
 class ProcessController extends Controller
@@ -169,5 +170,58 @@ class ProcessController extends Controller
 
     public function abstract(User $user){
         return view('process.abstract')->with('user',$user);
+    }
+
+    public function abstractSubmit(Request $request,User $user){
+        if($user->abstract ==null){
+            $model = new Abtract;
+        }
+        else{
+            $model = $user->abstract;
+        }
+        $model->user_id = $user->id;
+        $model->presenting_author_name = $request->presenting_author_name;
+        $model->subject_area = $request->subject_area;
+        if($request->hasFile('talk')){
+            $talk_file = $request->file('talk');
+            $talk_new_name = time().$talk_file->getClientOriginalName();
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $objWriter->save('talk/'.explode('.',$talk_new_name)[0].'html');
+
+            $talk = $request->talk;
+            $talk->move('talk',$talk_new_name);
+            $model->talk = 'talk/'.$talk_new_name;
+            $model->save();
+        }
+        if($request->hasFile('poster')){
+            $poster_file = $request->file('poster');
+            $poster_new_name = time().$poster_file->getClientOriginalName();
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $objWriter->save('poster/'.explode('.',$poster_new_name)[0].'html');
+
+            $poster = $request->poster;
+            $poster->move('poster',$poster_new_name);
+            $model->poster = 'poster/'.$poster_new_name;
+            $model->save();
+        }
+
+        if($request->hasFile('same')){
+            $same_file = $request->file('same');
+            $same_new_name = time().$same_file->getClientOriginalName();
+            $phpWord = \PhpOffice\PhpWord\IOFactory::load($same_file);
+            $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+            $objWriter->save('same/'.explode('.',$same_new_name)[0].'html');
+
+            $same = $request->same;
+            $same->move('same',$same_new_name);
+            $model->same = 'same/'.$same_new_name;
+            $model->save();
+        }
+
+        $model->save();
+
+        return redirect()->back();
     }
 }

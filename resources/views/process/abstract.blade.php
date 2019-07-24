@@ -1,8 +1,10 @@
 @extends('layouts.app', ['activePage' => 'Abstract', 'titlePage' => 'Abstract'])
 <?php use App\Settings;?>
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+<div class="content">
+    <div class="container-fluid">
+        <form action="{{route('abstract.submit',$user)}}" method="post">
+           @csrf
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ">
@@ -86,8 +88,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="text-center">
+                <button class="btn btn-md btn-info" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
+</div>
 @endsection
 @section('js')
     <script>
@@ -177,7 +183,7 @@
                 var same = 
                     '<div class="card ">'+
                         '<div class="card-header card-header-info">'+
-                            '<h4 class="card-title">{{ __("Abstract For Talk And Abstract") }}'+
+                            '<h4 class="card-title">{{ __("Abstract For Poster & Talk") }}'+
                                     '<button type="button" id="same_button" class="btn btn-sm btn-rounded btn-info pull-right"><i class="fa fa-upload" aria-hidden="true"></i></button>'+
                                     '<a href="@if($user->abstract != null and $user->abstract->same != null)'+
                                             '{{asset($user->abstract->same)}} '+

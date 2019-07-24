@@ -36,6 +36,8 @@ Route::post('/Conference-Store/{user}','ProcessController@storeConference')->nam
 
 Route::get('/abstract/{user}', 'ProcessController@abstract')->name('abstract');
 
+Route::post('/abstract/submit/{user}', 'ProcessController@abstractSubmit')->name('abstract.submit');
+
 
 
 
