@@ -58,12 +58,12 @@
                     <p>{{ __('Registration Report') }}</p>
                 </a>
               </li>
-              <li class="nav-item{{ $activePage == 'Accomodation Report' ? ' active' : '' }}">
+              {{-- <li class="nav-item{{ $activePage == 'Accomodation Report' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('accTran') }}">
                     <i class="material-icons">description</i>
                     <p>{{ __('Accomodation Report') }}</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item{{ $activePage == 'Settings' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('settings') }}">
                     <i class="material-icons">settings</i>

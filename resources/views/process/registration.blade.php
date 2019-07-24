@@ -399,7 +399,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'payment' or $user->details != null) @if($user->details->payment_date != null) style="display:none;" @endif @endif class="btn btn-md btn-info">Submit</button>
+                                                    <button type="submit" @if($active != 'payment' ) style="display:none;" @endif @if($user->details != null) @if($user->details->payment_date != null) style="display:none;" @endif  @endif class="btn btn-md btn-info">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
