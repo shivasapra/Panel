@@ -223,9 +223,11 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <div class="text-center">
-                                                    <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
-                                                </div>
+                                                @if(!Auth::user()->admin)
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
+                                                    </div>
+                                                @endif
                                             </form> 
                                         </div>
                                         <div class="tab-pane {{ $active== 'accomodation' ? ' active' : '' }}" id="accomodation">
@@ -276,7 +278,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    @if(!Auth::user()->admin)
+                                                        <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                    @endif
                                                 </div>
                                             </form>
                                         </div>
@@ -286,7 +290,15 @@
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
+                                                            <label class="col-sm-4 col-form-label">{{ __('Introduction') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Charges') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
                                                                     <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->conference_amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
@@ -294,10 +306,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <label class="col-sm-10 col-form-label"><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Amount') }}</label>
+                                                            <label class="col-sm-4 col-form-label"><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
                                                                     <textarea name="reason" id="reason" required class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
@@ -307,7 +316,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
+                                                    @if(!Auth::user()->admin)
                                                         <button type="submit" class="btn btn-md btn-info" @if($active != 'conference') style="display:none;" @endif>Save & Next</button>
+                                                    @endif
                                                 </div>
                                             </form>
                                         </div>
@@ -353,23 +364,47 @@
                                                         </div>
                                                         <br><hr>
                                                         <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Registration Charges') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" readonly id="registration_charge" type="text" required="true" aria-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Accomodation Charges') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" readonly id="accomodation_charge" type="text" required="true" aria-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Charges') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" readonly id="conference_charge" type="text" required="true" aria-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('Total Charges') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                                                    <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" readonly name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
+                                                                    @if ($errors->has('amount'))
+                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
                                                             <label class="col-sm-4 col-form-label">{{ __('Bank Name') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
                                                                     <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('bank_name'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Amount') }}</label>
-                                                            <div class="col-sm-8">
-                                                                <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" readonly name="amount" id="input-amount" type="text" placeholder="{{ __('Amount') }}" @if($user->details != null)  value="{{$user->details->amount}}"   @else value="{{old('amount')}}" @endif required="true" aria-required="true"/>
-                                                                    @if ($errors->has('amount'))
-                                                                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('amount') }}</span>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -399,7 +434,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" @if($active != 'payment' ) style="display:none;" @endif @if($user->details != null) @if($user->details->payment_date != null) style="display:none;" @endif  @endif class="btn btn-md btn-info">Submit</button>
+                                                    @if(!Auth::user()->admin)
+                                                        <button type="submit" @if($active != 'payment' ) style="display:none;" @endif @if($user->details != null) @if($user->details->payment_date != null) style="display:none;" @endif  @endif class="btn btn-md btn-info">Submit</button>
+                                                    @endif
                                                 </div>
                                             </form>
                                         </div>
@@ -439,12 +476,14 @@
                     var accomodation_fee = {{$accomodation_fee_student}};
                     var accomodation_charges = accomodation_for * accomodation_fee;
                     $('#accomodation_charges').val(accomodation_charges);
+                    $('#accomodation_charge').val(accomodation_charges);
                     
                 }
                 if (category == 'Faculty') {
                     var accomodation_fee = {{$accomodation_fee_faculty}};
                     var accomodation_charges = accomodation_for * accomodation_fee;
                     $('#accomodation_charges').val(accomodation_charges);
+                    $('#accomodation_charge').val(accomodation_charges);
                     
                 }
         
@@ -456,6 +495,7 @@
                 var category = document.getElementById('input-category').value;
                 var accompanied_person = document.getElementById('input-accompanied_person').value;
                 var amount = document.getElementById('input-amount').value;
+                var conference_charge =  document.getElementById('conference_amount').value;
 
                     if (category == 'Student/Post Doc') {
                         var registration_fee = {{$registration_fee_student}};
@@ -464,6 +504,7 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                        $('#registration_charge').val(registration_fee + accompanied_person_fee);
                         
                     }
                     if (category == 'Faculty') {
@@ -473,9 +514,10 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-                        
+                        $('#registration_charge').val(registration_fee + accompanied_person_fee);
                     }
-
+                    
+                    $('#conference_charge').val(conference_charge);
             }, 1000);
         
     </script>

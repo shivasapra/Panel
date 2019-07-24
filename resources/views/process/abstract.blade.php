@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <label class="col-sm-4 col-form-label">{{ __('Presenting Author Name:') }}</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" @if($user->abstract != null) value="{{$user->abstract->presenting_author_name}}" disabled @endif name="presenting_author_name" required>
+                                            <input type="text" class="form-control" @if($user->abstract != null) value="{{$user->abstract->presenting_author_name}}" disabled @else value="{{$user->name}}" @endif name="presenting_author_name" required>
                                         </div>
                                     </div>
                                     <br>
