@@ -60,11 +60,9 @@ Users
                             <th>Sno.</th>
                             <th>Registration ID</th>
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
-                            <th>##</th>
+                            <th>No. Of Persons</th>
+                            <th>Charges</th>
+                            <th>Cancellation</th>
                             <th>Room Allotment</th>
                             </thead>
                             <tbody>
@@ -80,10 +78,8 @@ Users
                                     @endif
                                 </th>
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
                                 <td class="can">
                                 <input type="hidden" value="{{$accomodation->id}}" class="hid">
                                     @if($accomodation->cancellation_remarks != null and $accomodation->cancellation_approved == 0)
@@ -118,10 +114,9 @@ Users
                             <th>Sno.</th>
                             <th>Registration ID</th>
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
+                            <th>No. Of Persons</th>
+                            <th>Charges</th>
+                            <th>Action</th>
                             </thead>
                             <tbody>
                                 <?php $i = 1;?>
@@ -136,10 +131,11 @@ Users
                                     @endif
                                 </th>
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
+                                <td>
+                                    <a href="{{route('approve.accomodation',$accomodation)}}" class="btn btn-md btn-success">Approve</a>
+                                </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -153,11 +149,9 @@ Users
                             <th>Sno.</th>
                             <th>Registration ID</th>
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
-                            <th>Status</th>
+                            <th>No. Of Persons</th>
+                            <th>Charges</th>
+                            <th>Approved</th>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
@@ -172,15 +166,13 @@ Users
                                     @endif
                                 </th>
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
                                 <td>
                                     @if($accomodation->approved)
-                                    <span class="text-success"><b>Approved</b></span>
+                                    <span class="text-success"><b>Yes</b></span>
                                     @else
-                                    <span class="text-danger"><b>Not Approved</b></span>
+                                    <span class="text-danger"><b>No</b></span>
                                     @endif
                                 </td>
                                 </tr>
