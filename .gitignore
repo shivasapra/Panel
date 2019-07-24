@@ -2,7 +2,7 @@
 /public/hot
 /public/storage
 /public/word
-
+/public/abstract
 /storage/*.key
 /vendor
 .env
