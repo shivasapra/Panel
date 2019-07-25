@@ -56,6 +56,7 @@ Route::get('/Abstract-Report', function () {
     return view('reports.abstract');
 })->name('abstract.report');
 
+Route::post('/abstract/talk/download', 'ProcessController@abstractTalkDownload')->name('abstract.talk.download');
 
 
 
@@ -100,9 +101,10 @@ Route::post('/settings', 'SettingsController@store')->name('settings.store');
 Route::get('/accomodations', function () {
     return view('registration.accomodationIndex');
 })->name('accomodation.index');
-Route::get('/abstracts', function () {
-    return view('registration.abstractIndex');
+Route::get('/abstracts/{array}', function ($array) {
+    return view('registration.abstractIndex')->with('array',$array);
 })->name('abstract.index');
+
 
 Route::post('/allotment', 'DetailsController@allotment')->name('allotment');
 Route::get('/approve/cancellation/{id}', function ($id) {

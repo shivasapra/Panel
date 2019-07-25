@@ -47,7 +47,8 @@
                 </a>
               </li>
               <li class="nav-item{{ $activePage == 'Abstracts' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('abstract.index') }}">
+                <?php $array = array();  $sarray = serialize($array)?>
+                <a class="nav-link" href="{{ route('abstract.index',['array'=>1]) }}">
                     <i class="material-icons">airplay</i>
                     <p>{{ __('Abstracts') }}</p>
                 </a>

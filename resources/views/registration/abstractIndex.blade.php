@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="talk">
-                        <form>
+                        <form method="post" action="{{route('abstract.talk.download')}}">
                             @csrf
                             <div class="table-responsive">
                                 <table class="table example">
@@ -77,7 +77,7 @@
                                             <button type="button" onclick="talk(this);" class="btn-btn sm btn-info">View</button>
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="talk[]" value="{{$abstract->id}}" id="" required>
+                                            <input type="checkbox" name="talk[]" value="{{$abstract->id}}" id="">
                                         </td>
                                     </tr>
                                     @endforeach
@@ -146,8 +146,16 @@
 <a href="#" id="target" style="display:none;" data-toggle="modal" data-target="#poster_view"></a>
 <div id="talk-modal"></div>
 <div id="poster-modal"></div>
+@if($array != 1)
+    @foreach(collect($array) as $a)
+        <iframe src="{{$a}}"  frameborder="0" style="width:100%;height:500px;" style="display:none;"></iframe>
+    @endforeach
+@endif
+
+
 @endsection
 @section('js')
+
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

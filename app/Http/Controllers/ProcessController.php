@@ -251,4 +251,17 @@ class ProcessController extends Controller
         });
         return redirect()->back()->with('user',$details->user)->withStatus(__(' Details Approved!'));
     }
+
+    public function abstractTalkDownload(Request $request){
+        $array = array();
+        foreach($request->talk as $talk){
+            if(Abtract::find($talk)->talk != null){
+                array_push($array,asset(Abtract::find($talk)->talk));
+            }
+            else{
+                array_push($array,asset(Abtract::find($talk)->same));
+            }
+        }
+        return view('registration.abstractIndex')->with('array',$array);
+    }
 }
