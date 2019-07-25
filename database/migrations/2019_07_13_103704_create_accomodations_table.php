@@ -17,9 +17,9 @@ class CreateAccomodationsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             
-            $table->string('category');
-            $table->integer('accomodation_for');
-            $table->float('accomodation_charges');
+            $table->string('category')->nullable();
+            $table->integer('accomodation_for')->nullable();
+            $table->float('accomodation_charges')->nullable();
             
             $table->string('Room_no')->nullable();
             $table->string('Address')->nullable();

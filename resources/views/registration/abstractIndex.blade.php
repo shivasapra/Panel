@@ -42,9 +42,7 @@
                                     <th>Registration ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
                                     <th>Institute</th>
-                                    <th>Department</th>
                                     <th>View</th>
                                     </tr>
                                 </thead>
@@ -64,21 +62,7 @@
                                         <td>{{$abstract->user->email}}</td>
                                         <td>
                                             @if($abstract->user->details != null)
-                                                {{$abstract->user->details->phone}}
-                                            @else
-                                                {{'--'}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($abstract->user->details != null)
                                                 {{$abstract->user->details->institute}}
-                                            @else
-                                                {{'--'}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($abstract->user->details != null)
-                                                {{$abstract->user->details->department}}
                                             @else
                                                 {{'--'}}
                                             @endif
@@ -102,9 +86,7 @@
                                     <th>Registration ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
                                     <th>Institute</th>
-                                    <th>Department</th>
                                     <th>View</th>
                                     </tr>
                                 </thead>
@@ -124,21 +106,7 @@
                                         <td>{{$abstract->user->email}}</td>
                                         <td>
                                             @if($abstract->user->details != null)
-                                                {{$abstract->user->details->phone}}
-                                            @else
-                                                {{'--'}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($abstract->user->details != null)
                                                 {{$abstract->user->details->institute}}
-                                            @else
-                                                {{'--'}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($abstract->user->details != null)
-                                                {{$abstract->user->details->department}}
                                             @else
                                                 {{'--'}}
                                             @endif
@@ -202,7 +170,12 @@
             
                             '<!-- Modal body -->'+
                             '<div class="modal-body">'+
-                                '<iframe src="{{asset($a->talk)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                                '<iframe src="'+
+                                '@if($a->talk != null)'+
+                                    '{{asset(explode(".",$a->talk)[0]."html")}}'+
+                                '@else'+
+                                    '{{asset(explode(".",$a->same)[0]."html")}}'+
+                                '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -235,7 +208,12 @@
             
                             '<!-- Modal body -->'+
                             '<div class="modal-body">'+
-                                '<iframe src="{{asset($a->poster)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                                '<iframe src="'+
+                                '@if($a->poster != null)'+
+                                    '{{asset(explode(".",$a->poster)[0]."html")}}'+
+                                '@else'+
+                                    '{{asset(explode(".",$a->same)[0]."html")}}'+
+                                '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+

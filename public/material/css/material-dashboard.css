@@ -13,6 +13,21 @@
 
  */
 
+.li-disable{
+  position:relative;
+}
+.li-disable::after{
+  content:"";
+  position:absolute;
+  background-color:rgba(204,204,204,0.6);
+  z-index:1;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+
+
 /*     brand Colors              */
 .text-center{
   text-align:center;
