@@ -167,10 +167,8 @@ Dashboard
                           <thead class=" text-success">
                             <th>Registration ID</th>                               
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
+                            <th>No Of Persons</th>
+                            <th>Charges</th>
                           </thead>
                           <tbody>
                             @foreach(App\Accomodation::where('approved',1)->take(5)->get() as $accomodation)
@@ -183,10 +181,8 @@ Dashboard
                                   @endif
                                 </th>                          
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -199,10 +195,8 @@ Dashboard
                           <thead class=" text-success">
                             <th>Registration ID</th>      
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
+                            <th>No Of Persons</th>
+                            <th>Charges</th>
                           </thead>
                           <tbody>
                             @foreach(App\Accomodation::where('approved',0)->take(5)->get() as $accomodation)
@@ -215,10 +209,8 @@ Dashboard
                                   @endif
                                 </th>  
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -229,12 +221,10 @@ Dashboard
                     <div class="table-responsive">
                         <table class="table">
                           <thead class=" text-success">
-                            <th>Registration ID</th>
+                            <th>Registration ID</th>      
                             <th>Name</th>
-                            <th>Bank</th>
-                            <th>Amount</th>
-                            <th>Transaction Id</th>
-                            <th>Payment Date</th>
+                            <th>No Of Persons</th>
+                            <th>Charges</th>
                             <th>Status</th>
                           </thead>
                           <tbody>
@@ -248,10 +238,8 @@ Dashboard
                                   @endif
                                 </th>
                                 <td>{{$accomodation->user->name}}</td>
-                                <td>{{$accomodation->bank_name}}</td>
-                                <td>{{$accomodation->amount}}</td>
-                                <td>{{$accomodation->transaction_id}}</td>
-                                <td>{{$accomodation->payment_date}}</td>
+                                <td>{{$accomodation->accomodation_for}}</td>
+                                <td>{{$accomodation->accomodation_charges}}</td>
                                 <td>
                                   @if($accomodation->approved)
                                     <span class="text-success"><b>Approved</b></span>
@@ -304,7 +292,7 @@ Dashboard
                             <th>View</th>
                           </thead>
                           <tbody>
-                            @foreach(App\Abtract::where('talk','!=',null)->take(5)->get() as $abstract)
+                            @foreach(App\Abtract::where('talk','!=',null)->orWhere('same','!=',null)->take(5)->get() as $abstract)
                               <tr>
                                 <th>
                                   @if($abstract->user->details != null)
@@ -335,7 +323,7 @@ Dashboard
                             <th>View</th>
                           </thead>
                           <tbody>
-                            @foreach(App\Abtract::where('poster','!=',null)->take(5)->get() as $abstract)
+                            @foreach(App\Abtract::where('poster','!=',null)->orWhere('same','!=',null)->take(5)->get() as $abstract)
                               <tr>
                                 <th>
                                   @if($abstract->user->details != null)
@@ -425,7 +413,7 @@ Dashboard
                             @csrf
                             @method('delete')
                             @if($user->details != null)
-                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('registration', $user) }}" data-original-title="" title="">
+                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('registration.process',[ $user,'registration']) }}" data-original-title="" title="">
                                 <i class="material-icons">remove_red_eye</i>
                                 <div class="ripple-container"></div>
                               </a>
@@ -480,7 +468,12 @@ Dashboard
             
                             '<!-- Modal body -->'+
                             '<div class="modal-body">'+
-                                '<iframe src="{{asset($a->talk)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                                '<iframe src="'+
+                                '@if($a->talk != null)'+
+                                    '{{asset(explode(".",$a->talk)[0]."html")}}'+
+                                '@else'+
+                                    '{{asset(explode(".",$a->same)[0]."html")}}'+
+                                '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -513,7 +506,12 @@ Dashboard
             
                             '<!-- Modal body -->'+
                             '<div class="modal-body">'+
-                                '<iframe src="{{asset($a->poster)}}" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                                '<iframe src="'+
+                                '@if($a->poster != null)'+
+                                    '{{asset(explode(".",$a->poster)[0]."html")}}'+
+                                '@else'+
+                                    '{{asset(explode(".",$a->same)[0]."html")}}'+
+                                '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
