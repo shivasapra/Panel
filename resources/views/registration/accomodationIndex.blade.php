@@ -62,7 +62,7 @@ Users
                             <th>Name</th>
                             <th>No. Of Persons</th>
                             <th>Charges</th>
-                            <th>Cancellation</th>
+                            {{-- <th>Cancellation</th> --}}
                             <th>Room Allotment</th>
                             </thead>
                             <tbody>
@@ -80,7 +80,7 @@ Users
                                 <td>{{$accomodation->user->name}}</td>
                                 <td>{{$accomodation->accomodation_for}}</td>
                                 <td>{{$accomodation->accomodation_charges}}</td>
-                                <td class="can">
+                                {{-- <td class="can">
                                 <input type="hidden" value="{{$accomodation->id}}" class="hid">
                                     @if($accomodation->cancellation_remarks != null and $accomodation->cancellation_approved == 0)
                                         <button onclick="req(this);" type="button" class="btn btn-sm btn-warning">Requested Cancellation</button><br>
@@ -90,7 +90,7 @@ Users
                                     @else
                                         {{__('--')}}
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td class="parent-td">
                                     <input type="hidden" value="{{$accomodation->id}}" class="acc-id">
                                     @if($accomodation->Room_no == null)
