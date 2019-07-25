@@ -43,6 +43,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Institute</th>
+                                    <th>Subject Area</th>
                                     <th>View</th>
                                     </tr>
                                 </thead>
@@ -67,6 +68,7 @@
                                                 {{'--'}}
                                             @endif
                                         </td>
+                                        <td>{{$abstract->subject_area}}</td>
                                         <td class="td_talk">
                                             <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
                                             <button type="button" onclick="talk(this);" class="btn-btn sm btn-info">View</button>
@@ -87,6 +89,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Institute</th>
+                                    <th>Subject Area</th>
                                     <th>View</th>
                                     </tr>
                                 </thead>
@@ -111,6 +114,7 @@
                                                 {{'--'}}
                                             @endif
                                         </td>
+                                        <td>{{$abstract->subject_area}}</td>
                                         <td class="td_poster">
                                             <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
                                             <button type="button" onclick="poster(this);" class="btn-btn sm btn-info">View</button>
