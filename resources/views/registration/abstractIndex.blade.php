@@ -34,6 +34,8 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="talk">
+                        <form>
+                            @csrf
                             <div class="table-responsive">
                                 <table class="table example">
                                 <thead class=" text-danger">
@@ -45,6 +47,7 @@
                                     <th>Institute</th>
                                     <th>Subject Area</th>
                                     <th>View</th>
+                                    <th>Download</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,10 +76,17 @@
                                             <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
                                             <button type="button" onclick="talk(this);" class="btn-btn sm btn-info">View</button>
                                         </td>
+                                        <td class="text-center">
+                                            <input type="checkbox" name="talk[]" value="{{$abstract->id}}" id="" required>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                </table>
+                                </table><br>
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-md btn-danger">Download</button>
+                                </div>
+                            </form>
                             </div>
                         </div>
                         <div class="tab-pane" id="poster">
