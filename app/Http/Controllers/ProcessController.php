@@ -124,18 +124,19 @@ class ProcessController extends Controller
     }
 
     public function storeAccomodation(Request $request,User $user){
-
-        if($user->accomodation != null){
-            $model = $user->accomodation;
+        if($request->accomodation == 'yes'){
+            if($user->accomodation != null){
+                $model = $user->accomodation;
+            }
+            else{
+                $model = new Accomodation;
+            }
+            $model->user_id = $user->id;
+            $model->accomodation_for = $request->accomodation_for;
+            $model->accomodation_charges = $request->accomodation_charges;
+            $model->category = $request->category_acc;
+            $model->save();
         }
-        else{
-            $model = new Accomodation;
-        }
-        $model->user_id = $user->id;
-        $model->accomodation_for = $request->accomodation_for;
-        $model->accomodation_charges = $request->accomodation_charges;
-        $model->category = $request->category_acc;
-        $model->save();
         return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
 
     }
@@ -154,17 +155,18 @@ class ProcessController extends Controller
     }
 
     public function storeConference(Request $request,User $user){
-
-        if($user->conference != null){
-            $model = $user->conference;
+        if($request->conference == 'yes'){
+            if($user->conference != null){
+                $model = $user->conference;
+            }
+            else{
+                $model = new Conference;
+            }
+            $model->user_id = $user->id;
+            $model->conference_amount = $request->conference_amount;
+            $model->reason = $request->reason;
+            $model->save();
         }
-        else{
-            $model = new Conference;
-        }
-        $model->user_id = $user->id;
-        $model->conference_amount = $request->conference_amount;
-        $model->reason = $request->reason;
-        $model->save();
         return redirect()->route('registration.process',['user'=>$user,'active'=>'payment']);
 
     }

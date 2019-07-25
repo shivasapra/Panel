@@ -325,11 +325,20 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <label class="col-sm-4 col-form-label"><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
+                                                        @if($user->conference == null)
+                                                            <div class="row">
+                                                                <label class="col-sm-4 col-form-label">{{ __('Do You Want To Attend Pre Conference Workshop?') }}</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="radio" id="yes_conference" name="conference" value="yes" >Yes
+                                                                    <input type="radio" id="no_conference"  name="conference" value="no" checked>No
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                        <div class="row" id="con" style="display:none;">
+                                                            <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <textarea name="reason" id="reason" required class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
+                                                                    <textarea name="reason" id="reason"  class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -387,7 +396,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Registration Charges') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" readonly id="registration_charge" type="text" required="true" aria-required="true"/>
+                                                                    <input class="form-control" readonly id="registration_charge" @if($user->details != null) value="{{$user->details->total_registration_fee}}" @endif type="text" required="true" aria-required="true"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -395,7 +404,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Accomodation Charges') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" readonly id="accomodation_charge" type="text" required="true" aria-required="true"/>
+                                                                    <input class="form-control" readonly id="accomodation_charge" @if($user->accomodation != null) value="{{$user->accomodation->accomodation_charges}}" @endif type="text" required="true" aria-required="true"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -403,7 +412,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Conference Charges') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" readonly id="conference_charge" type="text" required="true" aria-required="true"/>
+                                                                    <input class="form-control" readonly id="conference_charge" @if($user->conference != null) value="{{$user->conference->conference_amount}}" @endif type="text" required="true" aria-required="true"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -482,6 +491,8 @@
             $("#no").click(function () {
                 $('.toggle').attr("disabled",'disabled');
             })
+
+            
         });
     </script>
     <script>
@@ -496,17 +507,23 @@
                     var accomodation_fee = {{$accomodation_fee_student}};
                     var accomodation_charges = accomodation_for * accomodation_fee;
                     $('#accomodation_charges').val(accomodation_charges);
-                    $('#accomodation_charge').val(accomodation_charges);
+                    
                     
                 }
                 if (category == 'Faculty') {
                     var accomodation_fee = {{$accomodation_fee_faculty}};
                     var accomodation_charges = accomodation_for * accomodation_fee;
                     $('#accomodation_charges').val(accomodation_charges);
-                    $('#accomodation_charge').val(accomodation_charges);
+                    
                     
                 }
-        
+                
+                if($('#yes_conference').is(':checked')){
+                    $('#con').show();
+            }
+            if($('#no_conference').is(':checked')){
+                    $('#con').hide();
+            }
         }, 1000);
     </script>
     <script>
@@ -524,7 +541,7 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-                        $('#registration_charge').val(registration_fee + accompanied_person_fee);
+                        
                         
                     }
                     if (category == 'Faculty') {
@@ -534,19 +551,19 @@
                         $('#registration_fee').val(registration_fee);
                         $('#accompanied_person_fee').val(accompanied_person_fee);
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
-                        $('#registration_charge').val(registration_fee + accompanied_person_fee);
+                        
                     }
                     
-                    $('#conference_charge').val(conference_charge);
+                    
             }, 1000);
         
     </script>
     <script>
         setInterval(function(){
-            var registration_charges = document.getElementById('total_registration_fee').value; 
-            var accomodation_charges = document.getElementById('accomodation_charges').value;
-            var conference_amount = document.getElementById('conference_amount').value;
-            $('#input-amount').val(Number(registration_charges) + Number(accomodation_charges) + Number(conference_amount));
+            var registration_charge = document.getElementById('registration_charge').value; 
+            var accomodation_charge = document.getElementById('accomodation_charge').value;
+            var conference_charge = document.getElementById('conference_charge').value;
+            $('#input-amount').val(Number(registration_charge) + Number(accomodation_charge) + Number(conference_charge));
         },1000)
     </script>
     <script>
