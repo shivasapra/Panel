@@ -212,7 +212,7 @@ class ProcessController extends Controller
 
         if($request->hasFile('same')){
             $same_file = $request->file('same');
-            $same_new_name = $user->details->registration_id.'_'.explode(')',explode('(',$request->subject_area)[1])[0].'_talk.docx';
+            $same_new_name = $user->details->registration_id.'_'.explode(')',explode('(',$request->subject_area)[1])[0].'_talk_poster.docx';
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($same_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
             $objWriter->save('abstract/same/'.explode('.',$same_new_name)[0].'html');
