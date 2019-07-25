@@ -124,7 +124,7 @@ class ProcessController extends Controller
     }
 
     public function storeAccomodation(Request $request,User $user){
-        if($request->accomodation == 'yes'){
+        
             if($user->accomodation != null){
                 $model = $user->accomodation;
             }
@@ -136,7 +136,7 @@ class ProcessController extends Controller
             $model->accomodation_charges = $request->accomodation_charges;
             $model->category = $request->category_acc;
             $model->save();
-        }
+        
         return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
 
     }
