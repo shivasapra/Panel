@@ -42,8 +42,19 @@ Route::get('/approve/registration/{details}', 'ProcessController@approve')->name
 
 Route::get('/approve/accomodation/{accomodation}', 'ProcessController@approveAccomodation')->name('approve.accomodation');
 
+Route::get('/settings', 'SettingsController@index')->name('settings');
 
+Route::get('/registration-transaction/report', function () {
+    return view('reports.regTran');
+})->name('regTran');
 
+Route::get('/accomodation-transaction/report', function () {
+    return view('reports.accTran');
+})->name('accTran');
+
+Route::get('/Abstract-Report', function () {
+    return view('reports.abstract');
+})->name('abstract.report');
 
 
 
@@ -107,14 +118,7 @@ Route::get('/approve/cancellation/{id}', function ($id) {
     return redirect()->back()->withStatus('Cancellation Approved');
 })->name('approve.cancellation');
 
-Route::get('/settings', 'SettingsController@index')->name('settings');
 
-Route::get('/registration-transaction/report', function () {
-    return view('reports.regTran');
-})->name('regTran');
-Route::get('/accomodation-transaction/report', function () {
-    return view('reports.accTran');
-})->name('accTran');
 
 Route::get('/feedback', function () {
     return view('feedback');

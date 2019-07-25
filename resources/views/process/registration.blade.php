@@ -232,6 +232,10 @@
                                                                 <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
                                                             @endif
                                                         </div>
+                                                    @else
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
+                                                        </div>
                                                     @endif
                                                 @else
                                                     @if($user->details != null)
@@ -302,10 +306,11 @@
                                                                 <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
                                                             @endif
                                                         </div>
+                                                    @else
+                                                        <div class="text-center">
+                                                            <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                        </div>
                                                     @endif
-                                                    <div class="text-center">
-                                                        <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
-                                                    </div>
                                                 @else
                                                     @if($user->accomodation != null)
                                                         <div class="text-center">
