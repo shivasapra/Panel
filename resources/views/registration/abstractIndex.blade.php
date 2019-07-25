@@ -91,6 +91,8 @@
                         </div>
                         <div class="tab-pane" id="poster">
                             <div class="table-responsive">
+                            <form method="post" action="{{route('abstract.poster.download')}}">
+                                @csrf
                                 <table class="table example">
                                 <thead class=" text-danger">
                                     <tr>
@@ -101,6 +103,7 @@
                                     <th>Institute</th>
                                     <th>Subject Area</th>
                                     <th>View</th>
+                                    <th>Download</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,10 +132,17 @@
                                             <input type="text" class="ab_id" value="{{$abstract->id}}" hidden>
                                             <button type="button" onclick="poster(this);" class="btn-btn sm btn-info">View</button>
                                         </td>
+                                        <td class="text-center">
+                                            <input type="checkbox" name="poster[]" value="{{$abstract->id}}" id="">
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                </table>
+                                </table><br>
+                                <div class="float-right">
+                                        <button type="submit" class="btn btn-md btn-danger">Download</button>
+                                    </div>
+                            </form>
                             </div>
                         </div>
                     </div>

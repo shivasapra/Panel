@@ -264,4 +264,17 @@ class ProcessController extends Controller
         }
         return view('registration.abstractIndex')->with('array',$array);
     }
+
+    public function abstractPosterDownload(Request $request){
+        $array = array();
+        foreach($request->poster as $poster){
+            if(Abtract::find($poster)->poster != null){
+                array_push($array,asset(Abtract::find($poster)->poster));
+            }
+            else{
+                array_push($array,asset(Abtract::find($poster)->same));
+            }
+        }
+        return view('registration.abstractIndex')->with('array',$array);
+    }
 }

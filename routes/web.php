@@ -57,6 +57,7 @@ Route::get('/Abstract-Report', function () {
 })->name('abstract.report');
 
 Route::post('/abstract/talk/download', 'ProcessController@abstractTalkDownload')->name('abstract.talk.download');
+Route::post('/abstract/poster/download', 'ProcessController@abstractPosterDownload')->name('abstract.poster.download');
 
 
 
