@@ -224,9 +224,15 @@
                                                 </div>
                                                 <br>
                                                 @if(!Auth::user()->admin)
-                                                    <div class="text-center">
-                                                        <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
-                                                    </div>
+                                                    @if($user->details != null)
+                                                        <div class="text-center">
+                                                            @if(!$user->details->approved)
+                                                                <button type="submit" class="btn btn-md btn-info" @if($active != 'registration') style="display:none;" @endif>Save & Next</button>
+                                                            @else
+                                                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                                                            @endif
+                                                        </div>
+                                                    @endif
                                                 @else
                                                     @if($user->details != null)
                                                         <div class="text-center">
@@ -287,10 +293,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="text-center">
-                                                    @if(!Auth::user()->admin)
+                                                @if(!Auth::user()->admin)
+                                                    @if($user->accomodation != null)
+                                                        <div class="text-center">
+                                                            @if(!$user->accomodation->approved)
+                                                                <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
+                                                            @else
+                                                                <img src="{{asset('/material/img/approved.png')}}" alt="ff" style="width:150px;margin-top:100px;">
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                    <div class="text-center">
                                                         <button type="submit" @if($active != 'accomodation') style="display:none;" @endif class="btn btn-md btn-info">Save & Next</button>
-                                                    @else
+                                                    </div>
+                                                @else
                                                     @if($user->accomodation != null)
                                                         <div class="text-center">
                                                             @if(!$user->accomodation->approved)
@@ -300,8 +316,8 @@
                                                             @endif
                                                         </div>
                                                     @endif
-                                                    @endif
-                                                </div>
+                                                @endif
+                                                
                                             </form>
                                         </div>
                                         <div class="tab-pane {{ $active== 'conference' ? ' active' : '' }}" id="conference">
@@ -333,6 +349,15 @@
                                                                     <input type="radio" id="no_conference"  name="conference" value="no" checked>No
                                                                 </div>
                                                             </div>
+                                                        @else
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <p>@if($user->conference != null) {{$user->conference->reason}}@endif</p>            
+                                                                </div>
+                                                            </div>
+                                                        </div>  
                                                         @endif
                                                         <div class="row" id="con" style="display:none;">
                                                             <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
