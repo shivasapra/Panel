@@ -187,7 +187,7 @@ class ProcessController extends Controller
         $model->subject_area = $request->subject_area;
         if($request->hasFile('talk')){
             $talk_file = $request->file('talk');
-            $talk_new_name = time().$talk_file->getClientOriginalName();
+            $talk_new_name = $user->details->registration_id.'_'.explode(')',explode('(',$request->subject_area)[1])[0].'_talk.docx';
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($talk_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
             $objWriter->save('abstract/talk/'.explode('.',$talk_new_name)[0].'html');
@@ -199,7 +199,7 @@ class ProcessController extends Controller
         }
         if($request->hasFile('poster')){
             $poster_file = $request->file('poster');
-            $poster_new_name = time().$poster_file->getClientOriginalName();
+            $poster_new_name = $user->details->registration_id.'_'.explode(')',explode('(',$request->subject_area)[1])[0].'_poster.docx';
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($poster_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
             $objWriter->save('abstract/poster/'.explode('.',$poster_new_name)[0].'html');
@@ -212,7 +212,7 @@ class ProcessController extends Controller
 
         if($request->hasFile('same')){
             $same_file = $request->file('same');
-            $same_new_name = time().$same_file->getClientOriginalName();
+            $same_new_name = $user->details->registration_id.'_'.explode(')',explode('(',$request->subject_area)[1])[0].'_talk.docx';
             $phpWord = \PhpOffice\PhpWord\IOFactory::load($same_file);
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
             $objWriter->save('abstract/same/'.explode('.',$same_new_name)[0].'html');
