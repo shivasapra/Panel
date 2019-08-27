@@ -27,7 +27,7 @@ class CreateDetailsTable extends Migration
             $table->float('registration_fee')->nullable();
             $table->float('accompanied_person_fee')->nullable();
             $table->float('total_registration_fee')->nullable();
-            $table->integer('accompanied_person');
+            $table->integer('accompanied_person')->nullable();
             
             
             $table->string('bank_name')->nullable();

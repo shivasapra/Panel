@@ -182,7 +182,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div class="row input-accompanied_person_div">
                                                             <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Atendee Of The Conference)') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
@@ -194,7 +194,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div class="row registration_fee_div">
                                                             <label class="col-sm-3 col-form-label">{{ __('Registration Fee') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group">
@@ -203,7 +203,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div class="row accompanied_person_fee_div">
                                                             <label class="col-sm-3 col-form-label">{{ __('Accompanied Person Fee') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group">
@@ -529,7 +529,6 @@
         setInterval(function(){ 
             var category = document.getElementById('category_acc').value;
             var accomodation_for = document.getElementById('accomodation_for').value;
-            var amount = document.getElementById('input-amount').value;
             
                 if (category == 'Student/Post Doc') {
                     console.log(accomodation_for);
@@ -560,21 +559,27 @@
         
             setInterval(function(){ 
                 var category = document.getElementById('input-category').value;
-                var accompanied_person = document.getElementById('input-accompanied_person').value;
-                var amount = document.getElementById('input-amount').value;
-                var conference_charge =  document.getElementById('conference_amount').value;
 
                     if (category == 'Student/Post Doc') {
+                        $('.input-accompanied_person_div').hide();
+                        $('#input-accompanied_person').attr('disabled','disabled');
+                        $('.accompanied_person_fee_div').hide();
+                        $('#accompanied_person_fee').attr('disabled','disabled');
+                        $('.registration_fee_div').hide();
+
+
                         var registration_fee = {{$registration_fee_student}};
-                        var temp = {{$accompanied_person_fee_student}};
-                        var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
-                        $('#registration_fee').val(registration_fee);
-                        $('#accompanied_person_fee').val(accompanied_person_fee);
-                        $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
+                        $('#total_registration_fee').val(registration_fee);
                         
                         
                     }
                     if (category == 'Faculty') {
+                        $('.input-accompanied_person_div').show();
+                        $('#input-accompanied_person').removeAttr('disabled');
+                        $('#accompanied_person_fee').removeAttr('disabled');
+                        $('.accompanied_person_fee_div').show();
+                        $('.registration_fee_div').show();
+                        var accompanied_person = document.getElementById('input-accompanied_person').value;
                         var registration_fee = {{$registration_fee_faculty}};
                         var temp = {{$accompanied_person_fee_faculty}};
                         var accompanied_person_fee = accompanied_person * (registration_fee - temp) 
