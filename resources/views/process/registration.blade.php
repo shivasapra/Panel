@@ -528,18 +528,18 @@
     <script>
         setInterval(function(){ 
             var category = document.getElementById('category_acc').value;
-            var accomodation_for = document.getElementById('accomodation_for').value;
             
                 if (category == 'Student/Post Doc') {
-                    console.log(accomodation_for);
-                    
+                    $('#accomodation_for').val(1);
+                    $('#accomodation_for').attr('readonly','readonly');
                     var accomodation_fee = {{$accomodation_fee_student}};
-                    var accomodation_charges = accomodation_for * accomodation_fee;
-                    $('#accomodation_charges').val(accomodation_charges);
+                    $('#accomodation_charges').val(accomodation_fee);
                     
                     
                 }
                 if (category == 'Faculty') {
+                    $('#accomodation_for').removeAttr('readonly');
+                    var accomodation_for = document.getElementById('accomodation_for').value;
                     var accomodation_fee = {{$accomodation_fee_faculty}};
                     var accomodation_charges = accomodation_for * accomodation_fee;
                     $('#accomodation_charges').val(accomodation_charges);

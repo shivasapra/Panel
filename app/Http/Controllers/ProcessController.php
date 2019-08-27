@@ -25,7 +25,7 @@ class ProcessController extends Controller
             if(Carbon::now()->between(Carbon::parse($reFeeSet->from),Carbon::parse($reFeeSet->to))){
                 $registration_fee_student = $reFeeSet->valid_amount;
             }else{
-                $registration_fee_student = $reFeeSet->invalid_amount;
+                $registration_fee_student = $reFeeSet->valid_amount + $reFeeSet->invalid_amount;
             }
         }else{
             $registration_fee_student = $reFeeSet->fixed_amount;
@@ -37,7 +37,7 @@ class ProcessController extends Controller
             if(Carbon::now()->between(Carbon::parse($reFeeSet->from),Carbon::parse($reFeeSet->to))){
                 $registration_fee_faculty = $reFeeSet->valid_amount;
             }else{
-                $registration_fee_faculty = $reFeeSet->invalid_amount;
+                $registration_fee_faculty =$reFeeSet->valid_amount + $reFeeSet->invalid_amount;
             }
         }else{
             $registration_fee_faculty = $reFeeSet->fixed_amount;
@@ -49,7 +49,7 @@ class ProcessController extends Controller
             if(Carbon::now()->between(Carbon::parse($acFeeSet->from),Carbon::parse($acFeeSet->to))){
                 $accomodation_fee_student = $acFeeSet->valid_amount;
             }else{
-                $accomodation_fee_student = $acFeeSet->invalid_amount;
+                $accomodation_fee_student =$acFeeSet->valid_amount + $acFeeSet->invalid_amount;
             }
         }else{
             $accomodation_fee_student = $acFeeSet->fixed_amount;
@@ -60,7 +60,7 @@ class ProcessController extends Controller
             if(Carbon::now()->between(Carbon::parse($acFeeSet->from),Carbon::parse($acFeeSet->to))){
                 $accomodation_fee_faculty = $acFeeSet->valid_amount;
             }else{
-                $accomodation_fee_faculty = $acFeeSet->invalid_amount;
+                $accomodation_fee_faculty =$acFeeSet->valid_amount + $acFeeSet->invalid_amount;
             }
         }else{
             $accomodation_fee_faculty = $acFeeSet->fixed_amount;
