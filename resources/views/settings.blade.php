@@ -313,7 +313,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Abstract') }}</label>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input class="form-control" type="file" name="abstract" />
+                                        <input class="form-control" type="file" name="abstract" accept=".doc,.docx"/>
                                     </div>
                                 </div>
                             </div>

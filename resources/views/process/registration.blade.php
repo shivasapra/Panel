@@ -40,7 +40,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link {{ $active== 'conference' ? ' active' : '' }}" href="#conference" data-toggle="tab">
-                                                <i class="material-icons">stars</i> Pre-Conference Workshop
+                                                <i class="material-icons">stars</i> Post-Conference Workshop
                                                 <div class="ripple-container"></div>
                                             </a>
                                         </li>
@@ -107,7 +107,7 @@
                                                                         <option value="">Select Gender</option>
                                                                         <option value="Male" @if($user->details != null) {{($user->details->gender == 'Male')? 'selected': ' '}} @endif>Male</option>
                                                                         <option value="Female" @if($user->details != null) {{($user->details->gender == 'Female')? 'selected': ' '}} @endif>Female</option>
-                                                                        <option value="Transgender" @if($user->details != null) {{($user->details->gender == 'Transgender')? 'selected': ' '}} @endif>Transgender</option>
+                                                                        <option value="Transgender" @if($user->details != null) {{($user->details->gender == 'Other')? 'selected': ' '}} @endif>Other</option>
                                                                     </select>
                                                                     @if ($errors->has('gender'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('gender') }}</span>
@@ -158,7 +158,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Phone') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone') }}" @if($user->details != null)  value="{{$user->details->phone}}"   @else value="{{old('phone')}}" @endif required="true" aria-required="true"/>
+                                                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" minlength="10" maxlength="10" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone (Without Country Code)') }}" @if($user->details != null)  value="{{$user->details->phone}}"   @else value="{{old('phone')}}" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('phone'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('phone') }}</span>
                                                                     @endif
@@ -348,7 +348,7 @@
                                                         </div>
                                                         @if($user->conference == null)
                                                             <div class="row">
-                                                                <label class="col-sm-4 col-form-label">{{ __('Do You Want To Attend Pre Conference Workshop?') }}</label>
+                                                                <label class="col-sm-4 col-form-label">{{ __('Do You Want To Attend Post Conference Workshop?') }}</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="radio" id="yes_conference" name="conference" value="yes" >Yes
                                                                     <input type="radio" id="no_conference"  name="conference" value="no" checked>No
