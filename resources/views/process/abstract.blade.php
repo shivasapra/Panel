@@ -82,8 +82,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer ml-auto mr-auto">
-                            
+                        <div class="card-footer text-danger">
+                            <b>*Note:- </b>  &nbsp; Upload only preassigned template in <b> &nbsp;doc/docx &nbsp;</b> format only.
                         </div>
                     </div>
                     <div class="row">
@@ -150,7 +150,7 @@
                                     '{{asset(explode(".",Settings::first()->abstract)[0]."html")}}'+
                                 '@endif"  frameborder="0" style="width:100%;height:500px;"></iframe>'+
                         '</div>'+
-                        '<input type="file" name="poster" id="poster" style="display:none";>'+
+                        '<input type="file" name="poster" accept=".doc,.docx" id="poster" style="display:none";>'+
                     '</div>';
                 $('#abstract_poster').html(poster);
             }else{
@@ -180,7 +180,7 @@
                                 '@endif" frameborder="0" style="width:100%;height:500px;">'+
                             '</iframe>'+
                         '</div>'+
-                        '<input type="file" name="talk" id="talk" style="display:none";>'+
+                        '<input type="file" name="talk" accept=".doc,.docx" id="talk" style="display:none";>'+
                     '</div>';
                 $('#abstract_talk').html(talk);
             }else{
@@ -234,7 +234,7 @@
                                 '@endif" frameborder="0" style="width:100%;height:500px;">'+
                             '</iframe>'+
                         '</div>'+
-                        '<input type="file" name="same" id="same_b" style="display:none";>'+
+                        '<input type="file" name="same" accept=".doc,.docx" id="same_b" style="display:none";>'+
                     '</div>';
                 $('#same_abstract').html(same);
             }
