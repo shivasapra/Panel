@@ -116,6 +116,18 @@
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/settings.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        @if(Session::has('registered'))
+            <script>
+                swal(`Registered!!`, `{{Session::get('registered')}}`, "success");
+            </script>
+        @endif
+        @if(Session::has('abstract'))
+            <script>
+                swal(`Abstract Submitted!!`, `{{Session::get('abstract')}}`, "success");
+            </script>
+        @endif
         @yield('js')
         @stack('js')
     </body>

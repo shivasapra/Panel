@@ -13,6 +13,7 @@ use App\Conference;
 use Carbon\Carbon;
 use App\Abtract;
 use Mail;
+use Session;
 
 
 class ProcessController extends Controller
@@ -120,6 +121,13 @@ class ProcessController extends Controller
         $model->accompanied_person_fee = $request->accompanied_person_fee;
         $model->total_registration_fee = $request->total_registration_fee;
         $model->save();
+        Session::flash('registered','Dear Participant,
+        Thanks for registering for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
+        You will receive a conformation email upon reconciliation of your payment.
+        Looking forward to see you in the conference.
+        Thanks much!
+        Best wishes,
+        Organizers, AICBC 2019.');
         return redirect()->route('registration.process',['user'=>$user,'active'=>'accomodation']);
     }
 
@@ -137,6 +145,7 @@ class ProcessController extends Controller
             $model->category = $request->category_acc;
             $model->save();
         }
+        
         return redirect()->route('registration.process',['user'=>$user,'active'=>'conference']);
 
     }
@@ -224,7 +233,13 @@ class ProcessController extends Controller
         }
 
         $model->save();
-
+        Session::flash('abstract','Dear Participant,
+        Thanks for submitting your abstract for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
+        You will be informed soon about the acceptance of your abstract.
+        Looking forward to see you in the conference.
+        Thanks much!
+        Best wishes,
+        Organizers, AICBC 2019.');
         return redirect()->back();
     }
 
