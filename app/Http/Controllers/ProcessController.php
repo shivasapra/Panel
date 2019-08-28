@@ -188,7 +188,7 @@ class ProcessController extends Controller
     }
 
     public function abstract(User $user){
-        return view('process.abstract')->with('user',$user);
+        return view('emails.abstract')->with('user',$user);
     }
 
     public function abstractSubmit(Request $request,User $user){
