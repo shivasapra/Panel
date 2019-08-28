@@ -334,7 +334,11 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Introduction') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.   
+                                                                    In collaboration with India Biosciences, we will be hosting a half-day
+                                                                    workshop on “Career Crafting” with an aim to help the young graduate
+                                                                    students to develop skill and strategies to steer their career. This will be of
+                                                                    immense help to the Ph.D. students and Postdocs who are soon going to
+                                                                    appear in the job market.
                                                                 </div>
                                                             </div>
                                                         </div>
