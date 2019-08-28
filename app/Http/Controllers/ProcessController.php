@@ -121,6 +121,13 @@ class ProcessController extends Controller
         $model->accompanied_person_fee = $request->accompanied_person_fee;
         $model->total_registration_fee = $request->total_registration_fee;
         $model->save();
+
+        $contactEmail = $user->email;
+        $data = ['name'=> $user->name];
+        Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Thanks For Registering!!');
+        });
         Session::flash('registered','Dear Participant,
         Thanks for registering for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
         You will receive a conformation email upon reconciliation of your payment.
@@ -233,6 +240,13 @@ class ProcessController extends Controller
         }
 
         $model->save();
+
+        $contactEmail = $user->email;
+        $data = ['name'=> $user->name];
+        Mail::send('abstract.registered', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Abstract Submission!!');
+        });
         Session::flash('abstract','Dear Participant,
         Thanks for submitting your abstract for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
         You will be informed soon about the acceptance of your abstract.
