@@ -310,6 +310,14 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('MICR Code') }}</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="form-control" name="MICR" type="text" placeholder="{{ __('MICR Code') }}" @if($settings != null)  value="{{$settings->MICR}}"   @else value="{{old('MICR')}}" @endif required="true" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Abstract') }}</label>
                                 <div class="col-sm-4">
                                     <div class="form-group">

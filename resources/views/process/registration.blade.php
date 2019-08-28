@@ -421,6 +421,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4 col-form-label">{{ __('MICR Code') }}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" disabled @if(App\Settings::first() != null) value="{{App\Settings::first()->MICR}}" @endif>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <br><hr>
                                                         <div class="row">
                                                             <label class="col-sm-4 col-form-label">{{ __('Registration Charges') }}</label>

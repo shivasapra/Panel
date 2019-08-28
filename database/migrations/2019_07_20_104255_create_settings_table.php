@@ -19,6 +19,7 @@ class CreateSettingsTable extends Migration
             $table->string('account_no')->nullable();
             $table->string('account_holder_name')->nullable();
             $table->string('IFSC')->nullable();
+            $table->string('MICR')->nullable();
             $table->string('abstract')->nullable();
             $table->float('conference_amount')->nullable();
             $table->timestamps();
