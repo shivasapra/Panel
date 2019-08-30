@@ -143,13 +143,7 @@ class ProcessController extends Controller
         {  
             $message->to($contactEmail)->subject('Thanks For Registering!!');
         });
-        Session::flash('registered','Dear Participant,
-        Thanks for registering for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
-        You will receive a conformation email upon reconciliation of your payment.
-        Looking forward to see you in the conference.
-        Thanks much!
-        Best wishes,
-        Organizers, AICBC 2019.');
+       
         return redirect()->route('registration.process',['user'=>$user,'active'=>'accomodation']);
     }
 
@@ -181,6 +175,13 @@ class ProcessController extends Controller
         $details->transaction_id = $request->transaction_id;
         $details->payment_date = $request->payment_date;
         $details->save();
+        Session::flash('registered','Dear Participant,
+        Thanks for registering for the XLIII All India Cell Biology Conference, 2019 to be organized in IISER Mohali from December 19-21, 2019.
+        You will receive a conformation email upon reconciliation of your payment.
+        Looking forward to see you in the conference.
+        Thanks much!
+        Best wishes,
+        Organizers, AICBC 2019.');
         return redirect()->back()->withStatus('Registered Successfully');
 
     }
@@ -203,7 +204,7 @@ class ProcessController extends Controller
     }
 
     public function abstract(User $user){
-        return view('emails.abstract')->with('user',$user);
+        return view('process.abstract')->with('user',$user);
     }
 
     public function abstractSubmit(Request $request,User $user){
@@ -258,7 +259,7 @@ class ProcessController extends Controller
 
         $contactEmail = $user->email;
         $data = ['name'=> $user->name];
-        Mail::send('abstract.registered', $data, function($message) use ($contactEmail)
+        Mail::send('emails.abstract', $data, function($message) use ($contactEmail)
         {  
             $message->to($contactEmail)->subject('Abstract Submission!!');
         });

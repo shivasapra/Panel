@@ -39,7 +39,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <input type="radio" name="subject_area" value="Immunology (im)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Immunology (im)" ) checked  @endif @endif required> Immunology (im) <br>
-                                                <input type="radio" name="subject_area" value="Genetics (gen)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Genetics (gen)" ) checked  @endif @endif required> Genetics (gen) <br>
+                                                <input type="radio" name="subject_area" value="Microbiology (mib)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Microbiology (mib)" ) checked  @endif @endif required> Microbiology (mib) <br>
                                                 <input type="radio" name="subject_area" value="Evolution (evo)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Evolution (evo)" ) checked  @endif @endif required> Evolution (evo) <br>
                                                 <input type="radio" name="subject_area" value="Genetics/Cytogenetics (gc)" @if($user->abstract != null) disabled @if($user->abstract->subject_area == "Genetics/Cytogenetics (gc)" ) checked  @endif @endif required> Genetics/Cytogenetics (gc) <br>
                                             </div>

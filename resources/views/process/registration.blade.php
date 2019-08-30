@@ -158,7 +158,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Phone') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" minlength="10" maxlength="10" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone (Without Country Code)') }}" @if($user->details != null)  value="{{$user->details->phone}}"   @else value="{{old('phone')}}" @endif required="true" aria-required="true"/>
+                                                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" minlength="10" maxlength="10" name="phone" id="input-phone" type="text" pattern="\d*"laceholder="{{ __('Phone (Without Country Code)') }}" @if($user->details != null)  value="{{$user->details->phone}}"   @else value="{{old('phone')}}" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('phone'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('phone') }}</span>
                                                                     @endif
@@ -184,7 +184,7 @@
                                                         </div>
 
                                                         <div class="row input-accompanied_person_div">
-                                                            <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Atendee Of The Conference)') }}</label>
+                                                            <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Attendee Of The Conference)') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
                                                                     <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif min="1" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
@@ -275,7 +275,7 @@
                                                                         <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
                                                                         <option value="invited" @if($user->accomodation != null) {{($user->accomodation->category == 'invited')? 'selected': ' '}} @endif>Invited Speaker</option>
                                                                     </select>
-                                                                    @if ($errors->has('accompanied_person'))
+                                                                    @if ($errors->has('category'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
                                                                     @endif
                                                                 </div>
@@ -285,7 +285,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Accomodation For') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input type="number" class="form-control toggle" name="accomodation_for" min="1" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                                                                    <input type="number" class="form-control toggle" name="accomodation_for" min="0" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -481,7 +481,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Bank Name/Bank Address') }}</label>
+                                                            <label class="col-sm-4 col-form-label">{{ __('Bank Name/Branch Address') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
                                                                     <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
@@ -624,8 +624,6 @@
                         
                     }
                     if (category == 'invited') {
-                        $('.input-accompanied_person_div').hide();
-                        $('#input-accompanied_person').attr('disabled','disabled');
                         $('.accompanied_person_fee_div').hide();
                         $('#accompanied_person_fee').attr('disabled','disabled');
                         $('.registration_fee_div').hide();
