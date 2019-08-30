@@ -56,6 +56,10 @@ Route::get('/Abstract-Report', function () {
     return view('reports.abstract');
 })->name('abstract.report');
 
+Route::get('/Room-Allotment-Report', function () {
+    return view('reports.roomAllotment');
+})->name('room.allotment.report');
+
 Route::post('/abstract/talk/download', 'ProcessController@abstractTalkDownload')->name('abstract.talk.download');
 Route::post('/abstract/poster/download', 'ProcessController@abstractPosterDownload')->name('abstract.poster.download');
 

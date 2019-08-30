@@ -186,7 +186,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Atendee Of The Conference)') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
+                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif min="1" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('accompanied_person'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('accompanied_person') }}</span>
                                                                     @endif
@@ -283,7 +283,7 @@
                                                             <label class="col-sm-4 col-form-label">{{ __('Accomodation For') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group">
-                                                                    <input type="number" class="form-control toggle" name="accomodation_for" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
+                                                                    <input type="number" class="form-control toggle" name="accomodation_for" min="1" id="accomodation_for" @if($user->accomodation != null)  value="{{$user->accomodation->accomodation_for}}"   @else disabled value="{{old('accomodation_for')}}" @endif>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -342,39 +342,48 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Conference Charges') }}</label>
-                                                            <div class="col-sm-8">
-                                                                <div class="form-group">
-                                                                    <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->conference_amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
+                                                        @if(App\Conference::count() < 60)
+                                                            <div class="row">
+                                                                <label class="col-sm-4 col-form-label">{{ __('Conference Charges') }}</label>
+                                                                <div class="col-sm-8">
+                                                                    <div class="form-group">
+                                                                        <input type="number" class="form-control toggle" name="conference_amount" id="conference_amount" @if($user->conference != null)  value="{{$user->conference->conference_amount}}"   @else value="{{App\Settings::first()->conference_amount}}" @endif readonly>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        @if($user->conference == null)
+                                                            @if($user->conference == null)
+                                                                <div class="row">
+                                                                    <label class="col-sm-4 col-form-label">{{ __('Do You Want To Attend Post Conference Workshop?') }}</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="radio" id="yes_conference" name="conference" value="yes" >Yes
+                                                                        <input type="radio" id="no_conference"  name="conference" value="no" checked>No
+                                                                    </div>
+                                                                </div>
+                                                            @else
                                                             <div class="row">
-                                                                <label class="col-sm-4 col-form-label">{{ __('Do You Want To Attend Post Conference Workshop?') }}</label>
+                                                                <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
                                                                 <div class="col-sm-8">
-                                                                    <input type="radio" id="yes_conference" name="conference" value="yes" >Yes
-                                                                    <input type="radio" id="no_conference"  name="conference" value="no" checked>No
+                                                                    <div class="form-group">
+                                                                        <p>@if($user->conference != null) {{$user->conference->reason}}@endif</p>            
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                            @endif
+                                                            <div class="row" id="con" style="display:none;">
+                                                                <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
+                                                                <div class="col-sm-8">
+                                                                    <div class="form-group">
+                                                                        <textarea name="reason" id="reason"  class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         @else
-                                                        <div class="row">
-                                                            <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
-                                                            <div class="col-sm-8">
-                                                                <div class="form-group">
-                                                                    <p>@if($user->conference != null) {{$user->conference->reason}}@endif</p>            
-                                                                </div>
-                                                            </div>
-                                                        </div>  
+                                                            <input type="radio" id="no_conference"  name="conference" style="display:none;" value="no" checked>
                                                         @endif
-                                                        <div class="row" id="con" style="display:none;">
-                                                            <label class="col-sm-4 col-form-label" ><b>{{ __('Why You Want To Attend Workshop?') }}</b></label><br>
-                                                            <div class="col-sm-8">
-                                                                <div class="form-group">
-                                                                    <textarea name="reason" id="reason"  class="form-control">@if($user->conference != null) {{$user->conference->reason}}@endif</textarea>            
-                                                                </div>
-                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="text-right">
+                                                            <b>Conference:</b> {{App\Conference::count()}}/60
                                                         </div>
                                                     </div>
                                                 </div>
@@ -470,7 +479,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <label class="col-sm-4 col-form-label">{{ __('Bank Name') }}</label>
+                                                            <label class="col-sm-4 col-form-label">{{ __('Bank Name/Bank Address') }}</label>
                                                             <div class="col-sm-8">
                                                                 <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
                                                                     <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-bank_name" type="text" placeholder="{{ __('Bank Name') }}" @if($user->details != null)  value="{{$user->details->bank_name}}"   @else value="{{old('bank_name')}}" @endif required="true" aria-required="true"/>
@@ -561,9 +570,11 @@
                 
                 if($('#yes_conference').is(':checked')){
                     $('#con').show();
+                    $('#reason').attr('required','required');
             }
             if($('#no_conference').is(':checked')){
                     $('#con').hide();
+                    $('#reason').removeAttr('required');
             }
         }, 1000);
     </script>
@@ -571,7 +582,7 @@
         
             setInterval(function(){ 
                 var category = document.getElementById('input-category').value;
-
+                $('#category_acc').val(category);
                     if (category == 'Student/Post Doc') {
                         $('.input-accompanied_person_div').hide();
                         $('#input-accompanied_person').attr('disabled','disabled');
