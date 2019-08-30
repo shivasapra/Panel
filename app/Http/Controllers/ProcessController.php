@@ -67,6 +67,20 @@ class ProcessController extends Controller
             $accomodation_fee_faculty = $acFeeSet->fixed_amount;
         }
 
+        
+        $acFeeSet = AcFeeSet::where('category','invited')->first();
+        if ($acFeeSet->fixed_amount == null) {
+            if(Carbon::now()->between(Carbon::parse($acFeeSet->from),Carbon::parse($acFeeSet->to))){
+                $accomodation_fee_invited = $acFeeSet->valid_amount;
+            }else{
+                $accomodation_fee_invited =$acFeeSet->valid_amount + $acFeeSet->invalid_amount;
+            }
+        }else{
+            $accomodation_fee_invited = $acFeeSet->fixed_amount;
+        }
+        
+
+
         return view('process.registration')->with('user',$user)
                                         ->with('registration_fee_student',$registration_fee_student)
                                         ->with('accompanied_person_fee_student',$accompanied_person_fee_student)
@@ -74,6 +88,7 @@ class ProcessController extends Controller
                                         ->with('accompanied_person_fee_faculty',$accompanied_person_fee_faculty)
                                         ->with('accomodation_fee_student',$accomodation_fee_student)
                                         ->with('accomodation_fee_faculty',$accomodation_fee_faculty)
+                                        ->with('accomodation_fee_invited',$accomodation_fee_invited)
                                         ->with('active',$active);
     }
 

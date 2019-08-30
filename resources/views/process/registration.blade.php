@@ -174,6 +174,7 @@
                                                                         <option value="">Select Category</option>
                                                                         <option value="Student/Post Doc" @if($user->details != null) {{($user->details->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                                                         <option value="Faculty" @if($user->details != null) {{($user->details->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                                                                        <option value="invited" @if($user->details != null) {{($user->details->category == 'invited')? 'selected': ' '}} @endif>Invited Speaker</option>
                                                                     </select>                                                      
                                                                     @if ($errors->has('accompanied_person'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
@@ -272,6 +273,7 @@
                                                                         <option value="">Select Category</option>
                                                                         <option value="Student/Post Doc" @if($user->accomodation != null) {{($user->accomodation->category == 'Student/Post Doc')? 'selected': ' '}} @endif>Student/Post Doc</option>
                                                                         <option value="Faculty" @if($user->accomodation != null) {{($user->accomodation->category == 'Faculty')? 'selected': ' '}} @endif>Faculty</option>
+                                                                        <option value="invited" @if($user->accomodation != null) {{($user->accomodation->category == 'invited')? 'selected': ' '}} @endif>Invited Speaker</option>
                                                                     </select>
                                                                     @if ($errors->has('accompanied_person'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('category') }}</span>
@@ -567,6 +569,16 @@
                     
                     
                 }
+
+                if (category == 'invited') {
+                    $('#accomodation_for').removeAttr('readonly');
+                    var accomodation_for = document.getElementById('accomodation_for').value;
+                    var accomodation_fee = {{$accomodation_fee_invited}};
+                    var accomodation_charges = accomodation_for * accomodation_fee;
+                    $('#accomodation_charges').val(accomodation_charges);
+                    
+                    
+                }
                 
                 if($('#yes_conference').is(':checked')){
                     $('#con').show();
@@ -611,11 +623,28 @@
                         $('#total_registration_fee').val(registration_fee + accompanied_person_fee);
                         
                     }
+                    if (category == 'invited') {
+                        $('.input-accompanied_person_div').hide();
+                        $('#input-accompanied_person').attr('disabled','disabled');
+                        $('.accompanied_person_fee_div').hide();
+                        $('#accompanied_person_fee').attr('disabled','disabled');
+                        $('.registration_fee_div').hide();
+
+
+                        $('#total_registration_fee').val(0);
+                        
+                        
+                    }
                     
                     
             }, 1000);
         
     </script>
+
+
+
+
+
     <script>
         setInterval(function(){
             var registration_charge = document.getElementById('registration_charge').value; 
@@ -624,6 +653,10 @@
             $('#input-amount').val(Number(registration_charge) + Number(accomodation_charge) + Number(conference_charge));
         },1000)
     </script>
+
+
+
+
     <script>
             function InstituteDataExtract(test){
                 $value = test.value;
