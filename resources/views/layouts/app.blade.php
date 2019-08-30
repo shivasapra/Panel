@@ -128,6 +128,11 @@
                 swal(`Abstract Submitted!!`, `{{Session::get('abstract')}}`, "success");
             </script>
         @endif
+        @if(Session::has('success'))
+            <script>
+                swal(`{{Session::get('success')}}`, ` `, "success");
+            </script>
+        @endif
         @yield('js')
         @stack('js')
     </body>

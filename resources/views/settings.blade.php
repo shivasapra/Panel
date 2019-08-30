@@ -271,6 +271,67 @@
                 </div>
 
                 <div class="card">
+                    <form action="{{route('invited.ac.settings')}}" method="post">
+                        @csrf
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title ">{{ __('Accomodation Charges For Invited Speaker') }}</h4>
+                        </div>
+                        <div class="card-body">
+                            @if (session('status'))
+                            <div class="row">
+                                <div class="col-sm-12">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                    </button>
+                                    <span>{{ session('status_five') }}</span>
+                                </div>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="row">
+                                <div class="col-md-6">
+                                    DateWise Amount <input type="radio" value="datewise-ac-invited" name="ac_type_invited" id="ac-datewise-invited" @if(App\AcfeeSet::where('category','invited')->where('fixed_amount',null)->count()>0) checked @endif>
+                                    Fixed Amount <input type="radio" value="fixed-ac-invited" name="ac_type_invited" id="ac-fixed-invited" @if(App\AcfeeSet::where('category','invited')->where('fixed_amount','!=',null)->count()>0) checked @endif>
+                                </div>
+                            </div><br>
+                            <div id="datewise-ac-invited" class="div_five" @if(App\AcfeeSet::where('category','invited')->where('fixed_amount',null)->count()>0) style=" " @else style="display:none;" @endif>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="ac_from_invited">From:</label>
+                                        <input type="Date" class="form-control" name="ac_from_invited" @if($ac_type_invited != null)value="{{$ac_type_invited->from}}"@endif>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="ac_to_invited">To:</label>
+                                        <input type="Date" class="form-control" name="ac_to_invited" @if($ac_type_invited != null)value="{{$ac_type_invited->to}}"@endif>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="ac_valid_amount_invited">Charges:</label>
+                                        <input type="text" class="form-control" name="ac_valid_amount_invited" @if($ac_type_invited != null)value="{{$ac_type_invited->valid_amount}}"@endif>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="ac_invalid_amount_invited">Late Fee Charges:</label>
+                                        <input type="text" class="form-control" name="ac_invalid_amount_invited" @if($ac_type_invited != null)value="{{$ac_type_invited->invalid_amount}}"@endif>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="fixed-ac-invited" class="div_five" @if(App\AcfeeSet::where('category','invited')->where('fixed_amount','!=',null)->count()>0) style=" " @else style="display:none;" @endif>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="ac_fixed_amount_invited">Fixed Amount:</label>
+                                        <input type="text" class="form-control" name="ac_fixed_amount_invited" @if($ac_type_invited != null)value="{{$ac_type_invited->fixed_amount}}"@endif>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-sm btn-danger">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
                     <form action="{{route('settings.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header card-header-info">
@@ -395,6 +456,19 @@
         if (inputValue == 'datewise-ac-faculty' || inputValue == 'fixed-ac-faculty') {
             var targetDiv = $("#" + inputValue);
             $(".div_four").not(targetDiv).hide();
+            $(targetDiv).show();
+        }
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        if (inputValue == 'datewise-ac-invited' || inputValue == 'fixed-ac-invited') {
+            var targetDiv = $("#" + inputValue);
+            $(".div_five").not(targetDiv).hide();
             $(targetDiv).show();
         }
     });

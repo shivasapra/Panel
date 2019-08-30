@@ -168,3 +168,4 @@ Route::post('/student-reg-settings', 'SettingsController@studentRegSettings')->n
 Route::post('/faculty-reg-settings', 'SettingsController@facultyRegSettings')->name('faculty.reg.settings');
 Route::post('/student-ac-settings', 'SettingsController@studentAcSettings')->name('student.ac.settings');
 Route::post('/faculty-ac-settings', 'SettingsController@facultyAcSettings')->name('faculty.ac.settings');
+Route::post('/invited-ac-settings', 'SettingsController@invitedAcSettings')->name('invited.ac.settings');

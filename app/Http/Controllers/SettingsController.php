@@ -13,6 +13,7 @@ class SettingsController extends Controller
                                 ->with('reg_type_faculty', ReFeeSet::where('category','Faculty')->first())
                                 ->with('ac_type_student', AcFeeSet::where('category','Student')->first())
                                 ->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first())
+                                ->with('ac_type_invited', AcFeeSet::where('category','invited')->first())
                                 ->with('settings',Settings::first());
     }
 
@@ -107,6 +108,28 @@ class SettingsController extends Controller
             $model->save();
         }
         return redirect()->back()->with('ac_type_faculty', AcFeeSet::where('category','Faculty')->first());
+    }
+
+    public function invitedAcSettings(Request $request){
+        foreach (AcFeeSet::where('category','invited')->get() as $ac) {
+            $ac->delete();
+        }
+        if($request->ac_type_invited == 'datewise-ac-invited'){
+            $model = new AcFeeSet;
+            $model->category = 'invited';
+            $model->from = $request->ac_from_invited;
+            $model->to = $request->ac_to_invited;
+            $model->valid_amount = $request->ac_valid_amount_invited;
+            $model->invalid_amount = $request->ac_invalid_amount_invited;
+            $model->save();
+        }
+        if($request->ac_type_invited == 'fixed-ac-invited'){
+            $model = new AcFeeSet;
+            $model->category = 'invited';
+            $model->fixed_amount = $request->ac_fixed_amount_invited;
+            $model->save();
+        }
+        return redirect()->back();
     }
 
     public function store(Request $request){
