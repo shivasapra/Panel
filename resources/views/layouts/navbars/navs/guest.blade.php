@@ -27,6 +27,11 @@
             <i class="material-icons">fingerprint</i> {{ __('Login') }}
           </a>
         </li>
+        <li class="nav-item{{ $activePage == 'forgot password' ? ' active' : '' }}">
+          <a href="{{ route('password.request') }}" class="nav-link" style="color:black">
+            <i class="material-icons">eject</i> {{ __('Forgot password?') }}
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'info@himsoftsolutions.com', 'name' => 'Himsoft'],
+    'from' => ['address' => 'aicbc2019@gmail.com', 'name' => 'IISER'],
 
     /*
     |--------------------------------------------------------------------------
