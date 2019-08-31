@@ -19,5 +19,13 @@ class UsersTableSeeder extends Seeder
             'admin' => 1,
             'created_at' =>now(),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'AICBC',
+            'email' => 'aicbc2019@gmail.com',
+            'password' => Hash::make('2019@iiser'),
+            'admin' => 1,
+            'created_at' =>now(),
+        ]);
     }
 }
