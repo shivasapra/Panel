@@ -108,7 +108,7 @@
                     <p>{{ __('Accomodation') }}</p>
                 </a>
               </li> --}}
-              <li class=" @if(Auth::user()->details != null) @if(Auth::user()->details->payment_date == null) li-disable @endif @else li-disable @endif nav-item{{ $activePage == 'Abstract' ? ' active' : '' }}">
+              <li class=" @if(Auth::user()->details != null) @if(Auth::user()->details->payment_date == null) li-disable @endif @if(Auth::user()->details->approved == 0) li-disable @endif @else li-disable @endif nav-item{{ $activePage == 'Abstract' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('abstract',Auth::user())}}" >
                     <i class="material-icons">airplay</i>
                     <p>{{ __('Abstract') }}</p>

@@ -117,7 +117,7 @@
                                                         </div>
 
                                                         <div class="row">
-                                                            <label class="col-sm-3 col-form-label">{{ __('Institue Name') }}</label>
+                                                            <label class="col-sm-3 col-form-label">{{ __('Institute Name') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('institue') ? ' has-danger' : '' }}">
                                                                     <div class="dropdown">	<div id="myDropdown" class="dropdown-content">
@@ -187,7 +187,7 @@
                                                             <label class="col-sm-3 col-form-label">{{ __('Accompanied Person (Non Attendee Of The Conference)') }}</label>
                                                             <div class="col-sm-9">
                                                                 <div class="form-group{{ $errors->has('accompanied_person') ? ' has-danger' : '' }}">
-                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif min="1" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
+                                                                    <input class="form-control{{ $errors->has('accompanied_person') ? ' is-invalid' : '' }}" @if($active != 'registration') readonly @endif min="0" name="accompanied_person" id="input-accompanied_person" type="number" @if($user->details != null)  value="{{$user->details->accompanied_person}}"   @else value="0" @endif required="true" aria-required="true"/>
                                                                     @if ($errors->has('accompanied_person'))
                                                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('accompanied_person') }}</span>
                                                                     @endif
